@@ -37,6 +37,7 @@ task testjavac << {
             srcdir: "${project.file('sourceSet')}",
             source: '1.7',
             target: '1.7',
+            encoding: 'UTF-8',
             destdir: "${project.file('classes')}",
             bootclasspath: '/Users/tong/Applications/android-sdk-macosx/platforms/android-23/android.jar',
             classpath: "${project.file('classpath/testrt.jar')};${project.file('classpath/test4.jar')}"
