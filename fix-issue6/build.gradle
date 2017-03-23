@@ -1,0 +1,92 @@
+group 'fix-issue6'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+public static final boolean deleteDir(File file) {
+    if (file == null || (!file.exists())) {
+        return false;
+    }
+    if (file.isFile()) {
+        file.delete();
+    } else if (file.isDirectory()) {
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            deleteDir(files[i]);
+        }
+    }
+    file.delete();
+    return true;
+}
+
+public static void cleanDir(File dir) {
+    if (dir.exists()) {
+        deleteDir(dir);
+        dir.mkdirs();
+    }
+}
+
+public static void transformJar(Project project,File inputJar,File outputJar,Set<String> includePatterns) {
+    File tmpDir = project.file('tmp')
+    cleanDir(tmpDir)
+    if (outputJar.exists()) {
+        outputJar.delete()
+    }
+
+    project.copy {
+        from project.zipTree(inputJar)
+
+        for (String pattern : includePatterns) {
+            include pattern
+        }
+
+        into tmpDir
+    }
+
+    project.ant.zip(baseDir: tmpDir, destFile: outputJar)
+}
+
+task gendex<< {
+    println("=====start")
+    File combinedJar = project.file('combined.jar')
+    File transformedJar = project.file('transformed-combined.jar')
+
+    Set<String> includePatterns = new HashSet<>()
+    includePatterns.add("com/baidu/platform/comapi/map/a.class")
+    includePatterns.add("com/baidu/platform/comapi/map/A.class")
+    includePatterns.add("com/baidu/platform/comapi/map/MapController.class")
+    includePatterns.add("com/baidu/platform/comapi/map/MapController\$*.class")
+
+    transformJar(project,combinedJar,transformedJar,includePatterns)
+
+    File dexFile = project.file('combined.dex')
+    String cmdStr = "dx --dex --output=${dexFile} ${transformedJar.absolutePath}"
+    def process = cmdStr.execute()
+    println("==fastdex \n${cmdStr}")
+    int status = process.waitFor()
+    if (status == 0) {
+        project.logger.error("==fastdex patch transform generate dex success")
+    }
+    else {
+        throw new GradleException("==fastdex generate dex fail")
+    }
+    process.destroy()
+}
+
+public static void transformJar2(Project project,File inputJar,File outputJar,Set<String> includePatterns) {
+    if (outputJar.exists()) {
+        outputJar.delete()
+    }
+
+
+}
