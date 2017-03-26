@@ -1,0 +1,43 @@
+=2.0.0
+没有开启multiDexEnabled时，不走jarmerge
+
+开启multiDexEnabled，走jarmerge
+
+=2.1.2
+没有开启multiDexEnabled时，不走jarmerge
+
+开启multiDexEnabled，走jarmerge
+
+:app:transformClassesWithJarMergingForDebug
+
+=2.2.0
+没有开启multiDexEnabled时，不走jarmerge
+
+开启multiDexEnabled，走jarmerge
+
+=2.3.0
+没有开启multiDexEnabled时，不走jarmerge
+
+开启multiDexEnabled，走jarmerge
+
+:app:processDebugResources
+:app:generateDebugSources
+:app:incrementalDebugJavaCompilationSafeguard
+:app:javaPreCompileDebug
+:app:compileDebugJavaWithJavac
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+:app:compileDebugNdk UP-TO-DATE
+:app:compileDebugSources
+:app:mergeDebugShaders
+:app:compileDebugShaders
+:app:generateDebugAssets
+:app:mergeDebugAssets
+:app:transformClassesWithJarMergingForDebug
+:app:transformClassesWithMultidexlistForDebug
+
+
+
+
+
+
