@@ -1,3 +1,21 @@
+/*
+ * Tencent is pleased to support the open source community by making Tinker available.
+ *
+ * Copyright (C) 2016 THL A29 Limited, a Tencent company. All rights reserved.
+ *
+ * Licensed under the BSD 3-Clause License (the "License"); you may not use this file except in
+ * compliance with the License. You may obtain a copy of the License at
+ *
+ * https://opensource.org/licenses/BSD-3-Clause
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is
+ * distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.tencent.tinker.build.util;
+
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -9,7 +27,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
@@ -121,7 +138,7 @@ public class FileOperation {
             is = FileOperation.class.getResourceAsStream("/" + name);
             os = new FileOutputStream(dest, false);
 
-            byte[] buffer = new byte[TypedValue.BUFFER_SIZE];
+            byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
@@ -147,7 +164,7 @@ public class FileOperation {
             is = new FileInputStream(source);
             os = new FileOutputStream(dest, false);
 
-            byte[] buffer = new byte[TypedValue.BUFFER_SIZE];
+            byte[] buffer = new byte[1024];
             int length;
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
@@ -197,11 +214,11 @@ public class FileOperation {
                 BufferedOutputStream bos = null;
                 try {
                     fos = new FileOutputStream(file);
-                    bos = new BufferedOutputStream(fos, TypedValue.BUFFER_SIZE);
+                    bos = new BufferedOutputStream(fos, 1024);
 
-                    byte[] buf = new byte[TypedValue.BUFFER_SIZE];
+                    byte[] buf = new byte[1024];
                     int len;
-                    while ((len = bis.read(buf, 0, TypedValue.BUFFER_SIZE)) != -1) {
+                    while ((len = bis.read(buf, 0, 1024)) != -1) {
                         fos.write(buf, 0, len);
                     }
                 } finally {
@@ -229,7 +246,7 @@ public class FileOperation {
      * @throws IOException
      */
     public static void zipFiles(Collection<File> resFileList, File zipFile) throws IOException {
-        ZipOutputStream zipout = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(zipFile), TypedValue.BUFFER_SIZE));
+        ZipOutputStream zipout = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(zipFile), 1024));
         for (File resFile : resFileList) {
             if (resFile.exists()) {
                 zipFile(resFile, zipout, "");
@@ -270,7 +287,7 @@ public class FileOperation {
 
     private static byte[] readContents(final File file) throws IOException {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        final int bufferSize = TypedValue.BUFFER_SIZE;
+        final int bufferSize = 1024;
         try {
             final FileInputStream in = new FileInputStream(file);
             final BufferedInputStream bIn = new BufferedInputStream(in);
@@ -322,98 +339,14 @@ public class FileOperation {
         return null;
     }
 
-    public static String getZipEntryMd5(File file, String entryName) {
-        ZipFile zipFile = null;
-        try {
-            zipFile = new ZipFile(file);
-            ZipEntry entry = zipFile.getEntry(entryName);
-            if (entry == null) {
-                return null;
-            }
-            return MD5.getMD5(zipFile.getInputStream(entry), 1024 * 100);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (zipFile != null) {
-                try {
-                    zipFile.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
-    }
 
     public static void zipInputDir(File inputDir, File outputFile) throws IOException {
         File[] unzipFiles = inputDir.listFiles();
-        List<File> collectFiles = new ArrayList<>();
+        List<File> collectFiles = new ArrayList<String>();
         for (File f : unzipFiles) {
             collectFiles.add(f);
         }
 
         FileOperation.zipFiles(collectFiles, outputFile);
     }
-
-    public static boolean sevenZipInputDir(File inputDir, File outputFile, Configuration config) {
-        String outPath = inputDir.getAbsolutePath();
-        String path = outPath + File.separator + "*";
-        String cmd = config.mSevenZipPath;
-
-        ProcessBuilder pb = new ProcessBuilder(cmd, "a", "-tzip", outputFile.getAbsolutePath(), path, "-mx9");
-        Process pro;
-        try {
-            pro = pb.start();
-            InputStreamReader ir = new InputStreamReader(pro.getInputStream());
-            LineNumberReader input = new LineNumberReader(ir);
-            while (input.readLine() != null) {
-            }
-            //destroy the stream
-            pro.waitFor();
-            pro.destroy();
-        } catch (IOException | InterruptedException e) {
-//            e.printStackTrace();
-            FileOperation.deleteFile(outputFile);
-            Logger.e("7a patch file failed, you should set the zipArtifact, or set the path directly");
-            return false;
-        }
-        return true;
-    }
 }
-
-task testjavac << {
-    // project.ant.javac(
-    //         srcdir: "${project.file('sourceSet')}",
-    //         source: '1.7',
-    //         target: '1.7',
-    //         destdir: "${project.file('classes')}",
-    //         bootclasspath: '/Users/tong/Applications/android-sdk-macosx/platforms/android-23/android.jar',
-    //         classpath: "${project.file('classpath/testrt.jar')};${project.file('classpath/test4.jar')}"
-    //         )
-
-
-    File combinedJar = new File("/Users/tong/Desktop/baidumapapi_v2_0_0.jar")
-    File patchJar = new File("/Users/tong/Desktop/patch.jar")
-    File tmpDir = new File("/Users/tong/Desktop/tmp")
-    // project.copy {
-    //     from project.zipTree(combinedJar)
-    //     into tmpDir
-    // }
-    //project.ant.zip(baseDir: tmpDir, destFile: patchJar)
-
-    unZipAPk('/Users/tong/Desktop/baidumapapi_v2_0_0.jar',tmpDir)
-
-
-}
-
-// task testjavac << {
-//     project.ant.javac(
-//             srcdir: "${project.file('sourceSet')}",
-//             source: '1.7',
-//             target: '1.7',
-//             encoding: 'UTF-8',
-//             destdir: "${project.file('classes')}",
-//             bootclasspath: '/Users/tong/Applications/android-sdk-macosx/platforms/android-23/android.jar',
-//             classpath: "${project.file('classpath/testrt.jar')};${project.file('classpath/test4.jar')}"
-//             )
-// }
