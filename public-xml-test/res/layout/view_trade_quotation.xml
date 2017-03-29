@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="5dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_silver_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:text="---"
+                android:textColor="#f54a3e"
+                android:textSize="40dp" />
+
+            <ImageView
+                android:id="@+id/iv_direction"
+                android:layout_width="10dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/quotation_up"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_silver_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#f54a3e"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/tv_silver_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#f54a3e"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_label_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今开"
+                android:textColor="#7FFFFFFF" />
+
+            <TextView
+                android:id="@+id/tv_silver_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_label_open"
+                android:maxLines="1"
+                android:text="-.---"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#7FFFFFFF" />
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_label_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昨收"
+                android:textColor="#7FFFFFFF" />
+
+            <TextView
+                android:id="@+id/tv_silver_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_label_close"
+                android:maxLines="1"
+                android:text="-.---"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#7FFFFFFF" />
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_label_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最高"
+                android:textColor="#7FFFFFFF" />
+
+            <TextView
+                android:id="@+id/tv_silver_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_label_high"
+                android:maxLines="1"
+                android:text="-.---"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_devide"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#7FFFFFFF" />
+        <RelativeLayout
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_label_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="最低"
+                android:textColor="#7FFFFFFF" />
+
+            <TextView
+                android:id="@+id/tv_silver_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_label_low"
+                android:maxLines="1"
+                android:text="-.---"
+                android:textColor="#CCFFFFFF"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
+

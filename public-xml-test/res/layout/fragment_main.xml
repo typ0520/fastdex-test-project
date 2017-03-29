@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/layoutMainTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></RelativeLayout>
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="45dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/main_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_bg"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <fragment
+                    android:id="@+id/fragmentMainBanner"
+                    android:name="com.dx168.epmyg.fragment.MainBannerFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <fragment
+                    android:name="com.dx168.epmyg.fragment.MainQuoteFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <fragment
+                    android:name="com.dx168.epmyg.fragment.MainLiveTradePlanFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <fragment
+                    android:id="@+id/fragmentMainAnalyst"
+                    android:name="com.dx168.epmyg.fragment.MainAnalystFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Space
+                    android:id="@+id/space_analyst"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <fragment
+                    android:id="@+id/fragmentMainEconomyInfo"
+                    android:name="com.dx168.epmyg.fragment.MainEconomyInfoFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include layout="@layout/layout_logo_footer" />
+
+            </LinearLayout>
+        </ScrollView>
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_layer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="#B3000000"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="5dp"
+            android:text="第一时间把握交易机会"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_lSize" />
+
+        <Button
+            android:id="@+id/btn_layer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_red_shape"
+            android:text="激活开户"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_lSize" />
+    </RelativeLayout>
+</FrameLayout>

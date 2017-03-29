@@ -1,0 +1,19 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">12dp</dimen>
+    <dimen name="activity_vertical_margin">12dp</dimen>
+    <dimen name="commonItemHeight">50dp</dimen>
+    <dimen name="itemAvatar">36dp</dimen>
+    <dimen name="itemPadding">14dp</dimen>
+    <dimen name="thick_divider_line_height">0.67dp</dimen>
+    <dimen name="fine_divider_line_height">0.5dp</dimen>
+
+    <!--文字字体大小-->
+    <dimen name="text_xsSize">11sp</dimen>
+    <dimen name="text_sSize">13sp</dimen>
+    <dimen name="text_mSize">15sp</dimen>
+    <dimen name="text_lSize">17sp</dimen>
+    <dimen name="text_xlSize">19sp</dimen>
+    <dimen name="text_xxlSize">23sp</dimen>
+    <dimen name="text_xxxlSize">28sp</dimen>
+</resources>

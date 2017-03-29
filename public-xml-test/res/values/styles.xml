@@ -1,0 +1,70 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:textColor">@color/color_text_black</item>
+        <item name="android:textSize">@dimen/text_sSize</item>
+    </style>
+
+    <style name="Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="NoticeAnim">
+        <item name="android:windowEnterAnimation">@anim/notice_show</item>
+        <item name="android:windowExitAnimation">@anim/notice_hide</item>
+    </style>
+
+    <style name="Activity_dialog" parent="android:style/Theme.Translucent">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Month_Select_PopupWindow">
+        <item name="android:windowEnterAnimation">@anim/scale_in_from_top</item>
+        <item name="android:windowExitAnimation">@anim/scale_out_from_bottom</item>
+    </style>
+    
+    <style name="TabTextBaseStyle">
+        <item name="android:textColor">@color/tab_text_color_selector</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--首页分析师专栏tab切换-->
+    <style name="TabMainEconomyInfo" parent="TabTextBaseStyle">
+        <item name="android:background">@drawable/bg_white_bottom_blue_selector</item>
+        <item name="android:textSize">@dimen/text_lSize</item>
+        <item name="android:layout_height">@dimen/commonItemHeight</item>
+    </style>
+    <!--列表itempadding-->
+    <style name="ListViewItemPadding">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/itemPadding</item>
+        <item name="android:paddingBottom">@dimen/itemPadding</item>
+    </style>
+    <style name="EconomyInfoValue">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/color_text_gray</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--小的progressbar-->
+    <style name="MinProgressBarStyle">
+        <item name="android:minHeight">30dp</item>
+        <item name="android:minWidth">30dp</item>
+        <item name="android:maxHeight">30dp</item>
+        <item name="android:maxWidth">30dp</item>
+    </style>
+
+    <style name="TabLayoutTextStyle">
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>

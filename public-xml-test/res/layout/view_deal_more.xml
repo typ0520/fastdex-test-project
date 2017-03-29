@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.dx168.epmyg.view.LimitCallListView
+        android:id="@+id/view_call_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/view_content"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_below="@+id/view_call_list">-->
+
+    <include
+        android:id="@+id/head_content"
+        layout="@layout/view_buy_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_call_list" />
+
+    <include
+        android:id="@+id/include_forbid"
+        layout="@layout/breedpower_ygyd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head_content"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/head_content">
+
+        <ScrollView
+            android:id="@+id/scroll_view_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:id="@+id/fl_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:background="#eeeeee"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/btn_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_red_selector"
+                android:gravity="center"
+                android:padding="7dp"
+                android:text="提交"
+                android:textColor="#fef3f3"
+                android:textSize="20sp" />
+        </FrameLayout>
+    </RelativeLayout>
+    <!--</RelativeLayout>-->
+</RelativeLayout>

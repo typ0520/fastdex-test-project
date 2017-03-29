@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <item name="fl_content" type="id"/>
+   <item name="view_title" type="id"/>
+   <item name="view_loading" type="id"/>
+   <item name="view_error" type="id"/>
+   <item name="view_empty" type="id"/>
+   <item name="view_content" type="id"/>
+</resources>

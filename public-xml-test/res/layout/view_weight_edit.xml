@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@drawable/bg_edittext_normal">
+
+    <com.dx168.epmyg.view.WeightEditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/ll_container"
+        android:background="@null"
+        android:gravity="center"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:textColor="#007bd8"
+        android:textColorHint="#007bd8"
+        android:textSize="15dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/view_split_left"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/split_line_color"/>
+
+
+        <TextView
+            android:id="@+id/btn_reduce"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+
+        <View
+            android:id="@+id/view_split_center"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/split_line_color"/>
+
+        <TextView
+            android:id="@+id/btn_add"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="#000000"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+</RelativeLayout>

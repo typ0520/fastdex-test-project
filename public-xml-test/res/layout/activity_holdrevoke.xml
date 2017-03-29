@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wpb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#182539">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:src="@drawable/close" />
+
+        <info.hoang8f.android.segmented.SegmentedGroup
+            android:id="@+id/sg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            >
+
+            <RadioButton
+                android:id="@+id/btn_hold"
+        
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:checked="true"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="持仓"
+                android:textSize="20dp" />
+
+            <RadioButton
+                android:id="@+id/btn_kill"
+        
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="撤单"
+                android:textSize="20dp" />
+        </info.hoang8f.android.segmented.SegmentedGroup>
+
+        <RelativeLayout
+            android:id="@+id/rl_prizes"
+            android:layout_width="40dp"
+            android:layout_height="46dp"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/iv_prize"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:background="@null"
+                android:src="@drawable/slide_menu_prize_ic"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tv_prize_count"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="3dp"
+                        android:background="@drawable/main_red_circle"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#ffffff"
+                        android:textSize="9dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.dx168.epmyg.view.ClosePositionView
+        android:id="@+id/view_close_position"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <com.dx168.epmyg.view.LimitRevokeView
+        android:id="@+id/view_limit_rmvoke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dx168.epmyg.view.LoadingView
+            android:id="@+id/view_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <com.dx168.epmyg.view.ErrorView
+            android:id="@+id/view_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

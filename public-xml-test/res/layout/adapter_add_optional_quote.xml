@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent" android:layout_height="45dp"
+    android:paddingLeft="15dp" android:paddingRight="7dp">
+
+    <TextView
+        android:id="@+id/tv_category_name" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" tools:text="粤贵银" android:layout_centerVertical="true"/>
+    <TextView
+        android:id="@+id/tv_price" android:layout_width="wrap_content" android:layout_centerVertical="true"
+        android:layout_height="wrap_content"  tools:text="100.580"
+        android:layout_toLeftOf="@+id/icAddFlag" android:layout_marginRight="60dp"/>
+    <ImageView
+        android:id="@+id/icAddFlag" android:layout_width="wrap_content" android:src="@drawable/ic_optional_add"
+        android:layout_height="wrap_content" android:layout_centerVertical="true"
+        android:layout_alignParentRight="true" android:padding="8dp" android:clickable="true" />
+</RelativeLayout>

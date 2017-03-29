@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_contact_service"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:background="#dddddd"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="单子不对？"
+        android:textColor="#b7b7b7"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/contact_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请联系客服"
+        android:textColor="#5186b8"
+        android:textSize="14sp" />
+
+</LinearLayout>

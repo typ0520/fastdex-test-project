@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:id="@+id/rl_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_prize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="15dp">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14:06"
+            android:paddingLeft="3dp"
+            android:textColor="@color/white"
+            android:background="@drawable/item_text_bg" />
+
+        <TextView
+            android:id="@+id/tv_prize_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="银元宝手镯*2"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_not_receive_prize"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:text="领取"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:background="@drawable/btn_red"
+        android:enabled="true"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginRight="15dp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_received_prize"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:text="已领取"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:background="@null"
+        android:enabled="true"
+        android:textColor="@color/text_gray"
+        android:textSize="15sp"
+        android:layout_marginRight="15dp"
+        android:visibility="visible"/>
+    <!--<TextView-->
+        <!--android:id="@+id/tv_date"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:gravity="center"-->
+        <!--android:text="2016-5-28"-->
+        <!--android:background="@null"-->
+        <!--android:enabled="true"-->
+        <!--android:textSize="16sp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:paddingLeft="15dp"-->
+        <!--android:visibility="visible"/>-->
+</RelativeLayout>

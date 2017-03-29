@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">大象贵金属</string>
+    <string name="hold_position_weight">平仓重量\n(千克)</string>
+
+    <string name="market_close_description_winter">当前不是交易时段，交易时间为周一早8:00至周六凌晨4:00每日凌晨4:00–7:00为休市结算时间</string>
+    <string name="market_close_description_summer">当前不是交易时段，交易时间为周一早8:00至周六凌晨4:00每日凌晨4:00–6:00为休市结算时间</string>
+    <string name="market_close_description">当前不是交易时段</string>
+
+    <string name="left_menu_visitor_hint">立即开户</string>
+    <string name="left_menu_activate_hint">安全入金，开启投资 ></string>
+    <string name="limit_call_notice">已按照操作通知配置限价建仓单。(据此入市交易,风险自担)</string>
+    <string name="footer_text_logo">纳斯达克上市公司\n银科控股  旗下品牌</string>
+    <string name="trade_plan_prompt">策略仅供参考，不构成买卖依据，据此操作风险自担</string>
+
+</resources>

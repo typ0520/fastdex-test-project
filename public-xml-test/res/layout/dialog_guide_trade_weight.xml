@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_trade_weight"
+    android:visibility="gone">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:background="@color/dialog_bg"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/transparent"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dialog_bg"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/dialog_guide_trade_weight"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+</LinearLayout>

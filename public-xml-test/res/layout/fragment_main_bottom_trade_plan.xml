@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/line_color_dddddd_horizontal"/>
+    <LinearLayout
+        android:id="@+id/layoutTradeParent" android:layout_width="match_parent" android:background="@color/white_f8"
+        android:layout_height="110dp" android:orientation="horizontal" android:visibility="gone">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"  android:padding="6dp" android:minWidth="60dp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_teacher_head" android:layout_width="30dp" android:layout_marginRight="4dp"
+                android:layout_height="30dp" android:src="@drawable/default_head" android:layout_alignBottom="@+id/tv_teacher_point"/>
+            <TextView
+                android:id="@+id/tv_teacher_name" android:layout_width="wrap_content" android:layout_toRightOf="@id/iv_teacher_head"
+                android:layout_height="wrap_content" tools:text="周宏" android:textColor="#2b2f33" android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_teacher_point" android:layout_width="wrap_content" android:layout_toRightOf="@id/iv_teacher_head"
+                android:layout_height="wrap_content" android:text=" 进入直播室" android:textColor="#575d66" android:textSize="12sp"
+                android:layout_below="@id/tv_teacher_name" android:layout_marginTop="3dp" android:clickable="true"/>
+
+            <Button
+                android:id="@+id/btn_ask_teacher" android:layout_width="match_parent" android:layout_alignRight="@id/tv_teacher_point" android:layout_alignParentBottom="true"
+                android:layout_height="35dp"  android:layout_marginTop="10dp" android:background="@drawable/btn_blue_round"
+                android:textColor="@color/white" android:text="提问老师" android:textSize="13sp" android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+        <include layout="@layout/line_color_dddddd_vertical"/>
+        <RelativeLayout
+            android:id="@+id/layoutPoint" android:layout_width="match_parent" android:clickable="true"
+            android:layout_height="wrap_content" android:paddingTop="6dp" android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textColor="@color/black" android:text="观点" android:layout_toRightOf="@id/tv_buy_type"
+                android:textSize="13sp" android:layout_marginBottom="6dp" android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/tv_time" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginRight="10dp"
+                android:gravity="right|center_vertical" android:textSize="11sp"
+                android:textColor="@color/tab_hint" tools:text="08-15  19:20:40" android:layout_marginBottom="6dp"/>
+            <View android:layout_width="match_parent" android:layout_height="0.5dp"
+                android:background="@color/split_line_color" android:layout_below="@id/tv_time"/>
+
+            <TextView
+                android:id="@+id/tv_point_detail" android:layout_width="match_parent" android:padding="6dp"
+                android:layout_height="match_parent" tools:text="观点详情" android:textColor="#575d66" android:textSize="12sp"
+                android:layout_below="@id/tv_time" android:layout_marginTop="3dp" android:scrollbars="vertical" android:scrollbarStyle="insideOverlay"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/layoutTrade" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:clipChildren="false" android:layerType="software">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/gallery_trade" android:layout_width="match_parent" android:clipChildren="false" android:layout_marginLeft="15dp" android:layout_marginRight="15dp"
+                android:layout_height="wrap_content" android:overScrollMode="never" android:visibility="visible" >
+
+            </android.support.v4.view.ViewPager>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/layoutMore" android:layout_width="match_parent" android:background="@color/white_f8"
+        android:layout_height="wrap_content" android:paddingLeft="10dp" android:paddingRight="10dp"
+        android:paddingTop="5dp" android:paddingBottom="5dp" android:visibility="gone">
+        <ImageView
+            android:id="@+id/ivMarketPic" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:scaleType="fitXY"/>
+        <ProgressBar
+            android:id="@+id/loadingProgress" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+        <!--去掉更多计划，现在点击进入直播室-->
+        <Button
+            android:id="@+id/btnMorePlan" android:layout_width="wrap_content"
+            android:layout_height="30dp"  android:layout_marginTop="10dp" android:background="@drawable/btn_blue_round"
+            android:textColor="@color/white" android:text="更多计划" android:textSize="13sp" android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" android:layout_marginRight="10dp" android:visibility="gone"/>
+    </RelativeLayout>
+
+</LinearLayout>

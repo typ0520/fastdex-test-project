@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <com.dx168.epmyg.view.SubTitleView
+        android:id="@+id/main_quote_sub_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_quote_recyclerview" android:layout_width="match_parent"
+            android:layout_height="110dp" android:overScrollMode="never">
+
+        </android.support.v7.widget.RecyclerView>
+        <com.dx168.epmyg.view.PageIndicatorView
+            android:id="@+id/indicatorView" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:selected_drawable="@drawable/ic_page_indicator_focused_blue"
+            app:unselected_drawable="@drawable/ic_page_indicator_blue"
+            app:dotSize="4.5dp" app:margins="4dp"
+            android:layout_gravity="bottom" android:layout_marginBottom="4dp">
+
+        </com.dx168.epmyg.view.PageIndicatorView>
+    </FrameLayout>
+
+
+</LinearLayout>

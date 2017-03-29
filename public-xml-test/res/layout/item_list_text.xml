@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rl_content"
+    >
+
+    <View
+        android:id="@+id/view_devide"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/nbg_gray"
+        />
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2015-5-25"
+        android:paddingLeft="15dp"
+        android:paddingBottom="20dp"
+        android:textSize="16sp"
+        android:paddingTop="20dp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/view_devide"/>
+</RelativeLayout>

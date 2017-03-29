@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="#1a243b"
+    android:padding="10dp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="17.25dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/tj_pop_rect" />
+
+    <ImageView
+        android:id="@+id/iv_left_top"
+        android:layout_width="34.5dp"
+        android:layout_height="22dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#1a243b"
+        android:padding="5dp"
+        android:src="@drawable/by_pop_left_top" />
+
+    <Button
+        android:id="@+id/btn_notice_close"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/tj_pop_btn_close" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="34.5dp"
+        android:layout_marginRight="34.5dp"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:text="粤贵银进入120分钟做空区域，请密切关注"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_message"
+        android:layout_marginLeft="34.5dp"
+        android:layout_marginRight="34.5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="以上为模型系统计算信号，据此操作，风险自担"
+        android:textColor="#455270"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#1a243b"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_green_selector"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="立即做空"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/btn_close_position"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/btn_stroke_light_blue_selector"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="平多单"
+            android:textColor="#455270"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

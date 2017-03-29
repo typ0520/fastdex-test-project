@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="StringChooseView">
+        <attr name="scv_style">
+            <enum name="red" value="0" />
+            <enum name="green" value="1" />
+        </attr>
+        <attr name="array" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ToggleButton">
+        <attr name="borderWidth" format="dimension"></attr>
+        <attr name="offBorderColor" format="reference|color"></attr>
+        <attr name="offColor" format="reference|color"></attr>
+        <attr name="onColor" format="reference|color"></attr>
+        <attr name="spotColor" format="reference|color"></attr>
+        <attr name="animate" format="reference|boolean"></attr>
+        <attr name="isDefaultOn" format="reference|boolean"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="TabGroup">
+        <attr name="tabs" format="string" />
+        <attr name="checked" format="integer" />
+        <attr name="tab_layout" format="reference" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="reference|color" />
+        <attr name="indicatorColor" format="reference|color" />
+        <attr name="indicatorBackground" format="reference" />
+        <attr name="indicatorMargin" format="dimension" />
+        <attr name="indicatorHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="QuoteTabGroup">
+        <attr name="checkedTable" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="SlidingTabLayout">
+        <!-- indicator -->
+        <attr name="tl_indicator_color" format="reference|color" />
+        <attr name="tl_indicator_height" format="reference|dimension" />
+        <attr name="tl_indicator_width" format="reference|dimension" />
+        <attr name="tl_indicator_margin_left" format="reference|dimension" />
+        <attr name="tl_indicator_margin_top" format="reference|dimension" />
+        <attr name="tl_indicator_margin_right" format="reference|dimension" />
+        <attr name="tl_indicator_margin_bottom" format="reference|dimension" />
+        <attr name="tl_indicator_corner_radius" format="reference|dimension" />
+        <attr name="tl_indicator_gravity" format="enum">
+            <enum name="TOP" value="48" />
+            <enum name="BOTTOM" value="80" />
+        </attr>
+        <attr name="tl_indicator_style" format="enum">
+            <enum name="NORMAL" value="0" />
+            <enum name="TRIANGLE" value="1" />
+            <enum name="BLOCK" value="2" />
+        </attr>
+        />
+        <attr name="tl_indicator_anim_enable" format="boolean" />
+        <attr name="tl_indicator_anim_duration" format="integer" />
+        <attr name="tl_indicator_bounce_enable" format="boolean" />
+
+        <!-- underline -->
+        <attr name="tl_underline_color" format="reference|color" />
+        <attr name="tl_underline_height" format="reference|dimension" />
+        <attr name="tl_underline_gravity" format="enum">
+            <enum name="TOP" value="48" />
+            <enum name="BOTTOM" value="80" />
+        </attr>
+        <!-- divider -->
+        <attr name="tl_divider_color" format="reference|color" />
+        <attr name="tl_divider_width" format="reference|dimension" />
+        <attr name="tl_divider_padding" format="reference|dimension" />
+
+        <!-- tab -->
+        <attr name="tl_tab_padding" format="reference|dimension" />
+        <attr name="tl_tab_space_equal" format="boolean" />
+        <attr name="tl_tab_width" format="reference|dimension" />
+
+        <!-- title -->
+        <attr name="tl_textTitleUnselectSize" format="reference|dimension" />
+        <attr name="tl_textTitleSelectSize" format="reference|dimension" />
+        <attr name="tl_textContentUnselectSize" format="reference|dimension" />
+        <attr name="tl_textContentSelectSize" format="reference|dimension" />
+        <attr name="tl_textSelectColor" format="reference|color" />
+        <attr name="tl_textUnselectColor" format="reference|color" />
+        <attr name="tl_textBold" format="enum">
+            <enum name="NONE" value="0" />
+            <enum name="SELECT" value="1" />
+            <enum name="BOTH" value="2" />
+        </attr>
+        <attr name="tl_textAllCaps" format="boolean" />
+        <!--单行屏幕显示多少个-->
+        <attr name="tl_singleline_count" format="integer" />
+
+    </declare-styleable>
+    <!-- RichTextView -->
+    <declare-styleable name="RichTextView">
+        <attr name="drawable_src" format="reference" />
+        <attr name="drawable_height" format="dimension" />
+        <attr name="drawable_width" format="dimension" />
+        <attr name="drawable_location">
+            <enum name="left" value="1" />
+            <enum name="top" value="2" />
+            <enum name="right" value="3" />
+            <enum name="bottom" value="4" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PageIndicatorView">
+        <attr name="dotSize" format="dimension|reference"/>
+        <attr name="margins" format="dimension|reference"/>
+        <attr name="selected_drawable" format="reference"/>
+        <attr name="unselected_drawable" format="reference"/>
+    </declare-styleable>
+</resources>

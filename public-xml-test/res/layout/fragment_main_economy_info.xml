@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/white">
+    <LinearLayout
+        android:id="@+id/layoutTab" android:layout_width="match_parent" android:gravity="center"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_teacher_columnist" style="@style/TabMainEconomyInfo" android:text="分析师专栏" />
+
+        <TextView
+            android:id="@+id/tv_calendar_info" style="@style/TabMainEconomyInfo" android:text="财经日历" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_empty_decrible" android:layout_width="match_parent" android:textColor="@color/color_text_gray"
+        android:layout_height="100dp" android:text="暂无数据" android:gravity="center" android:layout_below="@+id/sliding_tab_layout" />
+    <com.dx168.epmyg.view.EmptyRecyclerView
+        android:id="@+id/lv_analyst_special_column" android:layout_width="match_parent" android:background="@color/white"
+        android:layout_height="match_parent" android:visibility="visible" android:layout_below="@+id/layoutTab">
+
+    </com.dx168.epmyg.view.EmptyRecyclerView>
+    <com.dx168.epmyg.view.SlidingTabLayout
+        android:id="@+id/sliding_tab_layout" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:visibility="gone"
+        android:paddingBottom="5dp" android:paddingTop="5dp" android:background="@color/white"
+        app:tl_textTitleSelectSize="@dimen/text_mSize" app:tl_textContentSelectSize="@dimen/text_lSize"
+        app:tl_textTitleUnselectSize="@dimen/text_sSize" app:tl_textContentUnselectSize="@dimen/text_mSize"
+        app:tl_indicator_color="@color/color_accent_blue" app:tl_textSelectColor="@color/color_accent_blue"
+        app:tl_textUnselectColor="@color/color_text_gray" android:layout_below="@+id/layoutTab"/>
+
+    <com.dx168.epmyg.view.EmptyRecyclerView
+        android:id="@+id/lv_economy_info" android:layout_width="match_parent" android:background="@color/white"
+        android:layout_height="match_parent" android:visibility="gone" android:layout_below="@+id/sliding_tab_layout">
+
+    </com.dx168.epmyg.view.EmptyRecyclerView>
+    <RelativeLayout
+        android:id="@+id/layoutLoading" android:layout_width="match_parent"
+        android:layout_height="100dp" android:layout_below="@+id/sliding_tab_layout">
+        <ProgressBar
+            style="@style/MinProgressBarStyle" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,124 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--这个View的存在是为了解决Notice被状态栏遮挡-->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <com.dx168.epmyg.view.MainTopBarView
+        android:id="@+id/maintopbar_view"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+    <com.dx168.epmyg.view.TabGroup
+        android:id="@+id/tabbar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.dx168.epmyg.view.LivePreviewView
+        android:id="@+id/livepreview_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/black"
+        android:visibility="gone"/>
+
+    <com.dx168.epmyg.view.LiveView
+        android:id="@+id/live_view"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@color/black"
+        android:visibility="gone"/>
+
+    <!--<RelativeLayout
+        android:id="@+id/rl_video_container"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@color/black"
+        android:visibility="gone">
+
+        <com.dx168.live2.DXVideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rl_quote_container" />
+
+        <ImageView
+            android:id="@+id/gobacklist_view"
+            android:layout_width="60dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/change_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/video_view"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/changesceen_view"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/change_sceen_bg" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_quote_container"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:background="#80000000">
+
+            <TextView
+                android:id="@+id/tv_quote_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:text="粤贵银"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_quote_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="7dp"
+                android:layout_toRightOf="@+id/tv_quote_name"
+                android:text="&#45;&#45;&#45;&#45;"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_discuss_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@+id/discuss_view"
+                android:layout_toRightOf="@+id/tv_quote_price"
+                android:gravity="right"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:text="&#45;&#45;位小伙伴正在观看直播"
+                android:textColor="#aaaaaa"
+                android:textSize="14sp" />
+
+            <com.dx168.epmyg.view.DiscussView
+                android:id="@+id/discuss_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#f54337" />
+        </RelativeLayout>
+    </RelativeLayout>-->
+</LinearLayout>

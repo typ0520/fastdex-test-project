@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/rl_container"
+              android:layout_width="match_parent"
+              android:layout_height="35dp"
+              android:layout_marginRight="20dp"
+              android:background="@drawable/bg_edittext_normal"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3">
+
+        <com.dx168.epmyg.view.NoMenuEditText
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:clickable="true"
+            android:gravity="center"
+            android:imeOptions="actionDone"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:text=""
+            android:textColor="#007bd8"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_content_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="----"
+            android:textColor="#888888"
+            android:textSize="15dp"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
+    <View
+        android:id="@+id/view_split_left"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/split_line_color"/>
+
+    <TextView
+        android:id="@+id/btn_reduce_money"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <View
+        android:id="@+id/view_split_center"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/split_line_color"/>
+
+    <TextView
+        android:id="@+id/btn_add_money"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="+"
+        android:textColor="#000000"
+        android:textSize="15dp"/>
+</LinearLayout>

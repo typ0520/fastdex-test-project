@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_more_function"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_bg"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btn_slide"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/main_btn_slide"
+        android:tag="0" />
+
+
+    <ImageView
+        android:layout_width="230dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/dialog_guide_more_function" />
+</LinearLayout>

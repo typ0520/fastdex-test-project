@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+    <TextView
+        android:id="@+id/tv_tab_title" tools:text="周四" android:gravity="center"
+        android:layout_width="wrap_content" android:textSize="15sp"
+        android:layout_height="wrap_content" android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/tv_tab_content" tools:text="12-22" android:gravity="center"
+        android:layout_width="wrap_content" android:textSize="14sp"
+        android:layout_height="wrap_content" android:textColor="@color/black"/>
+</LinearLayout>

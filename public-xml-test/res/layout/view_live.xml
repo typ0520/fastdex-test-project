@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_video_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.dx168.live2.DXVideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_quote_container" />
+
+    <RelativeLayout
+        android:id="@+id/rl_quote_container"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:background="#80000000">
+
+        <TextView
+            android:id="@+id/tv_quote_name_live"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:text="---"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_quote_price_live"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:layout_toRightOf="@+id/tv_quote_name_live"
+            android:text="--"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_discuss_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toLeftOf="@+id/discuss_view"
+            android:layout_toRightOf="@+id/tv_quote_price_live"
+            android:gravity="right"
+            android:maxLines="1"
+            android:paddingRight="10dp"
+            android:text="--位小伙伴正在观看直播"
+            android:textColor="#aaaaaa"
+            android:textSize="14sp" />
+
+        <com.dx168.epmyg.view.DiscussView
+            android:id="@+id/discuss_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="#f54337" />
+    </RelativeLayout>
+</RelativeLayout>

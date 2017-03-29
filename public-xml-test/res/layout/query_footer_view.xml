@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="30dp"
+    android:background="#eeeeee"
+    android:paddingTop="30dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="转账记录有问题？" />
+
+        <TextView
+            android:id="@+id/contact_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请联系客服"
+            android:textColor="#004aa6" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/query_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_textview_normal"
+        android:paddingBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:textSize="15dp"
+        android:text="查询历史转账记录"
+        android:textColor="#004aa6" />
+</LinearLayout>

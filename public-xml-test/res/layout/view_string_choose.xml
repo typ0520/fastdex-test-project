@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/rl_container"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:layout_marginRight="20dp"
+              android:background="@drawable/bg_edittext_normal"
+              android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/tv_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@null"
+        android:digits="1234567890."
+        android:gravity="center"
+        android:hint="1"
+        android:inputType="number"
+        android:maxLines="1"
+        android:textColor="#63ace3"
+        android:textColorHint="#63ace3"
+        android:textSize="15dp"/>
+
+    <View
+        android:id="@+id/view_split_left"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#999999"/>
+
+    <TextView
+        android:id="@+id/btn_reduce"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="-"
+        android:textColor="#888888"
+        android:textSize="20sp"/>
+
+    <View
+        android:id="@+id/view_split_center"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#999999"/>
+
+    <TextView
+        android:id="@+id/btn_add"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="+"
+        android:textColor="#000000"
+        android:textSize="15sp"/>
+
+    <View
+        android:id="@+id/view_split_right"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#999999"/>
+
+</LinearLayout>

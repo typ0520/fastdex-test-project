@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        style="@style/ListViewItemPadding">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_country" android:layout_width="@dimen/itemAvatar"
+            android:layout_height="@dimen/itemAvatar" android:layout_marginRight="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_time" android:layout_width="wrap_content" tools:text="03:00   新西兰"
+            android:layout_height="wrap_content" android:lines="1" android:ellipsize="end"
+            android:layout_alignParentTop="true" android:textColor="@color/color_primary_black"
+            android:layout_toRightOf="@+id/iv_country" android:textSize="12sp"
+            android:layout_toEndOf="@+id/iv_country" />
+        <TextView
+            android:id="@+id/tv_level" android:layout_width="wrap_content" tools:text="高"
+            android:layout_height="wrap_content" android:lines="1" android:ellipsize="end" android:textColor="@color/white"
+            android:layout_alignParentRight="true" android:background="@drawable/bg_level_high"
+            android:paddingLeft="10dp" android:paddingRight="10dp" />
+        <TextView
+            android:id="@+id/tv_content" android:layout_width="match_parent" tools:text="新增人民币贷款"
+            android:layout_height="wrap_content" android:layout_below="@+id/tv_time"
+            android:layout_toRightOf="@+id/iv_country" android:textSize="13sp" android:textColor="@color/color_primary_black"
+            android:layout_marginTop="6dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_below="@+id/tv_content" android:layout_toRightOf="@+id/iv_country"
+            android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/tv_forward_value" style="@style/EconomyInfoValue" tools:text="前值：6513" android:gravity="left"/>
+            <TextView
+                android:id="@+id/tv_forecast_value" style="@style/EconomyInfoValue" tools:text="预测值：--" android:gravity="left"/>
+
+            <TextView
+                android:id="@+id/tv_publish_value" style="@style/EconomyInfoValue" tools:text="公布值：--" android:gravity="left" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+        android:layout_marginLeft="62dp" android:background="@color/color_divider_line" />
+</LinearLayout>

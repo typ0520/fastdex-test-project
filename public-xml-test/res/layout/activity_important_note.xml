@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/value_list_bg_checked"
+    android:orientation="vertical">
+
+    <com.dx168.epmyg.view.TitleView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:tag="《:(我的提醒)" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dx168.epmyg.view.pullrefreshview.PullToRefreshListView
+            android:id="@+id/lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:divider="@color/value_list_bg_checked"
+            android:dividerHeight="8dp" />
+
+        <TextView
+            android:id="@+id/view_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="暂无内容"
+            android:textColor="@color/black"
+            android:visibility="gone" />
+
+        <com.dx168.epmyg.view.LoadingView
+            android:id="@+id/view_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+        <com.dx168.epmyg.view.ErrorView
+            android:id="@+id/view_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

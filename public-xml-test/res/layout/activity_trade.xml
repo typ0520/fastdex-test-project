@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.dx168.epmyg.view.TitleView
+        android:id="@+id/view_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@drawable/gradient_title"
+        android:tag="《:(交易)" />
+
+
+    <com.dx168.epmyg.view.TabGroup
+        android:id="@+id/tab_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_title"
+        android:background="@drawable/gradient_tab"
+        app:checked="2"
+        app:tabs="做多,做空,持仓,撤单" />
+
+    <FrameLayout
+        android:id="@+id/fl_deal_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab_group"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/include_holdposition"
+        layout="@layout/view_hold"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab_group"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/include_killposition"
+        layout="@layout/view_kill"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tab_group"
+        android:visibility="gone" />
+
+    <com.dx168.epmyg.view.LoadingView
+        android:id="@+id/view_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <com.dx168.epmyg.view.ErrorView
+        android:id="@+id/view_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

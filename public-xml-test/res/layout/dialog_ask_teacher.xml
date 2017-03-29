@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:background="@drawable/white_bg_gray_boder_shape">
+    <TextView
+        android:id="@+id/tvClose" android:layout_width="wrap_content" android:textColor="@color/black"
+        android:layout_height="wrap_content" android:text="X" android:textSize="25sp"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="15dp" android:paddingTop="10dp" android:paddingBottom="10dp" android:paddingRight="15dp"/>
+    <TextView
+        android:id="@+id/tvTitle" android:layout_width="match_parent" android:textColor="@color/black"
+        android:layout_height="wrap_content" android:text="咨询" android:textSize="18sp"
+        android:layout_toLeftOf="@+id/tvClose" android:gravity="left|center_vertical"
+        android:paddingLeft="15dp" android:paddingTop="10dp" android:paddingBottom="10dp" android:paddingRight="5dp"/>
+    <View android:id="@+id/line" android:layout_width="match_parent" android:layout_height="0.5dp" android:background="@color/split_line_color"
+        android:layout_below="@+id/tvClose"/>
+
+    <EditText
+        android:id="@+id/etQuestion" android:layout_width="match_parent" android:background="@null"
+        android:layout_height="wrap_content" android:minHeight="150dp"
+        android:paddingLeft="15dp" android:paddingRight="15dp" android:paddingTop="5dp" android:paddingBottom="5dp"
+        android:hint="输入您的问题吧" android:gravity="left|top" android:layout_below="@+id/line" android:textColor="@color/black"
+        android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/tv_submit" android:layout_width="match_parent"
+        android:layout_height="45dp" android:background="@drawable/gray_bottom_shape" android:gravity="center"
+        android:layout_below="@+id/etQuestion" android:text="提 问" android:textColor="@android:color/white"
+        android:textSize="18sp"/>
+</RelativeLayout>

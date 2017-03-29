@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <com.dx168.epmyg.view.QuoteDetailView
+        android:id="@+id/quote_detailview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.dx168.epmyg.view.TradeQuotationView
+            android:id="@+id/trade_quotation_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_quote" />
+
+        <com.dx168.epmyg.view.KlineInfoView
+            android:id="@+id/kline_info_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_quote"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_marginRight="5dp"
+            android:id="@+id/ll_chart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/fl_chart"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@android:color/white" />
+
+            <TextView
+                android:background="@android:color/white"
+                android:id="@+id/tv_market_close"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/market_close_ic"
+                android:drawablePadding="5dp"
+                android:padding="10dp"
+                android:text="@string/market_close_description_summer"
+                android:textSize="12dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_deal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btn_buy_long"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/main_buy_long_selector"
+                android:gravity="center"
+                android:text="做多"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_buy_short"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/main_buy_short_selector"
+                android:gravity="center"
+                android:text="做空"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tj_trade"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/tj_trade_selector"
+            android:gravity="center"
+            android:text="交易"
+            android:textColor="#ffffff"
+            android:textSize="16dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>

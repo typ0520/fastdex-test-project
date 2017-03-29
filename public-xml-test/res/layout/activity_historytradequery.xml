@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:wpb="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/default_title_bg">
+
+        <ImageView
+            android:id="@+id/iv_left_query"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ico_back_white"/>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:lines="1"
+            android:text="交易记录查询"
+            android:textColor="@color/title_text_color"
+            android:textSize="18sp"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_prizes"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/iv_prize"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/slide_menu_prize_ic"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/tv_prize_count"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_marginLeft="3dp"
+                        android:background="@drawable/main_red_circle"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#ffffff"
+                        android:textSize="9dp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <info.hoang8f.android.segmented.SegmentedGroup
+        android:id="@+id/sg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+       >
+
+        <RadioButton
+            android:id="@+id/btn_today_close"
+          
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="今日平仓"
+            android:textSize="15dp"/>
+
+        <RadioButton
+            android:id="@+id/btn_history_close"
+       
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="历史平仓"
+            android:textSize="15dp"/>
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/btn_history_build"-->
+        <!--style="@style/RadioButton"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="历史建仓"-->
+        <!--android:textSize="15dp" />-->
+
+        <!--<RadioButton-->
+        <!--android:id="@+id/btn_history_limit"-->
+        <!--style="@style/RadioButton"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="历史限价"-->
+        <!--android:textSize="15dp" />-->
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

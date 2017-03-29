@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toggle="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:maxLines="1"
+                android:text="交易准备金"
+                android:textColor="#505050"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/ensure_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="8dp"
+                android:maxLines="1"
+                android:text="——"
+                android:textColor="#505050"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="15dp"
+            android:background="@color/split_line_color"/>
+
+        <include
+            layout="@layout/store_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="履约准备金"
+                    android:textColor="#505050"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="15dp"
+                    android:text="手续费"
+                    android:textColor="#505050"
+                    android:textSize="15dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prepare_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:text="——"
+                    android:textColor="#007bd8"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:id="@+id/service_fee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="——"
+                    android:textColor="#007bd8"
+                    android:textSize="15dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="3dp"
+                    android:text="仅供参考，以最终订单成交回报为准"
+                    android:textColor="#AEAEAE"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:background="#dddddd"/>
+
+        <RelativeLayout
+            android:id="@+id/makedill_mostpoint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tt_mostpoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:text="允许报价和成交价的最大点差"
+                android:textColor="#505050"
+                android:textSize="15dp"/>
+
+            <RelativeLayout
+                android:id="@+id/difference"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_toRightOf="@+id/tt_mostpoint"
+                android:background="@drawable/bg_edittext_normal"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+
+                <com.dx168.epmyg.view.PointDifference
+                    android:id="@+id/difference_point"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:longClickable="false"
+                    android:maxLines="1"
+                    android:text="10"
+                    android:textColor="#007bd8"
+                    android:textIsSelectable="false"
+                    android:textSize="15dp"/>
+            </RelativeLayout>
+
+            <com.dx168.epmyg.view.ToggleButton
+                android:id="@+id/stopwin_button"
+                android:layout_width="55dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/difference"
+                toggle:borderWidth="1px"
+                toggle:isDefaultOn="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="#eeeeee"/>
+    </LinearLayout>
+</FrameLayout>

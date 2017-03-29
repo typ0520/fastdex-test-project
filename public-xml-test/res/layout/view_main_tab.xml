@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider_line" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/tab_01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tab_main_selector"
+            android:gravity="center"
+            android:text="首页"
+            android:textSize="@dimen/text_xsSize"
+            android:textColor="@color/tab_text_color_selector" />
+
+        <TextView
+            android:id="@+id/tab_02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tab_quote_selector"
+            android:gravity="center"
+            android:text="行情"
+            android:textSize="@dimen/text_xsSize"
+            android:textColor="@color/tab_text_color_selector" />
+
+        <TextView
+            android:id="@+id/tab_03"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/tab_trade_selector"
+            android:gravity="center"
+            android:text="交易"
+            android:textSize="@dimen/text_xsSize"
+            android:textColor="@color/tab_text_color_selector" />
+
+        <RelativeLayout
+            android:id="@+id/tab_04"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/tv_tab_04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:drawablePadding="3dp"
+                android:drawableTop="@drawable/tab_me_selector"
+                android:gravity="center"
+                android:text="我"
+                android:textSize="@dimen/text_xsSize"
+                android:textColor="@color/tab_text_color_selector" />
+
+            <ImageView
+                android:id="@+id/img_tab_04"
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@id/tv_tab_04"
+                android:src="@drawable/circle_red_point"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

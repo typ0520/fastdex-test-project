@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_tab_bg_default">#ffffff</color>
+    <color name="main_tab_bg_checked">#ffffff</color>
+
+    <dimen name="main_tab_drawable_top_width_height">20dp</dimen>
+    <dimen name="main_tabbar_text_size">10sp</dimen>
+
+    <color name="main_tab_text_default">#010101</color>
+    <color name="main_tab_text_checked">#3c5cad</color>
+</resources>

@@ -1,0 +1,180 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9F9F9"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#141E32"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_arrow" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="绑定手机号"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="21dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.dx168.epmyg.view.RichEditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawablePadding="12dp"
+                android:gravity="center_vertical"
+                android:hint="请输入手机号"
+                android:inputType="number"
+                android:paddingBottom="14dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="14dp"
+                android:textColorHint="#CCCCCC"
+                android:textSize="13sp"
+                view:drawable_height="17dp"
+                view:drawable_location="left"
+                view:drawable_src="@drawable/icon_login_tel"
+                view:drawable_width="11dp" />
+
+            <com.dx168.epmyg.view.CheckCodeView
+                android:id="@+id/btn_check"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_login"
+                android:enabled="true"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="获取验证码"
+                android:textColor="#FFF"
+                android:textSize="13sp" />
+
+            <ImageButton
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/btn_check"
+                android:background="@null"
+                android:src="@drawable/ico_clear"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E6E6E6" />
+
+        <com.dx168.epmyg.view.RichEditText
+            android:id="@+id/et_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:maxLength="4"
+            android:paddingBottom="14dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="14dp"
+            android:textColorHint="#CCCCCC"
+            android:textSize="13sp"
+            view:drawable_height="15dp"
+            view:drawable_location="left"
+            view:drawable_src="@drawable/icon_login_code"
+            view:drawable_width="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E6E6E6" />
+
+        <TextView
+            android:id="@+id/tv_bound_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="老用户请绑定您已开户的手机号，新用户请绑定常用手机号"
+            android:textColor="#9F9F9F"
+            android:visibility="gone"
+            android:textSize="10sp" />
+        <LinearLayout
+            android:id="@+id/ll_verify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="right">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:text="未收到短信?点击"/>
+            <TextView
+                android:id="@+id/tv_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#5A75B6"
+                android:textSize="12sp"
+                android:text="获取语音验证码"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:text="或"/>
+            <TextView
+                android:id="@+id/tv_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#5A75B6"
+                android:text="联系客服"/>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_bound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="42dp"
+            android:background="@drawable/btn_login"
+            android:enabled="false"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="确  定"
+            android:textColor="#FFF"
+            android:textSize="15sp" />
+    </LinearLayout>
+</LinearLayout>
