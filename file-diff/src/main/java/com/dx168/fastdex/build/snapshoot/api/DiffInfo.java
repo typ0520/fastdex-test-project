@@ -4,16 +4,16 @@ package com.dx168.fastdex.build.snapshoot.api;
  * 目录对比，file.length或者file.lastModified不一样时判定文件发生变化
  * Created by tong on 17/3/29.
  */
-public class BaseDiffInfo<T extends ItemInfo> {
+public class DiffInfo<T extends ItemInfo> {
     public Status status;
     public String uniqueKey;
     public T now;//如果是删除此值为null
     public T old;
 
-    public BaseDiffInfo() {
+    public DiffInfo() {
     }
 
-    public BaseDiffInfo(Status status, String uniqueKey,T now,T old) {
+    public DiffInfo(Status status, String uniqueKey, T now, T old) {
         this.status = status;
         this.uniqueKey = uniqueKey;
 
@@ -27,7 +27,7 @@ public class BaseDiffInfo<T extends ItemInfo> {
 
     @Override
     public String toString() {
-        return "BaseDiffInfo{" +
+        return "DiffInfo{" +
                 "status=" + status +
                 ", uniqueKey='" + uniqueKey + '\'' +
                 ", now=" + now +
@@ -40,7 +40,7 @@ public class BaseDiffInfo<T extends ItemInfo> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BaseDiffInfo<?> that = (BaseDiffInfo<?>) o;
+        DiffInfo<?> that = (DiffInfo<?>) o;
 
         if (status != that.status) return false;
         return uniqueKey != null ? uniqueKey.equals(that.uniqueKey) : that.uniqueKey == null;

@@ -2,7 +2,6 @@ package com.dx168.fastdex.build.snapshoot.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.*;
 
 /**

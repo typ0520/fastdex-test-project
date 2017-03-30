@@ -8,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.*;
 
 /**
 
@@ -55,6 +54,11 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
     public DirectorySnapshoot() {
     }
 
+    public DirectorySnapshoot(DirectorySnapshoot snapshoot) {
+        super(snapshoot);
+        this.rootPath = snapshoot.rootPath;
+    }
+
     public DirectorySnapshoot(File directory) throws IOException {
         this(directory,null);
     }
@@ -90,11 +94,11 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
     }
 
     @Override
-    protected Collection<FileDiffInfo> createEmptyDiffInfos() {
-        return new FileDiffResult();
+    protected DirectoryResultSet createEmptyResultSet() {
+        return new DirectoryResultSet();
     }
 
-    public FileDiffResult diff(File old,ScanFilter scanFilter) throws IOException {
+    public DirectoryResultSet diff(File old, ScanFilter scanFilter) throws IOException {
         return diff(new DirectorySnapshoot(old,scanFilter));
     }
 
@@ -103,15 +107,15 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
     }
 
     @Override
-    public FileDiffResult diff(Snapshoot<FileDiffInfo, FileItemInfo> otherSnapshoot) {
-        return (FileDiffResult) super.diff(otherSnapshoot);
+    public DirectoryResultSet diff(Snapshoot<FileDiffInfo, FileItemInfo> otherSnapshoot) {
+        return (DirectoryResultSet) super.diff(otherSnapshoot);
     }
 
-    public static FileDiffResult diff(File now,File old) throws IOException {
+    public static DirectoryResultSet diff(File now, File old) throws IOException {
         return DirectorySnapshoot.diff(now,old,null);
     }
 
-    public static FileDiffResult diff(File now,File old,ScanFilter scanFilter) throws IOException {
+    public static DirectoryResultSet diff(File now, File old, ScanFilter scanFilter) throws IOException {
         return new DirectorySnapshoot(now,scanFilter).diff(new DirectorySnapshoot(old,scanFilter));
     }
 }

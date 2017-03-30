@@ -2,18 +2,16 @@ package com.dx168.fastdex.build.snapshoot.api;
 
 import com.dx168.fastdex.build.snapshoot.utils.SerializeUtils;
 import com.google.gson.annotations.Expose;
-import com.google.gson.internal.$Gson$Types;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.Constructor;
 import java.util.*;
 
 /**
  * Created by tong on 17/3/29.
  */
-public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends ItemInfo> implements STSerializable<Snapshoot<DIFF_INFO,ITEM_INFO>> {
+public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends ItemInfo> implements STSerializable<Snapshoot<DIFF_INFO,ITEM_INFO>> {
     @Expose
     private Class<DIFF_INFO> diffInfoClass = null;
 
@@ -22,12 +20,32 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
     @Expose
     public Map<String,ITEM_INFO> fileItemInfoMap;
 
+    @Expose
+    private ResultSet<DIFF_INFO> lastDiffResult;
+
     public Snapshoot() {
         createEmptyItemInfos();
     }
 
+    public Snapshoot(Snapshoot<DIFF_INFO,ITEM_INFO> snapshoot) {
+        createEmptyItemInfos();
+        itemInfos.addAll(snapshoot.getAllItemInfo());
+    }
+
     protected void createEmptyItemInfos() {
-        itemInfos = new HashSet<>();
+        itemInfos = new HashSet<ITEM_INFO>();
+    }
+
+    /**
+     * 创建空的对比结果集
+     * @return
+     */
+    protected ResultSet<DIFF_INFO> createEmptyResultSet() {
+        return new ResultSet<DIFF_INFO>();
+    }
+
+    protected DiffInfo createEmptyDiffInfo() {
+        return new DiffInfo();
     }
 
     /**
@@ -48,6 +66,10 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
      */
     protected Collection<ITEM_INFO> getAllItemInfo() {
         return itemInfos;
+    }
+
+    public ResultSet<DIFF_INFO> getLastDiffResult() {
+        return lastDiffResult;
     }
 
     /**
@@ -76,32 +98,6 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
     }
 
     /**
-     * 创建空的对比结果集
-     * @return
-     */
-    protected Collection<DIFF_INFO> createEmptyDiffInfos() {
-        return new HashSet<DIFF_INFO>();
-    }
-
-    /**
-     * 获取对比结果类的类型
-     * @return
-     */
-    protected Class<DIFF_INFO> getDiffInfoType() {
-        if (diffInfoClass == null) {
-            Type superclass = getClass().getGenericSuperclass();
-            if (superclass instanceof Class)
-            {
-                throw new RuntimeException("Missing type parameter.");
-            }
-            ParameterizedType parameterized = (ParameterizedType) superclass;
-            Type result = $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
-            diffInfoClass = (Class<DIFF_INFO>) result;
-        }
-        return diffInfoClass;
-    }
-
-    /**
      * 创建一项内容的对比结果
      * @param status
      * @param now
@@ -109,28 +105,22 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
      * @return
      */
     protected DIFF_INFO createDiffInfo(Status status, ITEM_INFO now, ITEM_INFO old) {
-        Class<DIFF_INFO> clazz = getDiffInfoType();
-        try {
-            DIFF_INFO diffInfo = clazz.newInstance();
-            diffInfo.status = status;
-            diffInfo.now = now;
-            diffInfo.old = old;
+        DIFF_INFO diffInfo = (DIFF_INFO) createEmptyDiffInfo();
+        diffInfo.status = status;
+        diffInfo.now = now;
+        diffInfo.old = old;
 
-            switch (status) {
-                case ADD:
-                case MODIFIED:
-                    diffInfo.uniqueKey = now.getUniqueKey();
-                    break;
-                case DELETE:
-                    diffInfo.uniqueKey = old.getUniqueKey();
-                    break;
-            }
-
-            return diffInfo;
-        } catch (Throwable e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        switch (status) {
+            case ADD:
+            case MODIFIED:
+                diffInfo.uniqueKey = now.getUniqueKey();
+                break;
+            case DELETE:
+                diffInfo.uniqueKey = old.getUniqueKey();
+                break;
         }
+
+        return diffInfo;
     }
 
     /**
@@ -138,7 +128,7 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
      * @param diffInfos
      * @param diffInfo
      */
-    protected void addDiffInfo(Collection<DIFF_INFO> diffInfos,DIFF_INFO diffInfo) {
+    protected void addDiffInfo(ResultSet<DIFF_INFO> diffInfos,DIFF_INFO diffInfo) {
         diffInfos.add(diffInfo);
     }
 
@@ -149,7 +139,7 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
      * @param deletedItemInfos
      * @param increasedItemInfos
      */
-    protected void scanFromDeletedAndIncreased(Collection<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,ITEM_INFO> otherSnapshoot, Set<ITEM_INFO> deletedItemInfos, Set<ITEM_INFO> increasedItemInfos) {
+    protected void scanFromDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,ITEM_INFO> otherSnapshoot, Set<ITEM_INFO> deletedItemInfos, Set<ITEM_INFO> increasedItemInfos) {
         if (deletedItemInfos != null) {
             for (ITEM_INFO itemInfo : deletedItemInfos) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.DELETE,null,itemInfo));
@@ -163,11 +153,6 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
     }
 
     @Override
-    public Snapshoot<DIFF_INFO,ITEM_INFO> load(InputStream inputStream) throws IOException {
-        return SerializeUtils.load(inputStream,getClass());
-    }
-
-    @Override
     public void serializeTo(OutputStream outputStream) throws IOException {
         SerializeUtils.serializeTo(outputStream,this);
     }
@@ -177,7 +162,7 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
      * @param otherSnapshoot
      * @return
      */
-    public Collection<DIFF_INFO> diff(Snapshoot<DIFF_INFO,ITEM_INFO> otherSnapshoot) {
+    public ResultSet<DIFF_INFO> diff(Snapshoot<DIFF_INFO,ITEM_INFO> otherSnapshoot) {
         //获取删除项
         Set<ITEM_INFO> deletedItemInfos = new HashSet<>();
         deletedItemInfos.addAll(otherSnapshoot.getAllItemInfo());
@@ -195,8 +180,7 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
         needDiffFileInfos.removeAll(deletedItemInfos);
         needDiffFileInfos.removeAll(increasedItemInfos);
 
-
-        Collection<DIFF_INFO> diffInfos = createEmptyDiffInfos();
+        ResultSet<DIFF_INFO> diffInfos = createEmptyResultSet();
         scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedItemInfos,increasedItemInfos);
 
         for (ITEM_INFO itemInfo : needDiffFileInfos) {
@@ -206,10 +190,21 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
                 throw new RuntimeException("UniqueKey can not be null or empty!!");
             }
             ITEM_INFO old = otherSnapshoot.getItemInfoByUniqueKey(uniqueKey);
-            if (now.diff(old)) {
+            if (!now.diffEquals(old)) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
             }
         }
+
+        this.lastDiffResult = diffInfos;
         return diffInfos;
+    }
+
+    public static Snapshoot load(InputStream inputStream, Class type) throws Exception {
+        Snapshoot snapshoot = (Snapshoot) SerializeUtils.load(inputStream,type);
+        if (snapshoot != null) {
+            Constructor constructor = type.getConstructor(snapshoot.getClass());
+            snapshoot = (Snapshoot) constructor.newInstance(snapshoot);
+        }
+        return snapshoot;
     }
 }

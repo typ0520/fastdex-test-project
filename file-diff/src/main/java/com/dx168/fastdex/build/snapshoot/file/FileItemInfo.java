@@ -17,14 +17,26 @@ public class FileItemInfo extends ItemInfo<FileItemInfo> {
         return relativePath;
     }
 
-    /**
-     * 如果发生变化返回true，反之false
-     * @param old
-     * @return
-     */
     @Override
-    public boolean diff(FileItemInfo old) {
-        return !(lastModified == old.lastModified && fileLength == old.fileLength);
+    public boolean diffEquals(FileItemInfo anItemInfo) {
+//        return lastModified == anItemInfo.lastModified
+//                && fileLength == anItemInfo.fileLength;
+
+        if (this == anItemInfo) return true;
+        if (anItemInfo == null) return false;
+
+        if (lastModified != anItemInfo.lastModified) return false;
+        if (fileLength != anItemInfo.fileLength) return false;
+        return equals(anItemInfo);
+    }
+
+    @Override
+    public String toString() {
+        return "FileItemInfo{" +
+                "relativePath='" + relativePath + '\'' +
+                ", lastModified=" + lastModified +
+                ", fileLength=" + fileLength +
+                '}';
     }
 
     public static FileItemInfo create(File rootDir, File file) {
