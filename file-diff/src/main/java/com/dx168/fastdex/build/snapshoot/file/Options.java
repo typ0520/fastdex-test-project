@@ -1,6 +1,6 @@
-package com.dx168.fastdex.build.snapshoot.diff.file;
+package com.dx168.fastdex.build.snapshoot.file;
 
-import com.dx168.fastdex.build.snapshoot.diff.Status;
+import com.dx168.fastdex.build.snapshoot.api.Status;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +16,7 @@ public class Options {
 
         public Builder addSuffix(String suffix) {
             options.suffixList.add(suffix);
+            return this;
         }
 
         public Builder focusStatus(Status ...focusStatus) {

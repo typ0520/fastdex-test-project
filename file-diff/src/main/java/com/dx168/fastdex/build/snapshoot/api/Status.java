@@ -1,4 +1,4 @@
-package com.dx168.fastdex.build.snapshoot.diff;
+package com.dx168.fastdex.build.snapshoot.api;
 
 /**
  * Created by tong on 17/3/29.

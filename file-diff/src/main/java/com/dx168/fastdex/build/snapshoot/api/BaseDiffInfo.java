@@ -1,4 +1,4 @@
-package com.dx168.fastdex.build.snapshoot.diff;
+package com.dx168.fastdex.build.snapshoot.api;
 
 /**
  * 目录对比，file.length或者file.lastModified不一样时判定文件发生变化
@@ -19,6 +19,10 @@ public class BaseDiffInfo<T extends ItemInfo> {
 
         this.now = now;
         this.old = old;
+
+        if (this.uniqueKey == null || this.uniqueKey.length() == 0) {
+            throw new IllegalStateException("UniqueKey can not be null or epmty!!");
+        }
     }
 
     @Override
@@ -29,5 +33,24 @@ public class BaseDiffInfo<T extends ItemInfo> {
                 ", now=" + now +
                 ", old=" + old +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BaseDiffInfo<?> that = (BaseDiffInfo<?>) o;
+
+        if (status != that.status) return false;
+        return uniqueKey != null ? uniqueKey.equals(that.uniqueKey) : that.uniqueKey == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = status != null ? status.hashCode() : 0;
+        result = 31 * result + (uniqueKey != null ? uniqueKey.hashCode() : 0);
+        return result;
     }
 }

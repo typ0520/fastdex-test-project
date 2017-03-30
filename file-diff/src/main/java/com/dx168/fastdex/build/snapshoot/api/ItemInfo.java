@@ -1,10 +1,22 @@
-package com.dx168.fastdex.build.snapshoot.diff;
+package com.dx168.fastdex.build.snapshoot.api;
 
 /**
  * Created by tong on 17/3/29.
  */
-public abstract class ItemInfo {
+public abstract class ItemInfo<T extends ItemInfo> {
+    /**
+     * 获取索引值
+     * @return
+     */
     public abstract String getUniqueKey();
+    /**
+     * 如果发生变化返回true，反之false
+     * @param anItemInfo
+     * @return
+     */
+    public boolean diff(T anItemInfo) {
+        return !getUniqueKey().equals(anItemInfo.getUniqueKey());
+    }
 
     @Override
     public final boolean equals(Object o) {

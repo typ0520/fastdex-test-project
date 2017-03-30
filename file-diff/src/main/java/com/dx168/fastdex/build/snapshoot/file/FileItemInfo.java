@@ -1,13 +1,13 @@
-package com.dx168.fastdex.build.snapshoot.diff.file;
+package com.dx168.fastdex.build.snapshoot.file;
 
-import com.dx168.fastdex.build.snapshoot.diff.ItemInfo;
+import com.dx168.fastdex.build.snapshoot.api.ItemInfo;
 import java.io.File;
 
 /**
  * Created by tong on 17/3/29.
  */
-public class FileItemInfo extends ItemInfo {
-    public String absolutePath;
+public class FileItemInfo extends ItemInfo<FileItemInfo> {
+    //public String absolutePath;
     public String relativePath;
     public long lastModified;
     public long fileLength;
@@ -22,14 +22,17 @@ public class FileItemInfo extends ItemInfo {
      * @param old
      * @return
      */
+    @Override
     public boolean diff(FileItemInfo old) {
         return !(lastModified == old.lastModified && fileLength == old.fileLength);
     }
 
     public static FileItemInfo create(File rootDir, File file) {
+        //相对路径作为key
         FileItemInfo fileInfo = new FileItemInfo();
-        fileInfo.absolutePath = file.getAbsolutePath();
+        //fileInfo.absolutePath = file.getAbsolutePath();
         fileInfo.relativePath = rootDir.toPath().relativize(file.toPath()).toString();
+
         fileInfo.lastModified = file.lastModified();
         fileInfo.fileLength = file.length();
         return fileInfo;

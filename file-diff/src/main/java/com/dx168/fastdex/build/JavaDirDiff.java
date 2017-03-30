@@ -55,11 +55,11 @@ public class JavaDirDiff {
             File oldFile = oldPath.toFile();
 
             if (!oldFile.exists()) {
-                result.add(useRelativePath ? relativePath.toString() : newFile.getAbsolutePath());
+                result.add("add: " + (useRelativePath ? relativePath.toString() : newFile.getAbsolutePath()));
             }
             else if ((newFile.lastModified() != oldFile.lastModified())
                     || (newFile.length() != oldFile.length())) {
-                result.add(useRelativePath ? relativePath.toString() : newFile.getAbsolutePath());
+                result.add("modify: " + (useRelativePath ? relativePath.toString() : newFile.getAbsolutePath()));
             }
             return FileVisitResult.CONTINUE;
         }

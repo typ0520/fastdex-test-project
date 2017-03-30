@@ -1,4 +1,4 @@
-package com.dx168.fastdex.build.snapshoot.diff.file;
+package com.dx168.fastdex.build.snapshoot.file;
 
 import java.io.File;
 import java.util.HashSet;
