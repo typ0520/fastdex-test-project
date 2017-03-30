@@ -10,9 +10,9 @@ import java.util.HashSet;
 /**
  * Created by tong on 17/3/29.
  */
-public class FileDiffResult extends HashSet<FileDiffInfo> implements STSerializable<FileDiffResult> {
+public class DirectoryDiffResult extends HashSet<FileDiffInfo> implements STSerializable<DirectoryDiffResult> {
     @Override
-    public FileDiffResult load(InputStream inputStream) throws IOException {
+    public DirectoryDiffResult load(InputStream inputStream) throws IOException {
         return SerializeUtils.load(inputStream,getClass());
     }
 

@@ -10,12 +10,12 @@ public abstract class ItemInfo<T extends ItemInfo> {
      */
     public abstract String getUniqueKey();
     /**
-     * 如果发生变化返回true，反之false
+     * 如果没有发生变化返回true，反之false
      * @param anItemInfo
      * @return
      */
-    public boolean diff(T anItemInfo) {
-        return !getUniqueKey().equals(anItemInfo.getUniqueKey());
+    public boolean diffEquals(T anItemInfo) {
+        return equals(anItemInfo);
     }
 
     @Override

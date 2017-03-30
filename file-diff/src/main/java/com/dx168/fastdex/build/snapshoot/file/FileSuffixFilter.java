@@ -31,6 +31,10 @@ public class FileSuffixFilter implements ScanFilter {
         }
     }
 
+    public Set<String> getSuffixList() {
+        return suffixList;
+    }
+
     @Override
     public boolean preVisitFile(File file) {
         for (String suffix : suffixList) {

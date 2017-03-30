@@ -91,10 +91,10 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
 
     @Override
     protected Collection<FileDiffInfo> createEmptyDiffInfos() {
-        return new FileDiffResult();
+        return new DirectoryDiffResult();
     }
 
-    public FileDiffResult diff(File old,ScanFilter scanFilter) throws IOException {
+    public DirectoryDiffResult diff(File old, ScanFilter scanFilter) throws IOException {
         return diff(new DirectorySnapshoot(old,scanFilter));
     }
 
@@ -103,15 +103,15 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
     }
 
     @Override
-    public FileDiffResult diff(Snapshoot<FileDiffInfo, FileItemInfo> otherSnapshoot) {
-        return (FileDiffResult) super.diff(otherSnapshoot);
+    public DirectoryDiffResult diff(Snapshoot<FileDiffInfo, FileItemInfo> otherSnapshoot) {
+        return (DirectoryDiffResult) super.diff(otherSnapshoot);
     }
 
-    public static FileDiffResult diff(File now,File old) throws IOException {
+    public static DirectoryDiffResult diff(File now, File old) throws IOException {
         return DirectorySnapshoot.diff(now,old,null);
     }
 
-    public static FileDiffResult diff(File now,File old,ScanFilter scanFilter) throws IOException {
+    public static DirectoryDiffResult diff(File now, File old, ScanFilter scanFilter) throws IOException {
         return new DirectorySnapshoot(now,scanFilter).diff(new DirectorySnapshoot(old,scanFilter));
     }
 }

@@ -2,8 +2,9 @@ package com.dx168.fastdex.build;
 
 import com.dx168.fastdex.build.snapshoot.file.DirectorySnapshoot;
 import com.dx168.fastdex.build.snapshoot.file.FileDiffInfo;
-import com.dx168.fastdex.build.snapshoot.file.FileDiffResult;
+import com.dx168.fastdex.build.snapshoot.file.DirectoryDiffResult;
 import com.dx168.fastdex.build.snapshoot.file.FileSuffixFilter;
+import com.dx168.fastdex.build.snapshoot.sourceset.JavaDirectorySnapshoot;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -23,25 +24,48 @@ public class Main {
         File dir1 = new File("/Users/tong/Desktop/now2");
         File dir2 = new File("/Users/tong/Desktop/old2");
 
-        DirectorySnapshoot snapshoot = new DirectorySnapshoot(dir1,new FileSuffixFilter(".java"));
-        DirectorySnapshoot snapshoot2 = new DirectorySnapshoot(dir2,new FileSuffixFilter(".java"));
+//        DirectorySnapshoot snapshoot = new DirectorySnapshoot(dir1,new FileSuffixFilter(".java"));
+//        DirectorySnapshoot snapshoot2 = new DirectorySnapshoot(dir2,new FileSuffixFilter(".java"));
+//
+//        snapshoot.serializeTo(new FileOutputStream("/Users/tong/Desktop/" + dir1.getName() + ".json"));
+//        snapshoot2.serializeTo(new FileOutputStream("/Users/tong/Desktop/" + dir2.getName() + ".json"));
+//
+//        snapshoot = new DirectorySnapshoot();
+//        snapshoot.load(new FileInputStream("/Users/tong/Desktop/" + dir1.getName() + ".json"));
+//
+//        snapshoot2 = new DirectorySnapshoot();
+//        snapshoot.load(new FileInputStream("/Users/tong/Desktop/" + dir2.getName() + ".json"));
+//
+//        String str = new Gson().toJson(snapshoot.diff(snapshoot2));
+//
+//        DirectoryDiffResult r1 = snapshoot.diff(snapshoot2);
+//        DirectoryDiffResult r2 = snapshoot.diff(snapshoot2);
+//        for (FileDiffInfo s : r1) {
+//            if (s.old != null) {
+//                s.old.lastModified = 0;
+//            }
+//        }
+//        System.out.println(r1.equals(r2));
+//
+//        DirectoryDiffResult diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
+
+
+        JavaDirectorySnapshoot snapshoot = new JavaDirectorySnapshoot(dir1);
+        JavaDirectorySnapshoot snapshoot2 = new JavaDirectorySnapshoot(dir2);
 
         snapshoot.serializeTo(new FileOutputStream("/Users/tong/Desktop/" + dir1.getName() + ".json"));
         snapshoot2.serializeTo(new FileOutputStream("/Users/tong/Desktop/" + dir2.getName() + ".json"));
 
-        snapshoot = new DirectorySnapshoot();
+        snapshoot = new JavaDirectorySnapshoot();
         snapshoot.load(new FileInputStream("/Users/tong/Desktop/" + dir1.getName() + ".json"));
 
-        snapshoot2 = new DirectorySnapshoot();
+        snapshoot2 = new JavaDirectorySnapshoot();
         snapshoot.load(new FileInputStream("/Users/tong/Desktop/" + dir2.getName() + ".json"));
-
 
         String str = new Gson().toJson(snapshoot.diff(snapshoot2));
 
-
-        FileDiffResult r1 = snapshoot.diff(snapshoot2);
-        FileDiffResult r2 = snapshoot.diff(snapshoot2);
-
+        DirectoryDiffResult r1 = snapshoot.diff(snapshoot2);
+        DirectoryDiffResult r2 = snapshoot.diff(snapshoot2);
         for (FileDiffInfo s : r1) {
             if (s.old != null) {
                 s.old.lastModified = 0;
@@ -49,7 +73,7 @@ public class Main {
         }
         System.out.println(r1.equals(r2));
 
-        FileDiffResult diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
+        DirectoryDiffResult diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
 
         //diff();
     }
@@ -66,7 +90,7 @@ public class Main {
         for (int i = 0;i < count;i++) {
             long start = System.currentTimeMillis();
 
-            FileDiffResult diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
+            DirectoryDiffResult diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
             for (FileDiffInfo diffInfo : diffResult) {
                 System.out.println(diffInfo.toString());
             }

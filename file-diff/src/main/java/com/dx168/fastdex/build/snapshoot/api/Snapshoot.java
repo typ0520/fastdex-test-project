@@ -22,6 +22,9 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
     @Expose
     public Map<String,ITEM_INFO> fileItemInfoMap;
 
+    @Expose
+    private Collection<DIFF_INFO> lastDiffResult;
+
     public Snapshoot() {
         createEmptyItemInfos();
     }
@@ -48,6 +51,10 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
      */
     protected Collection<ITEM_INFO> getAllItemInfo() {
         return itemInfos;
+    }
+
+    public Collection<DIFF_INFO> getLastDiffResult() {
+        return lastDiffResult;
     }
 
     /**
@@ -195,7 +202,6 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
         needDiffFileInfos.removeAll(deletedItemInfos);
         needDiffFileInfos.removeAll(increasedItemInfos);
 
-
         Collection<DIFF_INFO> diffInfos = createEmptyDiffInfos();
         scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedItemInfos,increasedItemInfos);
 
@@ -206,10 +212,12 @@ public abstract class Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends
                 throw new RuntimeException("UniqueKey can not be null or empty!!");
             }
             ITEM_INFO old = otherSnapshoot.getItemInfoByUniqueKey(uniqueKey);
-            if (now.diff(old)) {
+            if (!now.diffEquals(old)) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
             }
         }
+
+        this.lastDiffResult = diffInfos;
         return diffInfos;
     }
 }

@@ -17,14 +17,10 @@ public class FileItemInfo extends ItemInfo<FileItemInfo> {
         return relativePath;
     }
 
-    /**
-     * 如果发生变化返回true，反之false
-     * @param old
-     * @return
-     */
     @Override
-    public boolean diff(FileItemInfo old) {
-        return !(lastModified == old.lastModified && fileLength == old.fileLength);
+    public boolean diffEquals(FileItemInfo anItemInfo) {
+        return lastModified == anItemInfo.lastModified
+                && fileLength == anItemInfo.fileLength;
     }
 
     public static FileItemInfo create(File rootDir, File file) {
