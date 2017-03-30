@@ -9,17 +9,15 @@ import com.dx168.fastdex.build.snapshoot.diff.Status;
  */
 public class FileDiffInfo extends BaseDiffInfo {
     public String path;
-    public String relativeRootPath;
-    public String relativeSourceSetPath;
+    public String relativePath;
 
     //如果是删除没有这两个值
     public Long lastModified;
     public Long fileLength;
 
-    public FileDiffInfo(String path, String relativeRootPath, String relativeSourceSetPath, Status status) {
-        super(status);
+    public FileDiffInfo(String path, String relativePath, Status status) {
+        super(status,relativePath);
         this.path = path;
-        this.relativeRootPath = relativeRootPath;
-        this.relativeSourceSetPath = relativeSourceSetPath;
+        this.relativePath = relativePath;
     }
 }

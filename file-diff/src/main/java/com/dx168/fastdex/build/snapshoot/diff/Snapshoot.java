@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * Created by tong on 17/3/29.
  */
-public interface Snapshoot<DIFF_RESULT extends BaseDiffInfo,ITEM_INFO extends ItemInfo> {
+public interface Snapshoot<DIFF_INFO extends BaseDiffInfo,ITEM_INFO extends ItemInfo> {
     void addItemInfo(ITEM_INFO itemInfo);
 
     Collection<ITEM_INFO> getAllItemInfo();
@@ -19,5 +19,5 @@ public interface Snapshoot<DIFF_RESULT extends BaseDiffInfo,ITEM_INFO extends It
 
     void serializeTo(OutputStream outputStream) throws IOException;
 
-    Collection<DIFF_RESULT> diff(Snapshoot<DIFF_RESULT,ITEM_INFO> old);
+    Collection<DIFF_INFO> diff(Snapshoot<DIFF_INFO,ITEM_INFO> old);
 }

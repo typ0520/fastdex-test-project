@@ -1,6 +1,7 @@
 package com.dx168.fastdex.build.snapshoot.diff.file;
 
 import com.dx168.fastdex.build.snapshoot.diff.Snapshoot;
+import com.dx168.fastdex.build.snapshoot.diff.Status;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,17 +17,22 @@ import java.util.*;
  * Created by tong on 17/3/29.
  */
 public class DirectorySnapshoot implements Snapshoot<FileDiffInfo,FileItemInfo> {
-    private String rootPath;
-    private List<FileItemInfo> fileItemInfos;
+    public String rootPath;
+    public List<FileItemInfo> fileItemInfos;
+    private Map<String,FileItemInfo> fileItemInfoMap;
 
     public DirectorySnapshoot() {
+    }
+
+    public DirectorySnapshoot(File directory) throws IOException {
+        this(directory,null);
     }
 
     public DirectorySnapshoot(File directory,ScanFilter scanFilter) throws IOException {
         if (directory == null) {
             throw new IllegalArgumentException("Directory can not be null!!");
         }
-        if (!directory.exists() || directory.isDirectory()) {
+        if (!directory.exists() || !directory.isDirectory()) {
             throw new IllegalArgumentException("Invalid directory: " + directory);
         }
         this.rootPath = directory.getAbsolutePath();
@@ -58,6 +64,10 @@ public class DirectorySnapshoot implements Snapshoot<FileDiffInfo,FileItemInfo> 
             fileItemInfos = new ArrayList<>();
         }
         fileItemInfos.add(itemInfo);
+        if (fileItemInfoMap == null) {
+            fileItemInfoMap = new HashMap<>();
+        }
+        fileItemInfoMap.put(itemInfo.getUniqueKey(),itemInfo);
     }
 
     @Override
@@ -70,12 +80,27 @@ public class DirectorySnapshoot implements Snapshoot<FileDiffInfo,FileItemInfo> 
 
     @Override
     public FileItemInfo getItemInfoByUniqueKey(String uniqueKey) {
-        //TODO
-        return null;
+        FileItemInfo fileItemInfo = null;
+        if (fileItemInfoMap != null) {
+            fileItemInfo = fileItemInfoMap.get(uniqueKey);
+        }
+        if (fileItemInfo == null) {
+            for (FileItemInfo itemInfo : fileItemInfos) {
+                if (uniqueKey.equals(itemInfo.getUniqueKey())) {
+                    fileItemInfo = itemInfo;
+                    if (fileItemInfoMap == null) {
+                        fileItemInfoMap = new HashMap<>();
+                    }
+                    fileItemInfoMap.put(itemInfo.getUniqueKey(),itemInfo);
+                    break;
+                }
+            }
+        }
+        return fileItemInfo;
     }
 
     @Override
-    public Collection<FileDiffInfo> diff(Snapshoot<FileDiffInfo,FileItemInfo> otherSnapshoot) {
+    public FileDiffResult diff(Snapshoot<FileDiffInfo,FileItemInfo> otherSnapshoot) {
         //        Set<FileInfo> deletedFileInfos = new HashSet<>(old.fileInfos);
 //        deletedFileInfos.removeAll(fileInfos);
 
@@ -137,22 +162,35 @@ public class DirectorySnapshoot implements Snapshoot<FileDiffInfo,FileItemInfo> 
         needDiffFileInfos.removeAll(deletedFileInfos);
         needDiffFileInfos.removeAll(increasedFileInfos);
 
-        List<FileDiffInfo> diffInfos = new ArrayList<>();
-        scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedFileInfos,increasedFileInfos);
+        FileDiffResult fileDiffInfos = new FileDiffResult();
+        scanFromDeletedAndIncreased(fileDiffInfos,otherSnapshoot,deletedFileInfos,increasedFileInfos);
 
         for (FileItemInfo fileItemInfo : needDiffFileInfos) {
             FileItemInfo now = fileItemInfo;
-            FileItemInfo old = otherSnapshoot.getItemInfoByUniqueKey(fileItemInfo.getUniqueKey());
 
-//            if (now.diff(old)) {
-//                diffInfos.add(new FileDiffInfo(now,old, DiffInfo.Status.MODIFIED));
-//            }
+            String uniqueKey = fileItemInfo.getUniqueKey();
+            if (uniqueKey == null || uniqueKey.length() == 0) {
+                throw new RuntimeException("UniqueKey can not be null or empty!!");
+            }
+            FileItemInfo old = otherSnapshoot.getItemInfoByUniqueKey(uniqueKey);
+            if (now.diff(old)) {
+                fileDiffInfos.add(new FileDiffInfo(now.absolutePath,now.relativePath, Status.MODIFIED));
+            }
         }
-        return diffInfos;
+        return fileDiffInfos;
     }
 
-    protected void scanFromDeletedAndIncreased(List<FileDiffInfo> diffInfos, Snapshoot otherSnapshoot, Set<FileItemInfo> deletedFileInfos, Set<FileItemInfo> increasedFileInfos) {
-
+    protected void scanFromDeletedAndIncreased(FileDiffResult diffInfos, Snapshoot<FileDiffInfo,FileItemInfo> otherSnapshoot, Set<FileItemInfo> deletedFileInfos, Set<FileItemInfo> increasedFileInfos) {
+        if (deletedFileInfos != null) {
+            for (FileItemInfo itemInfo : deletedFileInfos) {
+                diffInfos.add(new FileDiffInfo(itemInfo.absolutePath,itemInfo.relativePath, Status.DELETE));
+            }
+        }
+        if (increasedFileInfos != null) {
+            for (FileItemInfo itemInfo : increasedFileInfos) {
+                diffInfos.add(new FileDiffInfo(itemInfo.absolutePath,itemInfo.relativePath, Status.ADD));
+            }
+        }
     }
 
     @Override
@@ -163,5 +201,13 @@ public class DirectorySnapshoot implements Snapshoot<FileDiffInfo,FileItemInfo> 
     @Override
     public void serializeTo(OutputStream outputStream) throws IOException {
 
+    }
+
+    public static FileDiffResult diff(File now,File old) throws IOException {
+        return DirectorySnapshoot.diff(now,old,null);
+    }
+
+    public static FileDiffResult diff(File now,File old,ScanFilter scanFilter) throws IOException {
+        return new DirectorySnapshoot(now,scanFilter).diff(new DirectorySnapshoot(old,scanFilter));
     }
 }
