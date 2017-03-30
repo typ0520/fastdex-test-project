@@ -1,4 +1,4 @@
-package com.dx168.fastdex.build.snapshoot;
+package com.dx168.fastdex.build.snapshoot.diff.file;
 
 import java.io.File;
 

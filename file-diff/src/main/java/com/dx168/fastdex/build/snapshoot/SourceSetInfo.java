@@ -43,8 +43,8 @@ public class SourceSetInfo {
         return getFileInfoByIndex(fileInfoMap.get(relativePath));
     }
 
-    public String join(ProjectSnapshoot projectSnapshoot) {
-        return new File(new File(projectSnapshoot.rootDir),relativePath).getAbsolutePath();
+    public String join(JavaSourceSnapshoot javaSourceSnapshoot) {
+        return new File(new File(javaSourceSnapshoot.rootDir),relativePath).getAbsolutePath();
     }
 
     public List<DiffInfo> diff(SourceSetInfo oldSourceSetInfo) {

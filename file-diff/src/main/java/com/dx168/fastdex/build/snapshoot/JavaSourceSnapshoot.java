@@ -30,21 +30,22 @@ import java.util.*;
              }
          }
      ]
+ }
  */
 
 /**
  *
  * Created by tong on 17/3/29.
  */
-public class ProjectSnapshoot {
+public class JavaSourceSnapshoot {
     public String name;
     public String rootDir;
     public Set<SourceSetInfo> sourceSetInfos;
 
-    public ProjectSnapshoot() {
+    public JavaSourceSnapshoot() {
     }
 
-    public ProjectSnapshoot(String name, String rootDir, Set<SourceSetInfo> sourceSetInfos) {
+    public JavaSourceSnapshoot(String name, String rootDir, Set<SourceSetInfo> sourceSetInfos) {
         this.name = name;
         this.rootDir = rootDir;
         this.sourceSetInfos = sourceSetInfos;
@@ -72,7 +73,7 @@ public class ProjectSnapshoot {
      * @param oldSnapshoot 老的快照
      * @return
      */
-    public DiffResult diff(ProjectSnapshoot oldSnapshoot) {
+    public DiffResult diff(JavaSourceSnapshoot oldSnapshoot) {
         if (!rootDir.equals(oldSnapshoot.rootDir)) {
             throw new IllegalStateException("root dir not equal");
         }
@@ -149,12 +150,12 @@ public class ProjectSnapshoot {
      * @param file
      * @return
      */
-    public static ProjectSnapshoot load(File file, File currentRootDir) {
+    public static JavaSourceSnapshoot load(File file, File currentRootDir) {
         //TODO
         return null;
     }
 
-    public static ProjectSnapshoot create(String name, File projectPath, Set<File> sourceSets, ScanFilter scanFilter) throws IOException {
+    public static JavaSourceSnapshoot create(String name, File projectPath, Set<File> sourceSets, ScanFilter scanFilter) throws IOException {
         if (name == null || name.length() == 0) {
             throw new IllegalArgumentException("name is null");
         }
@@ -168,7 +169,7 @@ public class ProjectSnapshoot {
             return null;
         }
 
-        ProjectSnapshoot snapshoot = new ProjectSnapshoot(name,projectPath.getAbsolutePath(),new HashSet<>());
+        JavaSourceSnapshoot snapshoot = new JavaSourceSnapshoot(name,projectPath.getAbsolutePath(),new HashSet<>());
         for (File sourceSet : sourceSets) {
             snapshoot.sourceSetInfos.add(SourceSetInfo.create(projectPath,sourceSet,scanFilter));
         }

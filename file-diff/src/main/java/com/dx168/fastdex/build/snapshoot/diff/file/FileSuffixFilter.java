@@ -1,4 +1,4 @@
-package com.dx168.fastdex.build.snapshoot;
+package com.dx168.fastdex.build.snapshoot.diff.file;
 
 import java.io.File;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class FileSuffixFilter implements ScanFilter {
     private final Set<String> suffixList = new HashSet<>();
-
+    
     public FileSuffixFilter(String suffix) {
         addSuffix(suffix);
     }

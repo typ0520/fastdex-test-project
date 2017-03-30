@@ -1,6 +1,4 @@
-package com.dx168.fastdex.build.snapshoot;
-
-import java.io.File;
+package com.dx168.fastdex.build;
 
 /**
  * 目录对比，file.length或者file.lastModified不一样时判定文件发生变化
