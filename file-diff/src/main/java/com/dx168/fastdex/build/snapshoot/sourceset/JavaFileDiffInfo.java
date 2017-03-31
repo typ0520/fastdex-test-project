@@ -42,22 +42,23 @@ public class JavaFileDiffInfo extends FileDiffInfo {
     public int hashCode() {
         int result = super.hashCode();
         int nowLastModified = 0;
+
         if (now != null) {
-            nowLastModified = (int) (now.lastModified ^ (now.lastModified >>> 32));
+            nowLastModified = (int) (((FileNode)now).lastModified ^ (((FileNode)now).lastModified >>> 32));
         }
 
         int oldLastModified = 0;
         if (old != null) {
-            oldLastModified = (int) (old.lastModified ^ (old.lastModified >>> 32));
+            oldLastModified = (int) (((FileNode)old).lastModified ^ (((FileNode)old).lastModified >>> 32));
         }
 
         int nowFileLength = 0;
         int oldFileLength = 0;
         if (now != null) {
-            nowFileLength = (int) (now.fileLength ^ (now.fileLength >>> 32));
+            nowFileLength = (int) (((FileNode)now).fileLength ^ (((FileNode)now).fileLength >>> 32));
         }
         if (old != null) {
-            oldFileLength = (int) (old.fileLength ^ (old.fileLength >>> 32));
+            oldFileLength = (int) (((FileNode)old).fileLength ^ (((FileNode)old).fileLength >>> 32));
         }
         result = 31 * result + (now != null ? (now.hashCode() + nowLastModified + nowFileLength) : 0);
         result = 31 * result + (old != null ? (old.hashCode() + oldLastModified + oldFileLength) : 0);

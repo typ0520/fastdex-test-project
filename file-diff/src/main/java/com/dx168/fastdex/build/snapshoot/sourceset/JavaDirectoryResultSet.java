@@ -2,6 +2,7 @@ package com.dx168.fastdex.build.snapshoot.sourceset;
 
 import com.dx168.fastdex.build.snapshoot.api.ResultSet;
 import com.dx168.fastdex.build.snapshoot.api.Status;
+import com.dx168.fastdex.build.snapshoot.file.FileNode;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +23,8 @@ public class JavaDirectoryResultSet extends ResultSet<JavaFileDiffInfo> {
     public boolean add(JavaFileDiffInfo diffInfo) {
         if (diffInfo.status == Status.ADD
                 || diffInfo.status == Status.MODIFIED) {
-            String classRelativePath = diffInfo.now.relativePath.substring(0, diffInfo.now.relativePath.length() - ".java".length());
+            FileNode fileNode = (FileNode) diffInfo.now;
+            String classRelativePath = fileNode.relativePath.substring(0, fileNode.relativePath.length() - ".java".length());
 
             addOrModifiedClassPatterns.add(classRelativePath + ".class");
             addOrModifiedClassPatterns.add(classRelativePath + "\\$\\S{0,}$.class");

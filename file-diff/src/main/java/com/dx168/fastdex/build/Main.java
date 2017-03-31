@@ -85,7 +85,7 @@ public class Main {
         snapshoot = (JavaDirectorySnapshoot) Snapshoot.load(new FileInputStream("/Users/tong/Desktop/dir1.json"),JavaDirectorySnapshoot.class);
 
 
-
+///
         JavaDirectorySnapshoot snapshoot2 = new JavaDirectorySnapshoot(dir2);
         JavaDirectoryResultSet r1 = (JavaDirectoryResultSet) snapshoot.diff(snapshoot2);
         //r1.serializeTo(new FileOutputStream("/Users/tong/Desktop/result.json"));

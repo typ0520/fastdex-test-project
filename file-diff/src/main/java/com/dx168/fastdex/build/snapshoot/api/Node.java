@@ -3,7 +3,7 @@ package com.dx168.fastdex.build.snapshoot.api;
 /**
  * Created by tong on 17/3/29.
  */
-public abstract class Node<T extends Node> {
+public abstract class Node {
     /**
      * 获取索引值
      * @return
@@ -11,11 +11,11 @@ public abstract class Node<T extends Node> {
     public abstract String getUniqueKey();
     /**
      * 如果没有发生变化返回true，反之false
-     * @param anItemInfo
+     * @param anNode
      * @return
      */
-    public boolean diffEquals(T anItemInfo) {
-        return equals(anItemInfo);
+    public boolean diffEquals(Node anNode) {
+        return equals(anNode);
     }
 
     @Override

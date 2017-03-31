@@ -11,23 +11,23 @@ import java.util.*;
 /**
  * Created by tong on 17/3/29.
  */
-public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implements STSerializable {
-    public Collection<ITEM_INFO> itemInfos;
+public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements STSerializable {
+    public Collection<NODE> nodes;
 
     @Expose
     private ResultSet<DIFF_INFO> lastDiffResult;
 
     public Snapshoot() {
-        createEmptyItemInfos();
+        createEmptyNodes();
     }
 
-    public Snapshoot(Snapshoot<DIFF_INFO,ITEM_INFO> snapshoot) {
-        createEmptyItemInfos();
-        itemInfos.addAll(snapshoot.getAllItemInfo());
+    public Snapshoot(Snapshoot<DIFF_INFO,NODE> snapshoot) {
+        createEmptyNodes();
+        nodes.addAll(snapshoot.getAllNodes());
     }
 
-    protected void createEmptyItemInfos() {
-        itemInfos = new HashSet<ITEM_INFO>();
+    protected void createEmptyNodes() {
+        nodes = new HashSet<NODE>();
     }
 
     /**
@@ -46,16 +46,16 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implem
      * 添加内容
      * @param itemInfo
      */
-    protected void addItemInfo(ITEM_INFO itemInfo) {
-        itemInfos.add(itemInfo);
+    protected void addNode(NODE itemInfo) {
+        nodes.add(itemInfo);
     }
 
     /**
      * 获取所有的内容
      * @return
      */
-    protected Collection<ITEM_INFO> getAllItemInfo() {
-        return itemInfos;
+    protected Collection<NODE> getAllNodes() {
+        return nodes;
     }
 
     public ResultSet<DIFF_INFO> getLastDiffResult() {
@@ -67,10 +67,10 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implem
      * @param uniqueKey
      * @return
      */
-    protected ITEM_INFO getItemInfoByUniqueKey(String uniqueKey) {
-        ITEM_INFO itemInfo = null;
+    protected NODE getItemInfoByUniqueKey(String uniqueKey) {
+        NODE itemInfo = null;
 
-        for (ITEM_INFO info : itemInfos) {
+        for (NODE info : nodes) {
             if (uniqueKey.equals(info.getUniqueKey())) {
                 itemInfo = info;
                 break;
@@ -86,7 +86,7 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implem
      * @param old
      * @return
      */
-    protected DIFF_INFO createDiffInfo(Status status, ITEM_INFO now, ITEM_INFO old) {
+    protected DIFF_INFO createDiffInfo(Status status, NODE now, NODE old) {
         DIFF_INFO diffInfo = (DIFF_INFO) createEmptyDiffInfo();
         diffInfo.status = status;
         diffInfo.now = now;
@@ -121,14 +121,14 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implem
      * @param deletedItemInfos
      * @param increasedItemInfos
      */
-    protected void scanFromDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,ITEM_INFO> otherSnapshoot, Set<ITEM_INFO> deletedItemInfos, Set<ITEM_INFO> increasedItemInfos) {
+    protected void scanFromDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,NODE> otherSnapshoot, Set<NODE> deletedItemInfos, Set<NODE> increasedItemInfos) {
         if (deletedItemInfos != null) {
-            for (ITEM_INFO itemInfo : deletedItemInfos) {
+            for (NODE itemInfo : deletedItemInfos) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.DELETE,null,itemInfo));
             }
         }
         if (increasedItemInfos != null) {
-            for (ITEM_INFO itemInfo : increasedItemInfos) {
+            for (NODE itemInfo : increasedItemInfos) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.ADD,itemInfo,null));
             }
         }
@@ -144,34 +144,34 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implem
      * @param otherSnapshoot
      * @return
      */
-    public ResultSet<DIFF_INFO> diff(Snapshoot<DIFF_INFO,ITEM_INFO> otherSnapshoot) {
+    public ResultSet<DIFF_INFO> diff(Snapshoot<DIFF_INFO,NODE> otherSnapshoot) {
         //获取删除项
-        Set<ITEM_INFO> deletedItemInfos = new HashSet<>();
-        deletedItemInfos.addAll(otherSnapshoot.getAllItemInfo());
-        deletedItemInfos.removeAll(getAllItemInfo());
+        Set<NODE> deletedItemInfos = new HashSet<>();
+        deletedItemInfos.addAll(otherSnapshoot.getAllNodes());
+        deletedItemInfos.removeAll(getAllNodes());
 
         //新增项
-        Set<ITEM_INFO> increasedItemInfos = new HashSet<>();
-        increasedItemInfos.addAll(getAllItemInfo());
-        increasedItemInfos.removeAll(otherSnapshoot.getAllItemInfo());
+        Set<NODE> increasedItemInfos = new HashSet<>();
+        increasedItemInfos.addAll(getAllNodes());
+        increasedItemInfos.removeAll(otherSnapshoot.getAllNodes());
 
         //需要检测是否变化的列表
-        Set<ITEM_INFO> needDiffFileInfos = new HashSet<>();
-        needDiffFileInfos.addAll(getAllItemInfo());
-        needDiffFileInfos.addAll(otherSnapshoot.getAllItemInfo());
+        Set<NODE> needDiffFileInfos = new HashSet<>();
+        needDiffFileInfos.addAll(getAllNodes());
+        needDiffFileInfos.addAll(otherSnapshoot.getAllNodes());
         needDiffFileInfos.removeAll(deletedItemInfos);
         needDiffFileInfos.removeAll(increasedItemInfos);
 
         ResultSet<DIFF_INFO> diffInfos = createEmptyResultSet();
         scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedItemInfos,increasedItemInfos);
 
-        for (ITEM_INFO itemInfo : needDiffFileInfos) {
-            ITEM_INFO now = itemInfo;
+        for (NODE itemInfo : needDiffFileInfos) {
+            NODE now = itemInfo;
             String uniqueKey = itemInfo.getUniqueKey();
             if (uniqueKey == null || uniqueKey.length() == 0) {
                 throw new RuntimeException("UniqueKey can not be null or empty!!");
             }
-            ITEM_INFO old = otherSnapshoot.getItemInfoByUniqueKey(uniqueKey);
+            NODE old = otherSnapshoot.getItemInfoByUniqueKey(uniqueKey);
             if (!now.diffEquals(old)) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
             }

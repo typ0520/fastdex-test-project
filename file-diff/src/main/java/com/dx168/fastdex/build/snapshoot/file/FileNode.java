@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * Created by tong on 17/3/29.
  */
-public class FileNode extends Node<FileNode> {
+public class FileNode extends Node {
     //public String absolutePath;
     public String relativePath;
     public long lastModified;
@@ -18,16 +18,14 @@ public class FileNode extends Node<FileNode> {
     }
 
     @Override
-    public boolean diffEquals(FileNode anItemInfo) {
-//        return lastModified == anItemInfo.lastModified
-//                && fileLength == anItemInfo.fileLength;
+    public boolean diffEquals(Node anNode) {
+        if (this == anNode) return true;
+        if (anNode == null) return false;
 
-        if (this == anItemInfo) return true;
-        if (anItemInfo == null) return false;
-
-        if (lastModified != anItemInfo.lastModified) return false;
-        if (fileLength != anItemInfo.fileLength) return false;
-        return equals(anItemInfo);
+        FileNode fileNode = (FileNode) anNode;
+        if (lastModified != fileNode.lastModified) return false;
+        if (fileLength != fileNode.fileLength) return false;
+        return equals(fileNode);
     }
 
     @Override

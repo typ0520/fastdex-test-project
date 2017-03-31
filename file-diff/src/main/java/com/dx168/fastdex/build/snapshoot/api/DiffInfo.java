@@ -40,7 +40,7 @@ public class DiffInfo<T extends Node> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        DiffInfo<?> that = (DiffInfo<?>) o;
+        DiffInfo that = (DiffInfo) o;
 
         if (status != that.status) return false;
         return uniqueKey != null ? uniqueKey.equals(that.uniqueKey) : that.uniqueKey == null;

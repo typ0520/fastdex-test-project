@@ -1,7 +1,6 @@
 package com.dx168.fastdex.build.snapshoot.api;
 
 import com.dx168.fastdex.build.snapshoot.utils.SerializeUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

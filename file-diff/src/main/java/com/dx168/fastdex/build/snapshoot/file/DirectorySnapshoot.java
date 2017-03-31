@@ -39,6 +39,6 @@ package com.dx168.fastdex.build.snapshoot.file;
 /**
  * Created by tong on 17/3/29.
  */
-public final class DirectorySnapshoot extends VirtualDirectorySnapshoot<FileDiffInfo,FileNode> {
+public final class DirectorySnapshoot extends BaseDirectorySnapshoot<FileDiffInfo,FileNode> {
 
 }
