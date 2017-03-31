@@ -15,7 +15,7 @@ import java.nio.file.attribute.BasicFileAttributes;
  * 目录快照
  * Created by tong on 17/3/29.
  */
-public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO extends FileNode> extends Snapshoot<DIFF_INFO,ITEM_INFO> {
+public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,NODE extends FileNode> extends Snapshoot<DIFF_INFO,NODE> {
     public String rootPath;
 
     public BaseDirectorySnapshoot() {
@@ -61,7 +61,7 @@ public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO ext
                 return FileVisitResult.CONTINUE;
             }
         }
-        addNode((ITEM_INFO) FileNode.create(new File(rootPath),filePath.toFile()));
+        addNode((NODE) FileNode.create(new File(rootPath),filePath.toFile()));
         return FileVisitResult.CONTINUE;
     }
 
@@ -69,6 +69,20 @@ public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO ext
         return new File(rootPath,fileItemInfo.getUniqueKey());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BaseDirectorySnapshoot<?, ?> that = (BaseDirectorySnapshoot<?, ?>) o;
+
+        return rootPath != null ? rootPath.equals(that.rootPath) : that.rootPath == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return rootPath != null ? rootPath.hashCode() : 0;
+    }
 
     public static ResultSet<FileDiffInfo> diff(File now, File old) throws IOException {
         return BaseDirectorySnapshoot.diff(now,old,null);

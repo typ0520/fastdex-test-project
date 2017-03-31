@@ -21,7 +21,7 @@ public class JavaDirectoryResultSet extends ResultSet<JavaFileDiffInfo> {
 
     @Override
     public boolean add(JavaFileDiffInfo diffInfo) {
-        if (diffInfo.status == Status.ADD
+        if (diffInfo.status == Status.ADDED
                 || diffInfo.status == Status.MODIFIED) {
             FileNode fileNode = (FileNode) diffInfo.now;
             String classRelativePath = fileNode.relativePath.substring(0, fileNode.relativePath.length() - ".java".length());
@@ -30,6 +30,12 @@ public class JavaDirectoryResultSet extends ResultSet<JavaFileDiffInfo> {
             addOrModifiedClassPatterns.add(classRelativePath + "\\$\\S{0,}$.class");
         }
         return super.add(diffInfo);
+    }
+
+    @Override
+    public void merge(ResultSet<JavaFileDiffInfo> resultSet) {
+        addOrModifiedClassPatterns.addAll(((JavaDirectoryResultSet)resultSet).addOrModifiedClassPatterns);
+        super.merge(resultSet);
     }
 
     public Set<String> getAddOrModifiedClassPatterns() {

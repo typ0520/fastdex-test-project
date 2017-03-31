@@ -44,10 +44,10 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
 
     /**
      * 添加内容
-     * @param itemInfo
+     * @param code
      */
-    protected void addNode(NODE itemInfo) {
-        nodes.add(itemInfo);
+    protected void addNode(NODE code) {
+        nodes.add(code);
     }
 
     /**
@@ -67,16 +67,15 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
      * @param uniqueKey
      * @return
      */
-    protected NODE getItemInfoByUniqueKey(String uniqueKey) {
-        NODE itemInfo = null;
-
-        for (NODE info : nodes) {
-            if (uniqueKey.equals(info.getUniqueKey())) {
-                itemInfo = info;
+    protected NODE getNodeByUniqueKey(String uniqueKey) {
+        NODE node = null;
+        for (NODE n : nodes) {
+            if (uniqueKey.equals(n.getUniqueKey())) {
+                node = n;
                 break;
             }
         }
-        return itemInfo;
+        return node;
     }
 
     /**
@@ -93,11 +92,11 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
         diffInfo.old = old;
 
         switch (status) {
-            case ADD:
+            case ADDED:
             case MODIFIED:
                 diffInfo.uniqueKey = now.getUniqueKey();
                 break;
-            case DELETE:
+            case DELETEED:
                 diffInfo.uniqueKey = old.getUniqueKey();
                 break;
         }
@@ -114,26 +113,6 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
         diffInfos.add(diffInfo);
     }
 
-    /**
-     * 扫描变化项和删除项
-     * @param diffInfos
-     * @param otherSnapshoot
-     * @param deletedItemInfos
-     * @param increasedItemInfos
-     */
-    protected void scanFromDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,NODE> otherSnapshoot, Set<NODE> deletedItemInfos, Set<NODE> increasedItemInfos) {
-        if (deletedItemInfos != null) {
-            for (NODE itemInfo : deletedItemInfos) {
-                addDiffInfo(diffInfos,createDiffInfo(Status.DELETE,null,itemInfo));
-            }
-        }
-        if (increasedItemInfos != null) {
-            for (NODE itemInfo : increasedItemInfos) {
-                addDiffInfo(diffInfos,createDiffInfo(Status.ADD,itemInfo,null));
-            }
-        }
-    }
-
     @Override
     public void serializeTo(OutputStream outputStream) throws IOException {
         SerializeUtils.serializeTo(outputStream,this);
@@ -146,39 +125,68 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
      */
     public ResultSet<DIFF_INFO> diff(Snapshoot<DIFF_INFO,NODE> otherSnapshoot) {
         //获取删除项
-        Set<NODE> deletedItemInfos = new HashSet<>();
-        deletedItemInfos.addAll(otherSnapshoot.getAllNodes());
-        deletedItemInfos.removeAll(getAllNodes());
+        Set<NODE> deletedNodes = new HashSet<>();
+        deletedNodes.addAll(otherSnapshoot.getAllNodes());
+        deletedNodes.removeAll(getAllNodes());
 
         //新增项
-        Set<NODE> increasedItemInfos = new HashSet<>();
-        increasedItemInfos.addAll(getAllNodes());
-        increasedItemInfos.removeAll(otherSnapshoot.getAllNodes());
+        Set<NODE> increasedNodes = new HashSet<>();
+        increasedNodes.addAll(getAllNodes());
+        increasedNodes.removeAll(otherSnapshoot.getAllNodes());
 
         //需要检测是否变化的列表
-        Set<NODE> needDiffFileInfos = new HashSet<>();
-        needDiffFileInfos.addAll(getAllNodes());
-        needDiffFileInfos.addAll(otherSnapshoot.getAllNodes());
-        needDiffFileInfos.removeAll(deletedItemInfos);
-        needDiffFileInfos.removeAll(increasedItemInfos);
+        Set<NODE> needDiffNodes = new HashSet<>();
+        needDiffNodes.addAll(getAllNodes());
+        needDiffNodes.addAll(otherSnapshoot.getAllNodes());
+        needDiffNodes.removeAll(deletedNodes);
+        needDiffNodes.removeAll(increasedNodes);
 
         ResultSet<DIFF_INFO> diffInfos = createEmptyResultSet();
-        scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedItemInfos,increasedItemInfos);
+        scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedNodes,increasedNodes);
 
-        for (NODE itemInfo : needDiffFileInfos) {
-            NODE now = itemInfo;
-            String uniqueKey = itemInfo.getUniqueKey();
+        scanNeedDiffNodes(diffInfos,otherSnapshoot,needDiffNodes);
+        this.lastDiffResult = diffInfos;
+        return diffInfos;
+    }
+
+    /**
+     * 扫描变化项和删除项
+     * @param diffInfos
+     * @param otherSnapshoot
+     * @param deletedNodes
+     * @param increasedNodes
+     */
+    protected void scanFromDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,NODE> otherSnapshoot, Set<NODE> deletedNodes, Set<NODE> increasedNodes) {
+        if (deletedNodes != null) {
+            for (NODE node : deletedNodes) {
+                addDiffInfo(diffInfos,createDiffInfo(Status.DELETEED,null,node));
+            }
+        }
+        if (increasedNodes != null) {
+            for (NODE node : increasedNodes) {
+                addDiffInfo(diffInfos,createDiffInfo(Status.ADDED,node,null));
+            }
+        }
+    }
+
+    /**
+     * 扫描uniqueKey相同的node
+     * @param diffInfos
+     * @param otherSnapshoot
+     * @param needDiffNodes
+     */
+    protected void scanNeedDiffNodes(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO, NODE> otherSnapshoot, Set<NODE> needDiffNodes) {
+        for (NODE node : needDiffNodes) {
+            NODE now = node;
+            String uniqueKey = node.getUniqueKey();
             if (uniqueKey == null || uniqueKey.length() == 0) {
                 throw new RuntimeException("UniqueKey can not be null or empty!!");
             }
-            NODE old = otherSnapshoot.getItemInfoByUniqueKey(uniqueKey);
+            NODE old = otherSnapshoot.getNodeByUniqueKey(uniqueKey);
             if (!now.diffEquals(old)) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
             }
         }
-
-        this.lastDiffResult = diffInfos;
-        return diffInfos;
     }
 
     public static Snapshoot load(InputStream inputStream, Class type) throws Exception {

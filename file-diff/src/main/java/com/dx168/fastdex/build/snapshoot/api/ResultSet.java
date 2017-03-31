@@ -37,7 +37,7 @@ public class ResultSet<T extends DiffInfo> implements STSerializable {
 
     public Set<T> getAllDiffInfos() {
         HashSet set =  new HashSet<>();
-        set.add(diffInfos);
+        set.addAll(diffInfos);
         return set;
     }
 

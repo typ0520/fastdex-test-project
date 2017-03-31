@@ -36,9 +36,25 @@ package com.dx168.fastdex.build.snapshoot.file;
  com/dx168/fastdex/sample/MainActivity2.java
  */
 
+import java.io.File;
+import java.io.IOException;
+
 /**
  * Created by tong on 17/3/29.
  */
 public final class DirectorySnapshoot extends BaseDirectorySnapshoot<FileDiffInfo,FileNode> {
+    public DirectorySnapshoot() {
+    }
 
+    public DirectorySnapshoot(BaseDirectorySnapshoot snapshoot) {
+        super(snapshoot);
+    }
+
+    public DirectorySnapshoot(File directory) throws IOException {
+        super(directory);
+    }
+
+    public DirectorySnapshoot(File directory, ScanFilter scanFilter) throws IOException {
+        super(directory, scanFilter);
+    }
 }
