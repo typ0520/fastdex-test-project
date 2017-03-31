@@ -3,7 +3,7 @@ package com.dx168.fastdex.build.snapshoot.api;
 /**
  * Created by tong on 17/3/29.
  */
-public abstract class ItemInfo<T extends ItemInfo> {
+public abstract class Node<T extends Node> {
     /**
      * 获取索引值
      * @return
@@ -23,10 +23,10 @@ public abstract class ItemInfo<T extends ItemInfo> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ItemInfo itemInfo = (ItemInfo) o;
+        Node node = (Node) o;
 
         String uniqueKey = getUniqueKey();
-        String anUniqueKey = itemInfo.getUniqueKey();
+        String anUniqueKey = node.getUniqueKey();
         return uniqueKey != null ? uniqueKey.equals(anUniqueKey) : anUniqueKey == null;
 
     }

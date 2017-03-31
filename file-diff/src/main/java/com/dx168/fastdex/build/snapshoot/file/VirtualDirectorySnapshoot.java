@@ -51,7 +51,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 /**
  * Created by tong on 17/3/29.
  */
-public class VirtualDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO extends FileItemInfo> extends Snapshoot<DIFF_INFO,ITEM_INFO> {
+public class VirtualDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO extends FileNode> extends Snapshoot<DIFF_INFO,ITEM_INFO> {
     public String rootPath;
 
     public VirtualDirectorySnapshoot() {
@@ -97,11 +97,11 @@ public class VirtualDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO 
                 return FileVisitResult.CONTINUE;
             }
         }
-        addItemInfo((ITEM_INFO) FileItemInfo.create(new File(rootPath),filePath.toFile()));
+        addItemInfo((ITEM_INFO) FileNode.create(new File(rootPath),filePath.toFile()));
         return FileVisitResult.CONTINUE;
     }
 
-    public File getAbsoluteFile(FileItemInfo fileItemInfo) {
+    public File getAbsoluteFile(FileNode fileItemInfo) {
         return new File(rootPath,fileItemInfo.getUniqueKey());
     }
 

@@ -52,22 +52,22 @@ public class Main {
 //        JavaFileDiffInfo fileDiffInfo = new JavaFileDiffInfo();
 //        fileDiffInfo.status = Status.MODIFIED;
 //        fileDiffInfo.uniqueKey = "/com/dx168/xx.java";
-//        fileDiffInfo.now = FileItemInfo.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
+//        fileDiffInfo.now = FileNode.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
 //
 //        JavaFileDiffInfo fileDiffInfo2 = new JavaFileDiffInfo();
 //        fileDiffInfo2.status = Status.MODIFIED;
 //        fileDiffInfo2.uniqueKey = "/com/dx168/xx2.java";
-//        fileDiffInfo2.now = FileItemInfo.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
+//        fileDiffInfo2.now = FileNode.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
 //
 //        JavaFileDiffInfo fileDiffInfo3 = new JavaFileDiffInfo();
 //        fileDiffInfo3.status = Status.MODIFIED;
 //        fileDiffInfo3.uniqueKey = "/com/dx168/xx.java";
-//        fileDiffInfo3.now = FileItemInfo.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
+//        fileDiffInfo3.now = FileNode.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
 //
 //        JavaFileDiffInfo fileDiffInfo4 = new JavaFileDiffInfo();
 //        fileDiffInfo4.status = Status.MODIFIED;
 //        fileDiffInfo4.uniqueKey = "/com/dx168/xx2.java";
-//        fileDiffInfo4.now = FileItemInfo.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
+//        fileDiffInfo4.now = FileNode.create(new File("/com/dx168"),new File("/com/dx168/xx.java"));
 //
 //        Set<JavaFileDiffInfo> set1 = new HashSet<>();
 //        Set<JavaFileDiffInfo> set2 = new HashSet<>();

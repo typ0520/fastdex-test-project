@@ -4,7 +4,7 @@ package com.dx168.fastdex.build.snapshoot.api;
  * 目录对比，file.length或者file.lastModified不一样时判定文件发生变化
  * Created by tong on 17/3/29.
  */
-public class DiffInfo<T extends ItemInfo> {
+public class DiffInfo<T extends Node> {
     public Status status;
     public String uniqueKey;
     public T now;//如果是删除此值为null

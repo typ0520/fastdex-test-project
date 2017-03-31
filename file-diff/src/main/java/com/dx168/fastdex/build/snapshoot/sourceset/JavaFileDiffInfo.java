@@ -2,7 +2,7 @@ package com.dx168.fastdex.build.snapshoot.sourceset;
 
 import com.dx168.fastdex.build.snapshoot.api.Status;
 import com.dx168.fastdex.build.snapshoot.file.FileDiffInfo;
-import com.dx168.fastdex.build.snapshoot.file.FileItemInfo;
+import com.dx168.fastdex.build.snapshoot.file.FileNode;
 
 /**
  * 目录对比，file.length或者file.lastModified不一样时判定文件发生变化
@@ -12,7 +12,7 @@ public class JavaFileDiffInfo extends FileDiffInfo {
     public JavaFileDiffInfo() {
     }
 
-    public JavaFileDiffInfo(Status status, FileItemInfo now, FileItemInfo old) {
+    public JavaFileDiffInfo(Status status, FileNode now, FileNode old) {
         super(status, now, old);
     }
 

@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * Created by tong on 17/3/29.
  */
-public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends ItemInfo> implements STSerializable {
+public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends Node> implements STSerializable {
     public Collection<ITEM_INFO> itemInfos;
 
     @Expose

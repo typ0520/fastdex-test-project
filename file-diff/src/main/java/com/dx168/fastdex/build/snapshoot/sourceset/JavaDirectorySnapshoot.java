@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by tong on 17/3/30.
  */
-public class JavaDirectorySnapshoot extends VirtualDirectorySnapshoot<JavaFileDiffInfo,FileItemInfo> {
+public class JavaDirectorySnapshoot extends VirtualDirectorySnapshoot<JavaFileDiffInfo,FileNode> {
     private static final FileSuffixFilter JAVA_SUFFIX_FILTER = new FileSuffixFilter(".java");
 
     public JavaDirectorySnapshoot() {
