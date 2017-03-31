@@ -1,12 +1,14 @@
 package com.dx168.fastdex.build;
 
 import com.dx168.fastdex.build.snapshoot.api.ResultSet;
+import com.dx168.fastdex.build.snapshoot.api.Snapshoot;
 import com.dx168.fastdex.build.snapshoot.file.*;
 import com.dx168.fastdex.build.snapshoot.sourceset.JavaDirectoryResultSet;
 import com.dx168.fastdex.build.snapshoot.sourceset.JavaDirectorySnapshoot;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Set;
@@ -78,6 +80,12 @@ public class Main {
 //        System.out.println(set1.equals(set2));
 //
         JavaDirectorySnapshoot snapshoot = new JavaDirectorySnapshoot(dir1);
+        snapshoot.serializeTo(new FileOutputStream("/Users/tong/Desktop/dir1.json"));
+
+        snapshoot = (JavaDirectorySnapshoot) Snapshoot.load(new FileInputStream("/Users/tong/Desktop/dir1.json"),JavaDirectorySnapshoot.class);
+
+
+
         JavaDirectorySnapshoot snapshoot2 = new JavaDirectorySnapshoot(dir2);
         JavaDirectoryResultSet r1 = (JavaDirectoryResultSet) snapshoot.diff(snapshoot2);
         //r1.serializeTo(new FileOutputStream("/Users/tong/Desktop/result.json"));
