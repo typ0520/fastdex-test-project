@@ -44,7 +44,7 @@ public class StringSnapshootTest extends TestCase {
 
         ResultSet resultSet = snapshoot1.diff(snapshoot2);
 
-        assertTrue(resultSet.getAllDiffInfos() == null || resultSet.getAllDiffInfos().isEmpty());
+        assertTrue(resultSet.getAllChangedDiffInfos() == null || resultSet.getAllChangedDiffInfos().isEmpty());
     }
 
     @Test
@@ -62,11 +62,11 @@ public class StringSnapshootTest extends TestCase {
 
         ResultSet<StringDiffInfo> resultSet = now.diff(old);
 
-        assertEquals(resultSet.getAllDiffInfos().size(),1);
+        assertEquals(resultSet.getAllChangedDiffInfos().size(),1);
 
 
         ArrayList<DiffInfo> ss = new ArrayList<>();
-        ss.addAll(resultSet.getAllDiffInfos());
+        ss.addAll(resultSet.getAllChangedDiffInfos());
         DiffInfo diffInfo = ss.get(0);
 
         assertEquals(diffInfo.status, Status.ADDED);
@@ -89,11 +89,11 @@ public class StringSnapshootTest extends TestCase {
 
         ResultSet<StringDiffInfo> resultSet = now.diff(old);
 
-        assertEquals(resultSet.getAllDiffInfos().size(),1);
+        assertEquals(resultSet.getAllChangedDiffInfos().size(),1);
 
 
         ArrayList<DiffInfo> ss = new ArrayList<>();
-        ss.addAll(resultSet.getAllDiffInfos());
+        ss.addAll(resultSet.getAllChangedDiffInfos());
         DiffInfo diffInfo = ss.get(0);
 
         assertEquals(diffInfo.status, Status.DELETEED);

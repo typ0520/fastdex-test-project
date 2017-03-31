@@ -12,41 +12,78 @@ import java.util.Set;
  * Created by tong on 17/3/30.
  */
 public class ResultSet<T extends DiffInfo> implements STSerializable {
-    public Set<T> diffInfos = new HashSet<T>();
+    private Set<T> changedDiffInfos = new HashSet<T>();
+    private Set<T> nochangedDiffInfos = new HashSet<T>();
 
     public ResultSet() {
     }
 
     public ResultSet(ResultSet resultSet) {
-        diffInfos.addAll(resultSet.diffInfos);
+        changedDiffInfos.addAll(resultSet.changedDiffInfos);
+        nochangedDiffInfos.addAll(resultSet.nochangedDiffInfos);
     }
 
+    /**
+     * 添加对比信息
+     * @param diffInfo
+     * @return
+     */
     public boolean add(T diffInfo) {
-        if (diffInfos == null) {
-            diffInfos = new HashSet<T>();
+        if (diffInfo == null) {
+            return false;
         }
-        return diffInfos.add(diffInfo);
+        if (diffInfo.status == Status.NOCHANGED) {
+            if (nochangedDiffInfos == null) {
+                nochangedDiffInfos = new HashSet<T>();
+            }
+            return nochangedDiffInfos.add(diffInfo);
+        }
+        if (changedDiffInfos == null) {
+            changedDiffInfos = new HashSet<T>();
+        }
+        return changedDiffInfos.add(diffInfo);
     }
 
+    /**
+     * 合并结果集
+     * @param resultSet
+     */
     public void merge(ResultSet<T> resultSet) {
-        if (diffInfos == null) {
-            diffInfos = new HashSet<T>();
+        if (changedDiffInfos == null) {
+            changedDiffInfos = new HashSet<T>();
         }
-        diffInfos.addAll(resultSet.diffInfos);
+        changedDiffInfos.addAll(resultSet.changedDiffInfos);
     }
 
-    public Set<T> getAllDiffInfos() {
+    /**
+     * 获取所有发生变化的结果集
+     * @return
+     */
+    public Set<T> getAllChangedDiffInfos() {
         HashSet set =  new HashSet<>();
-        set.addAll(diffInfos);
+        set.addAll(changedDiffInfos);
+        return set;
+    }
+
+    /**
+     * 获取所有发生变化的结果集
+     * @return
+     */
+    public Set<T> getAllNochangedDiffInfos() {
+        HashSet set =  new HashSet<>();
+        set.addAll(nochangedDiffInfos);
         return set;
     }
 
     public Set<T> getDiffInfos(Status ...statuses) {
         if (statuses == null || statuses.length == 0) {
-            return getAllDiffInfos();
+            HashSet hashSet = new HashSet();
+            hashSet.addAll(changedDiffInfos);
+            hashSet.addAll(nochangedDiffInfos);
+            return hashSet;
         }
         Set<T> set = new HashSet();
-        for (T diffInfo : diffInfos) {
+        for (T diffInfo : changedDiffInfos) {
             bb : for (Status status : statuses) {
                 if (diffInfo.status == status) {
                     set.add(diffInfo);
@@ -54,7 +91,18 @@ public class ResultSet<T extends DiffInfo> implements STSerializable {
                 }
             }
         }
-        return diffInfos;
+
+        boolean containNochangedStatus = false;
+        for (Status status : statuses) {
+            if (status == Status.NOCHANGED) {
+                containNochangedStatus = true;
+                break;
+            }
+        }
+        if (containNochangedStatus) {
+            set.addAll(nochangedDiffInfos);
+        }
+        return changedDiffInfos;
     }
 
 
@@ -65,19 +113,19 @@ public class ResultSet<T extends DiffInfo> implements STSerializable {
 
         ResultSet<?> resultSet = (ResultSet<?>) o;
 
-        return diffInfos != null ? diffInfos.equals(resultSet.diffInfos) : resultSet.diffInfos == null;
+        return changedDiffInfos != null ? changedDiffInfos.equals(resultSet.changedDiffInfos) : resultSet.changedDiffInfos == null;
 
     }
 
     @Override
     public int hashCode() {
-        return diffInfos != null ? diffInfos.hashCode() : 0;
+        return changedDiffInfos != null ? changedDiffInfos.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "ResultSet{" +
-                "diffInfos=" + diffInfos +
+                "changedDiffInfos=" + changedDiffInfos +
                 '}';
     }
 

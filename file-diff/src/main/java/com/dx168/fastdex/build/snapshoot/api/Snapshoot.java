@@ -113,11 +113,6 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
         diffInfos.add(diffInfo);
     }
 
-    @Override
-    public void serializeTo(OutputStream outputStream) throws IOException {
-        SerializeUtils.serializeTo(outputStream,this);
-    }
-
     /**
      * 对比快照
      * @param otherSnapshoot
@@ -183,10 +178,18 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
                 throw new RuntimeException("UniqueKey can not be null or empty!!");
             }
             NODE old = otherSnapshoot.getNodeByUniqueKey(uniqueKey);
-            if (!now.diffEquals(old)) {
+            if (now.diffEquals(old)) {
+                addDiffInfo(diffInfos,createDiffInfo(Status.NOCHANGED,now,old));
+            }
+            else {
                 addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
             }
         }
+    }
+
+    @Override
+    public void serializeTo(OutputStream outputStream) throws IOException {
+        SerializeUtils.serializeTo(outputStream,this);
     }
 
     public static Snapshoot load(InputStream inputStream, Class type) throws Exception {

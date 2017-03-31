@@ -96,7 +96,6 @@ public class Main {
         System.out.println(new Gson().toJson(r2));
 
 
-        System.out.println(r1.diffInfos.equals(r2.diffInfos));
 
         //diff();
     }
@@ -114,7 +113,7 @@ public class Main {
             long start = System.currentTimeMillis();
 
             ResultSet diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
-            for (FileDiffInfo diffInfo : (Set<FileDiffInfo>)diffResult.getAllDiffInfos()) {
+            for (FileDiffInfo diffInfo : (Set<FileDiffInfo>)diffResult.getAllChangedDiffInfos()) {
                 System.out.println(diffInfo.toString());
             }
             long end = System.currentTimeMillis();
