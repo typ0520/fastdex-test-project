@@ -1,5 +1,7 @@
 package com.dx168.fastdex.build.snapshoot.file;
 
+import com.dx168.fastdex.build.snapshoot.api.DiffInfo;
+import com.dx168.fastdex.build.snapshoot.api.ResultSet;
 import com.dx168.fastdex.build.snapshoot.api.Snapshoot;
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +50,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 /**
  * Created by tong on 17/3/29.
  */
-public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
+public class DirectorySnapshoot<DIFF_INFO extends FileDiffInfo,ITEM_INFO extends FileItemInfo> extends Snapshoot<DIFF_INFO,ITEM_INFO> {
     public String rootPath;
 
     public DirectorySnapshoot() {
@@ -74,7 +76,12 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
         walkFileTree(directory,scanFilter);
     }
 
-    protected void walkFileTree(File directory,ScanFilter scanFilter) throws IOException {
+    @Override
+    protected DiffInfo createEmptyDiffInfo() {
+        return new FileDiffInfo();
+    }
+
+    protected void walkFileTree(File directory, ScanFilter scanFilter) throws IOException {
         Files.walkFileTree(directory.toPath(),new SimpleFileVisitor<Path>(){
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
@@ -89,33 +96,20 @@ public class DirectorySnapshoot extends Snapshoot<FileDiffInfo,FileItemInfo> {
                 return FileVisitResult.CONTINUE;
             }
         }
-        addItemInfo(FileItemInfo.create(new File(rootPath),filePath.toFile()));
+        addItemInfo((ITEM_INFO) FileItemInfo.create(new File(rootPath),filePath.toFile()));
         return FileVisitResult.CONTINUE;
-    }
-
-    @Override
-    protected DirectoryResultSet createEmptyResultSet() {
-        return new DirectoryResultSet();
-    }
-
-    public DirectoryResultSet diff(File old, ScanFilter scanFilter) throws IOException {
-        return diff(new DirectorySnapshoot(old,scanFilter));
     }
 
     public File getAbsoluteFile(FileItemInfo fileItemInfo) {
         return new File(rootPath,fileItemInfo.getUniqueKey());
     }
 
-    @Override
-    public DirectoryResultSet diff(Snapshoot<FileDiffInfo, FileItemInfo> otherSnapshoot) {
-        return (DirectoryResultSet) super.diff(otherSnapshoot);
-    }
 
-    public static DirectoryResultSet diff(File now, File old) throws IOException {
+    public static ResultSet<FileDiffInfo> diff(File now, File old) throws IOException {
         return DirectorySnapshoot.diff(now,old,null);
     }
 
-    public static DirectoryResultSet diff(File now, File old, ScanFilter scanFilter) throws IOException {
-        return new DirectorySnapshoot(now,scanFilter).diff(new DirectorySnapshoot(old,scanFilter));
+    public static ResultSet<FileDiffInfo> diff(File now, File old, ScanFilter scanFilter) throws IOException {
+        return  new DirectorySnapshoot(now,scanFilter).diff(new DirectorySnapshoot(old,scanFilter));
     }
 }

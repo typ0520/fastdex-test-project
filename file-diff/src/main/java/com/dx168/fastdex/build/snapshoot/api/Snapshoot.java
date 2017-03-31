@@ -11,14 +11,8 @@ import java.util.*;
 /**
  * Created by tong on 17/3/29.
  */
-public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends ItemInfo> implements STSerializable<Snapshoot<DIFF_INFO,ITEM_INFO>> {
-    @Expose
-    private Class<DIFF_INFO> diffInfoClass = null;
-
+public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends ItemInfo> implements STSerializable {
     public Collection<ITEM_INFO> itemInfos;
-
-    @Expose
-    public Map<String,ITEM_INFO> fileItemInfoMap;
 
     @Expose
     private ResultSet<DIFF_INFO> lastDiffResult;
@@ -54,10 +48,6 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends ItemInfo> im
      */
     protected void addItemInfo(ITEM_INFO itemInfo) {
         itemInfos.add(itemInfo);
-        if (fileItemInfoMap == null) {
-            fileItemInfoMap = new HashMap<>();
-        }
-        fileItemInfoMap.put(itemInfo.getUniqueKey(),itemInfo);
     }
 
     /**
@@ -79,19 +69,11 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,ITEM_INFO extends ItemInfo> im
      */
     protected ITEM_INFO getItemInfoByUniqueKey(String uniqueKey) {
         ITEM_INFO itemInfo = null;
-        if (fileItemInfoMap != null) {
-            itemInfo = fileItemInfoMap.get(uniqueKey);
-        }
-        if (itemInfo == null) {
-            for (ITEM_INFO info : itemInfos) {
-                if (uniqueKey.equals(info.getUniqueKey())) {
-                    if (fileItemInfoMap == null) {
-                        fileItemInfoMap = new HashMap<>();
-                    }
-                    fileItemInfoMap.put(itemInfo.getUniqueKey(),info);
-                    itemInfo = info;
-                    break;
-                }
+
+        for (ITEM_INFO info : itemInfos) {
+            if (uniqueKey.equals(info.getUniqueKey())) {
+                itemInfo = info;
+                break;
             }
         }
         return itemInfo;

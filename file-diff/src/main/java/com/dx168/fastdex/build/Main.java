@@ -1,20 +1,13 @@
 package com.dx168.fastdex.build;
 
 import com.dx168.fastdex.build.snapshoot.api.ResultSet;
-import com.dx168.fastdex.build.snapshoot.api.Snapshoot;
-import com.dx168.fastdex.build.snapshoot.api.Status;
 import com.dx168.fastdex.build.snapshoot.file.*;
 import com.dx168.fastdex.build.snapshoot.sourceset.JavaDirectoryResultSet;
 import com.dx168.fastdex.build.snapshoot.sourceset.JavaDirectorySnapshoot;
-import com.dx168.fastdex.build.snapshoot.sourceset.JavaFileDiffInfo;
-import com.dx168.fastdex.build.snapshoot.utils.SerializeUtils;
 import com.google.gson.Gson;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -83,20 +76,19 @@ public class Main {
 //        set2.add(fileDiffInfo3);
 //        set2.add(fileDiffInfo4);
 //        System.out.println(set1.equals(set2));
-
+//
         JavaDirectorySnapshoot snapshoot = new JavaDirectorySnapshoot(dir1);
         JavaDirectorySnapshoot snapshoot2 = new JavaDirectorySnapshoot(dir2);
-        JavaDirectoryResultSet r1 = snapshoot.diff(snapshoot2);
+        JavaDirectoryResultSet r1 = (JavaDirectoryResultSet) snapshoot.diff(snapshoot2);
         //r1.serializeTo(new FileOutputStream("/Users/tong/Desktop/result.json"));
 
         JavaDirectoryResultSet r2 = (JavaDirectoryResultSet) ResultSet.load(new FileInputStream("/Users/tong/Desktop/result.json"),JavaDirectoryResultSet.class);
 //
-//        System.out.println(new Gson().toJson(r1));
-//        System.out.println(new Gson().toJson(r2));
+        System.out.println(new Gson().toJson(r1));
+        System.out.println(new Gson().toJson(r2));
 
 
         System.out.println(r1.diffInfos.equals(r2.diffInfos));
-
 
         //diff();
     }
@@ -113,8 +105,8 @@ public class Main {
         for (int i = 0;i < count;i++) {
             long start = System.currentTimeMillis();
 
-            DirectoryResultSet diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
-            for (FileDiffInfo diffInfo : diffResult.getAllDiffInfos()) {
+            ResultSet diffResult = DirectorySnapshoot.diff(dir1,dir2,new FileSuffixFilter(".java"));
+            for (FileDiffInfo diffInfo : (Set<FileDiffInfo>)diffResult.getAllDiffInfos()) {
                 System.out.println(diffInfo.toString());
             }
             long end = System.currentTimeMillis();
