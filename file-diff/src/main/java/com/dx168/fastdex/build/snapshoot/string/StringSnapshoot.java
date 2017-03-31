@@ -6,11 +6,11 @@ import java.util.Set;
 /**
  * Created by tong on 17/3/31.
  */
-public class StringSnapshoot extends BaseStringSnapshoot<StringDiffInfo,StringNode> {
+public final class StringSnapshoot extends BaseStringSnapshoot<StringDiffInfo,StringNode> {
     public StringSnapshoot() {
     }
 
-    public StringSnapshoot(BaseStringSnapshoot snapshoot) {
+    public StringSnapshoot(StringSnapshoot snapshoot) {
         super(snapshoot);
     }
 

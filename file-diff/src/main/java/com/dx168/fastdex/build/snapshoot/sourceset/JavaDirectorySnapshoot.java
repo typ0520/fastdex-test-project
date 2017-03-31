@@ -1,7 +1,6 @@
 package com.dx168.fastdex.build.snapshoot.sourceset;
 
 import com.dx168.fastdex.build.snapshoot.api.DiffInfo;
-import com.dx168.fastdex.build.snapshoot.api.ResultSet;
 import com.dx168.fastdex.build.snapshoot.file.*;
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by tong on 17/3/30.
  */
-public class JavaDirectorySnapshoot extends BaseDirectorySnapshoot<JavaFileDiffInfo,FileNode> {
+public final class JavaDirectorySnapshoot extends BaseDirectorySnapshoot<JavaFileDiffInfo,FileNode> {
     private static final FileSuffixFilter JAVA_SUFFIX_FILTER = new FileSuffixFilter(".java");
 
     public JavaDirectorySnapshoot() {
@@ -24,7 +23,7 @@ public class JavaDirectorySnapshoot extends BaseDirectorySnapshoot<JavaFileDiffI
     }
 
     @Override
-    protected ResultSet createEmptyResultSet() {
+    protected JavaDirectoryResultSet createEmptyResultSet() {
         return new JavaDirectoryResultSet();
     }
 

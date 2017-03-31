@@ -92,6 +92,7 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
         diffInfo.old = old;
 
         switch (status) {
+            case NOCHANGED:
             case ADDED:
             case MODIFIED:
                 diffInfo.uniqueKey = now.getUniqueKey();
@@ -137,9 +138,9 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
         needDiffNodes.removeAll(increasedNodes);
 
         ResultSet<DIFF_INFO> diffInfos = createEmptyResultSet();
-        scanFromDeletedAndIncreased(diffInfos,otherSnapshoot,deletedNodes,increasedNodes);
-
+        scanDeletedAndIncreased(diffInfos,otherSnapshoot,deletedNodes,increasedNodes);
         scanNeedDiffNodes(diffInfos,otherSnapshoot,needDiffNodes);
+
         this.lastDiffResult = diffInfos;
         return diffInfos;
     }
@@ -151,7 +152,7 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
      * @param deletedNodes
      * @param increasedNodes
      */
-    protected void scanFromDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,NODE> otherSnapshoot, Set<NODE> deletedNodes, Set<NODE> increasedNodes) {
+    protected void scanDeletedAndIncreased(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO,NODE> otherSnapshoot, Set<NODE> deletedNodes, Set<NODE> increasedNodes) {
         if (deletedNodes != null) {
             for (NODE node : deletedNodes) {
                 addDiffInfo(diffInfos,createDiffInfo(Status.DELETEED,null,node));
@@ -165,12 +166,31 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
     }
 
     /**
+     * 对比两个node
+     * @param diffInfos
+     * @param otherSnapshoot
+     * @param now
+     * @param old
+     */
+    protected void diffNode(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO, NODE> otherSnapshoot,NODE now,NODE old) {
+        if (now.diffEquals(old)) {
+            addDiffInfo(diffInfos,createDiffInfo(Status.NOCHANGED,now,old));
+        }
+        else {
+            addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
+        }
+    }
+
+    /**
      * 扫描uniqueKey相同的node
      * @param diffInfos
      * @param otherSnapshoot
      * @param needDiffNodes
      */
     protected void scanNeedDiffNodes(ResultSet<DIFF_INFO> diffInfos, Snapshoot<DIFF_INFO, NODE> otherSnapshoot, Set<NODE> needDiffNodes) {
+        if (needDiffNodes == null || needDiffNodes.isEmpty()) {
+            return;
+        }
         for (NODE node : needDiffNodes) {
             NODE now = node;
             String uniqueKey = node.getUniqueKey();
@@ -178,12 +198,7 @@ public class Snapshoot<DIFF_INFO extends DiffInfo,NODE extends Node> implements 
                 throw new RuntimeException("UniqueKey can not be null or empty!!");
             }
             NODE old = otherSnapshoot.getNodeByUniqueKey(uniqueKey);
-            if (now.diffEquals(old)) {
-                addDiffInfo(diffInfos,createDiffInfo(Status.NOCHANGED,now,old));
-            }
-            else {
-                addDiffInfo(diffInfos,createDiffInfo(Status.MODIFIED,now,old));
-            }
+            diffNode(diffInfos,otherSnapshoot,now,old);
         }
     }
 

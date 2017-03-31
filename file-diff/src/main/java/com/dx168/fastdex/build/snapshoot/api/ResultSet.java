@@ -12,8 +12,8 @@ import java.util.Set;
  * Created by tong on 17/3/30.
  */
 public class ResultSet<T extends DiffInfo> implements STSerializable {
-    private Set<T> changedDiffInfos = new HashSet<T>();
-    private Set<T> nochangedDiffInfos = new HashSet<T>();
+    public Set<T> changedDiffInfos = new HashSet<T>();
+    public Set<T> nochangedDiffInfos = new HashSet<T>();
 
     public ResultSet() {
     }
@@ -76,17 +76,17 @@ public class ResultSet<T extends DiffInfo> implements STSerializable {
     }
 
     public Set<T> getDiffInfos(Status ...statuses) {
+        Set<T> result = new HashSet<T>();
         if (statuses == null || statuses.length == 0) {
-            HashSet hashSet = new HashSet();
-            hashSet.addAll(changedDiffInfos);
-            hashSet.addAll(nochangedDiffInfos);
-            return hashSet;
+            result.addAll(changedDiffInfos);
+            result.addAll(nochangedDiffInfos);
+            return result;
         }
-        Set<T> set = new HashSet();
+
         for (T diffInfo : changedDiffInfos) {
             bb : for (Status status : statuses) {
                 if (diffInfo.status == status) {
-                    set.add(diffInfo);
+                    result.add(diffInfo);
                     break bb;
                 }
             }
@@ -100,9 +100,9 @@ public class ResultSet<T extends DiffInfo> implements STSerializable {
             }
         }
         if (containNochangedStatus) {
-            set.addAll(nochangedDiffInfos);
+            result.addAll(nochangedDiffInfos);
         }
-        return changedDiffInfos;
+        return result;
     }
 
 
@@ -125,7 +125,7 @@ public class ResultSet<T extends DiffInfo> implements STSerializable {
     @Override
     public String toString() {
         return "ResultSet{" +
-                "changedDiffInfos=" + changedDiffInfos +
+                "changedJavaFileDiffInfos=" + changedDiffInfos +
                 '}';
     }
 

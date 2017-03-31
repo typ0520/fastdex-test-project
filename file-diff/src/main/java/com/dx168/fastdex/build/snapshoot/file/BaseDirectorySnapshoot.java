@@ -16,14 +16,14 @@ import java.nio.file.attribute.BasicFileAttributes;
  * Created by tong on 17/3/29.
  */
 public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,NODE extends FileNode> extends Snapshoot<DIFF_INFO,NODE> {
-    public String rootPath;
+    public String path;
 
     public BaseDirectorySnapshoot() {
     }
 
     public BaseDirectorySnapshoot(BaseDirectorySnapshoot snapshoot) {
         super(snapshoot);
-        this.rootPath = snapshoot.rootPath;
+        this.path = snapshoot.path;
     }
 
     public BaseDirectorySnapshoot(File directory) throws IOException {
@@ -37,7 +37,7 @@ public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,NODE extends 
         if (!directory.exists() || !directory.isDirectory()) {
             throw new IllegalArgumentException("Invalid directory: " + directory);
         }
-        this.rootPath = directory.getAbsolutePath();
+        this.path = directory.getAbsolutePath();
         walkFileTree(directory,scanFilter);
     }
 
@@ -61,12 +61,12 @@ public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,NODE extends 
                 return FileVisitResult.CONTINUE;
             }
         }
-        addNode((NODE) FileNode.create(new File(rootPath),filePath.toFile()));
+        addNode((NODE) FileNode.create(new File(path),filePath.toFile()));
         return FileVisitResult.CONTINUE;
     }
 
     public File getAbsoluteFile(FileNode fileItemInfo) {
-        return new File(rootPath,fileItemInfo.getUniqueKey());
+        return new File(path,fileItemInfo.getUniqueKey());
     }
 
     @Override
@@ -76,12 +76,12 @@ public class BaseDirectorySnapshoot<DIFF_INFO extends FileDiffInfo,NODE extends 
 
         BaseDirectorySnapshoot<?, ?> that = (BaseDirectorySnapshoot<?, ?>) o;
 
-        return rootPath != null ? rootPath.equals(that.rootPath) : that.rootPath == null;
+        return path != null ? path.equals(that.path) : that.path == null;
     }
 
     @Override
     public int hashCode() {
-        return rootPath != null ? rootPath.hashCode() : 0;
+        return path != null ? path.hashCode() : 0;
     }
 
     public static ResultSet<FileDiffInfo> diff(File now, File old) throws IOException {
