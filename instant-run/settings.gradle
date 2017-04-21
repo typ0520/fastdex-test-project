@@ -1,0 +1,5 @@
+include ':app'
+//include ':instant-run-client'
+//include ':instant-run-common'
+//include ':instant-run-server'
+include ':my-instant-run-client'

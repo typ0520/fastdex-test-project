@@ -1,0 +1,81 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.xml'
+        exclude 'META-INF/maven/com.squareup.okio/okio/pom.properties'
+    }
+
+    defaultConfig {
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+
+        applicationId "com.dx168.fastdex.sample"
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        config {
+            storeFile file('../keystore.jks')
+            keyAlias 'testres'
+            keyPassword 'testres'
+            storePassword 'testres'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
+
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
+
+        //fastdex 会忽略开启混淆的buildType
+        product{
+            minifyEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
+    }
+
+//    productFlavors {
+////        normal {
+////
+////        }
+//    }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+project.afterEvaluate {
+    android.applicationVariants.all { variant ->
+        def variantName = variant.name.capitalize()
+
+        if ("Debug".equals(variantName)) {
+
+        }
+    }
+}
+
+task mytest<< {
+
+}
