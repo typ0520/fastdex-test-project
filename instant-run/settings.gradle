@@ -1,5 +1,5 @@
+include ':instant-run:instant-run-common'
+include ':instant-run:instant-run-client'
+include ':instant-run:instant-run-server'
+
 include ':app'
-//include ':instant-run-client'
-//include ':instant-run-common'
-//include ':instant-run-server'
-include ':my-instant-run-client'

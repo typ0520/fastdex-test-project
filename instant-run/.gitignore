@@ -40,12 +40,13 @@ proguard/
 *.log
 
 /*/.idea
-.idea
+.idea/
 
 app/build/
 buildSrc/build/
 
 build/
+instant-run.iml
 
 
 common/build/

@@ -64,6 +64,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':instant-run:instant-run-server')
 }
 
 project.afterEvaluate {
