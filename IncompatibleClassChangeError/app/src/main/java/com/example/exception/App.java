@@ -1,5 +1,7 @@
 package com.example.exception;
 
+import android.util.Log;
+
 import com.example.exception.loader.SystemClassLoaderAdder;
 import java.io.File;
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ public class App extends android.app.Application {
     public void onCreate() {
         super.onCreate();
 
+        Log.d("HAHAH",getApplicationInfo().nativeLibraryDir);
         File file = new File(getFilesDir(),"classes.so");
         File file2 = new File(getFilesDir(),"classes2.so");
 
@@ -26,6 +29,7 @@ public class App extends android.app.Application {
         }
 
         PathClassLoader classLoader = (PathClassLoader) App.class.getClassLoader();
+
         File dexOptDir = new File(getFilesDir(),"opt");
         if (!dexOptDir.exists()) {
             dexOptDir.mkdirs();

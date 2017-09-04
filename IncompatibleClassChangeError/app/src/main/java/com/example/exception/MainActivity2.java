@@ -12,14 +12,13 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         try {
             Class clazz = Class.forName("com.example.exception.Child");
             Method method = clazz.getMethod("aa");
 
             method.invoke(clazz.newInstance());
         } catch (Throwable e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

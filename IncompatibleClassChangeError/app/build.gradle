@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'fastdex.app'
+//apply plugin: 'fastdex.app'
 
 android {
     compileSdkVersion 26
@@ -16,6 +16,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
 }

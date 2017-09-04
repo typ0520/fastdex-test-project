@@ -23,6 +23,8 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.example.exception.loader.shareutil.ShareReflectUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -32,7 +34,6 @@ import java.util.List;
 
 import dalvik.system.DexFile;
 import dalvik.system.PathClassLoader;
-import fastdex.runtime.loader.shareutil.ShareReflectUtil;
 
 /**
  * Created by zhangshaowen on 16/7/24.
