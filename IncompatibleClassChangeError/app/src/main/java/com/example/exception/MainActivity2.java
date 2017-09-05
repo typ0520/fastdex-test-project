@@ -18,7 +18,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             method.invoke(clazz.newInstance());
         } catch (Throwable e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
