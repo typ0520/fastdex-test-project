@@ -2,3 +2,4 @@ include ':app'
 
 include ':aarlib'
 include ':javalib'
+include ':libgroup:javalib2'
