@@ -63,13 +63,25 @@ public static void copyFileUsingStream(File src, File dest) throws IOException {
 }
 
 project.afterEvaluate {
-    tasks['packageDebug'].doFirst {
-        //classesN
-        copyFileUsingStream(project.rootProject.file('dex/patch.dex'),project.file('build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes2.dex'))
-        copyFileUsingStream(project.rootProject.file('dex/classes.dex'),project.file('build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes3.dex'))
+    def clean = tasks['clean']
+    def preBuild = tasks['preBuild']
+    preBuild.dependsOn clean
 
-//        copyFileUsingStream(project.rootProject.file('dex/patch.dex'),project.file('src/main/assets/patch.dex'))
-//        copyFileUsingStream(project.rootProject.file('dex/classes.dex'),project.file('src/main/assets/classes.dex'))
+    tasks['packageDebug'].doFirst {
+        //遵循classesN的标准不会报错
+        copyFileUsingStream(project.rootProject.file('dex/patch.dex.so'),project.file('build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes2.dex'))
+        copyFileUsingStream(project.rootProject.file('dex/classes.dex.so'),project.file('build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes3.dex'))
+
+        //全部在运行期去加载会报错
+//        copyFileUsingStream(project.rootProject.file('dex/patch.dex.so'),project.file('build/intermediates/assets/debug/patch.dex'))
+//        copyFileUsingStream(project.rootProject.file('dex/classes.dex.so'),project.file('build/intermediates/assets/debug/classes.dex'))
+    }
+    tasks['assembleDebug'].doLast {
+        try {
+            "adb uninstall com.example.exception".execute()
+        } catch (Exception e) {
+
+        }
     }
 }
 
