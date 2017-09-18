@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.github.typ0520.replace_application"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
+
+public class FastdexManifestTask extends DefaultTask {
+    static final String FASTDEX_ORIGIN_APPLICATION_CLASSNAME = "FASTDEX_ORIGIN_APPLICATION_CLASSNAME"
+
+    String manifestPath
+
+    FastdexManifestTask() {
+        group = 'fastdex'
+    }
+
+    @TaskAction
+    def updateManifest() {
+        def ns = new groovy.xml.Namespace("http://schemas.android.com/apk/res/android", "android")
+
+        def xml = new XmlParser().parse(new InputStreamReader(new FileInputStream(manifestPath), "utf-8"))
+
+        def application = xml.application[0]
+        if (application) {
+            groovy.xml.QName nameAttr = new groovy.xml.QName("http://schemas.android.com/apk/res/android", 'name', 'android');
+            def applicationName = application.attribute(nameAttr)
+            if (applicationName == null || applicationName.isEmpty()) {
+                applicationName = "android.app.Application"
+            }
+            application.attributes().put(nameAttr, "fastdex.runtime.FastdexApplication")
+
+            def metaDataTags = application['meta-data']
+
+            // remove any old FASTDEX_ORIGIN_APPLICATION_CLASSNAME elements
+            metaDataTags.findAll {
+                it.attributes()[ns.name].equals(FASTDEX_ORIGIN_APPLICATION_CLASSNAME)
+            }.each {
+                it.parent().remove(it)
+            }
+
+            // Add the new FASTDEX_ORIGIN_APPLICATION_CLASSNAME element
+            application.appendNode('meta-data', [(ns.name): FASTDEX_ORIGIN_APPLICATION_CLASSNAME, (ns.value): applicationName])
+
+            // Write the manifest file
+            def printer = new XmlNodePrinter(new PrintWriter(manifestPath, "utf-8"))
+            printer.preserveWhitespace = true
+            printer.print(xml)
+        }
+    }
+}
+
+project.afterEvaluate {
+    android.applicationVariants.each { variant ->
+        def variantOutput = variant.outputs.first()
+        def variantName = variant.name.capitalize()
+
+        FastdexManifestTask manifestTask = project.tasks.create("fastdexProcess${variantName}Manifest", FastdexManifestTask)
+        manifestTask.manifestPath = variant.outputs.first().processManifest.manifestOutputFile.absolutePath
+        manifestTask.mustRunAfter variantOutput.processManifest
+        variantOutput.processResources.dependsOn manifestTask
+    }
+}
