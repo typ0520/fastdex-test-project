@@ -1,0 +1,345 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.github.typ0520.annotation_generators2"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}
+
+
+
+
+import com.android.build.api.transform.JarInput
+import com.android.build.api.transform.TransformInput
+import com.android.build.gradle.internal.pipeline.TransformTask
+import com.android.build.gradle.internal.transforms.DexTransform
+import com.intellij.openapi.util.SystemInfo
+import org.apache.tools.ant.taskdefs.condition.Os
+import java.lang.reflect.Field
+import com.android.build.api.transform.QualifiedContent
+import com.android.build.api.transform.Transform
+import com.android.build.api.transform.TransformException
+import com.android.build.api.transform.TransformInvocation
+
+public class TransformProxy extends Transform {
+    Transform base
+    Project project
+
+    TransformProxy(Transform base, Project project) {
+        this.base = base
+        this.project = project
+    }
+
+    @Override
+    String getName() {
+        return base.getName()
+    }
+
+    @Override
+    Set<QualifiedContent.ContentType> getInputTypes() {
+        return base.getInputTypes()
+    }
+
+    @Override
+    Set<QualifiedContent.Scope> getScopes() {
+        return base.getScopes()
+    }
+
+    @Override
+    boolean isIncremental() {
+        return base.isIncremental()
+    }
+}
+
+class FastdexTransform extends TransformProxy {
+    FastdexTransform(Transform base,Project project) {
+        super(base,project)
+    }
+
+    @Override
+    void transform(TransformInvocation transformInvocation) throws TransformException, IOException, InterruptedException {
+        //所有输入的jar
+        Set<String> jarInputFiles = new HashSet<>();
+        for (TransformInput input : transformInvocation.getInputs()) {
+            Collection<JarInput> jarInputs = input.getJarInputs()
+            if (jarInputs != null) {
+                for (JarInput jarInput : jarInputs) {
+                    jarInputFiles.add(jarInput.getFile().absolutePath)
+                }
+            }
+        }
+
+        File classpathFile = new File(project.getBuildDir(),"classpath.txt")
+        BufferedWriter writer = new BufferedWriter(new FileWriter(classpathFile))
+        jarInputFiles.each {
+            writer.writeLine(it)
+        }
+        writer.flush()
+        writer.close()
+
+        base.transform(transformInvocation)
+    }
+}
+
+public class FastdexUtils {
+    /**
+     * 获取sdk路径
+     * @param project
+     * @return
+     */
+    public static String getSdkDirectory(Project project) {
+        String sdkDirectory = project.android.getSdkDirectory()
+        if (sdkDirectory.contains("\\")) {
+            sdkDirectory = sdkDirectory.replace("\\", "/");
+        }
+        return sdkDirectory
+    }
+
+    public static String joinClasspath(List<String> collection) {
+        StringBuilder sb = new StringBuilder()
+
+        boolean window = Os.isFamily(Os.FAMILY_WINDOWS)
+        collection.each { file ->
+            sb.append(file)
+            if (window) {
+                sb.append(";")
+            }
+            else {
+                sb.append(":")
+            }
+        }
+        return sb
+    }
+
+    /**
+     * 获取javac命令路径
+     * @return
+     */
+    public static final String getJavacCmdPath() {
+        StringBuilder cmd = new StringBuilder(getCurrentJdk())
+        if (!cmd.toString().endsWith(File.separator)) {
+            cmd.append(File.separator)
+        }
+        cmd.append("bin${File.separator}javac")
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            cmd.append(".exe")
+        }
+        return new File(cmd.toString()).absolutePath
+    }
+
+
+    /**
+     * 获取当前jdk路径
+     * @return
+     */
+    public static final String getCurrentJdk() {
+        String javaHomeProp = System.properties.'java.home'
+        if (javaHomeProp) {
+            int jreIndex = javaHomeProp.lastIndexOf("${File.separator}jre")
+            if (jreIndex != -1) {
+                return javaHomeProp.substring(0, jreIndex)
+            } else {
+                return javaHomeProp
+            }
+        } else {
+            return System.getenv("JAVA_HOME")
+        }
+    }
+}
+
+public class MyCompileTask extends DefaultTask {
+    Project project
+    Object variant
+    Object javaCompile
+
+    @TaskAction
+    void compile() {
+        Set<String> jarInputFiles = new HashSet<>()
+        BufferedReader reader = new BufferedReader(new FileReader(new File(project.getBuildDir(),"classpath.txt")))
+        String line = null
+        while ((line = reader.readLine()) != null) {
+            jarInputFiles.add(line)
+        }
+
+        println("=======classpath: " + jarInputFiles)
+        File androidJar = new File("${FastdexUtils.getSdkDirectory(project)}${File.separator}platforms${File.separator}${project.android.getCompileSdkVersion()}${File.separator}android.jar")
+        File classesDir = variant.getVariantData().getScope().getJavaOutputDir()
+
+        def classpath = new ArrayList()
+        classpath.add(classesDir.absolutePath)
+        classpath.add(androidJar.absolutePath)
+        classpath.addAll(jarInputFiles)
+
+        def executable = FastdexUtils.getJavacCmdPath()
+        List<String> cmdArgs = new ArrayList<>()
+        cmdArgs.add(executable)
+        cmdArgs.add("-encoding")
+        cmdArgs.add("UTF-8")
+        cmdArgs.add("-g")
+        cmdArgs.add("-target")
+        cmdArgs.add(javaCompile.targetCompatibility)
+        cmdArgs.add("-source")
+        cmdArgs.add(javaCompile.sourceCompatibility)
+        cmdArgs.add("-cp")
+        cmdArgs.add(FastdexUtils.joinClasspath(classpath))
+        cmdArgs.add(new File(project.getProjectDir(),'/src/main/java/com/github/typ0520/annotation_generators/MainActivity.java').absolutePath)
+
+        def aptConfiguration = project.configurations.findByName("apt")
+        def isAptEnabled = project.plugins.hasPlugin("android-apt") && aptConfiguration != null && !aptConfiguration.empty
+
+        def annotationProcessorConfig = project.configurations.findByName("annotationProcessor")
+        def isAnnotationProcessor = annotationProcessorConfig != null && !annotationProcessorConfig.empty
+
+
+        def aptOutputDir = new File(project.buildDir, "generated/source/apt/${variant.dirName}").absolutePath
+
+        if ((isAptEnabled || isAnnotationProcessor) && javaCompile) {
+            project.logger.error("==fastdex found ${project.name} apt plugin enabled.")
+
+            def configurations = javaCompile.classpath
+            if (isAptEnabled) {
+                configurations += aptConfiguration
+            }
+            if (isAnnotationProcessor) {
+                configurations += annotationProcessorConfig
+            }
+            def processorPath = configurations.asPath
+            boolean disableDiscovery = javaCompile.options.compilerArgs.indexOf('-processorpath') == -1
+            int processorIndex = javaCompile.options.compilerArgs.indexOf('-processor')
+            def processor = null
+            if (processorIndex != -1) {
+                processor = javaCompile.options.compilerArgs.get(processorIndex + 1)
+            }
+
+            def aptArgs = []
+            javaCompile.options.compilerArgs.each { arg ->
+                if (arg.toString().startsWith('-A')) {
+                    aptArgs.add(arg)
+                }
+            }
+            cmdArgs.add("-s")
+            cmdArgs.add(aptOutputDir)
+            if (processor) {
+                cmdArgs.add("-processor")
+                cmdArgs.add(processor)
+            }
+            if (!disableDiscovery) {
+                cmdArgs.add("-processorpath")
+                cmdArgs.add(processorPath)
+            }
+
+            cmdArgs.addAll(aptArgs)
+        }
+        cmdArgs.add("-d")
+        cmdArgs.add(project.getBuildDir().absolutePath)
+
+        StringBuilder cmd = new StringBuilder()
+        String[] cmdArr = new String[cmdArgs.size()]
+        for (int i = 0; i < cmdArgs.size(); i++) {
+            cmdArr[i] = cmdArgs.get(i)
+
+            if (!SystemInfo.isWindows) {
+                cmd.append(" " + cmdArgs.get(i).replaceAll(" ","\\\\ "))
+            }
+            else {
+                if (i != 0) {
+                    cmd.append(" ")
+                }
+                cmd.append(cmdArgs.get(i))
+            }
+        }
+
+        println("========可以复制下面的命令自己执行\n " + cmd)
+
+        ProcessBuilder processBuilder = new ProcessBuilder(cmdArr)
+        def process = processBuilder.start()
+
+        InputStream is = process.getInputStream()
+        reader = new BufferedReader(new InputStreamReader(is))
+        line = null
+        while ((line = reader.readLine()) != null) {
+            println(line)
+        }
+        reader.close()
+
+        reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line)
+        }
+        reader.close()
+
+        try {
+            process.destroy()
+        } catch (Throwable e) {
+
+        }
+    }
+}
+
+project.afterEvaluate {
+    android.applicationVariants.each { variant ->
+        def variantOutput = variant.outputs.first()
+        def variantName = variant.name.capitalize()
+
+        if (variantName.equals("Debug")) {
+            Task customJavacTask = project.tasks.create("mycompile2", MyCompileTask)
+            customJavacTask.project = project
+            customJavacTask.variant = variant
+            customJavacTask.javaCompile = variant.javaCompile
+            customJavacTask.dependsOn variant.assemble
+
+            project.getGradle().getTaskGraph().addTaskExecutionGraphListener(new TaskExecutionGraphListener() {
+                @Override
+                public void graphPopulated(TaskExecutionGraph taskGraph) {
+                    for (Task task : taskGraph.getAllTasks()) {
+                        if (task.getProject().equals(project)
+                                && task instanceof TransformTask
+                                && task.name.endsWith("For" + variantName)) {
+                            Transform transform = ((TransformTask) task).getTransform()
+
+                            if ((((transform instanceof DexTransform)) && !(transform instanceof FastdexTransform))) {
+                                //代理DexTransform,实现自定义的转换
+                                FastdexTransform fastdexTransform = new FastdexTransform(transform, project)
+                                Field field = getFieldByName(task.getClass(),'transform')
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+                        }
+                    }
+                }
+            });
+
+        }
+    }
+}
+
+Field getFieldByName(Class<?> aClass, String name) {
+    Class<?> currentClass = aClass;
+    while (currentClass != null) {
+        try {
+            return currentClass.getDeclaredField(name);
+        } catch (NoSuchFieldException e) {
+            // ignored.
+        }
+        currentClass = currentClass.getSuperclass();
+    }
+    return null;
+}
