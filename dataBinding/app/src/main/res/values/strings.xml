@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">DataBindingSamples</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_basic">BasicActivity</string>
+    <string name="sample_title_basic">A simple basic example</string>
+    <string name="title_activity_custom_binding">CustomBindingActivity</string>
+    <string name="sample_title_custom_binding">Custom Binding</string>
+    <string name="title_activity_include">IncludeActivity</string>
+    <string name="sample_title_includes">includes</string>
+    <string name="title_activity_collection">CollectionActivity</string>
+    <string name="sample_title_collections">Collections</string>
+    <string name="title_activity_resource">ResourceActivity</string>
+    <string name="sample_title_resources">Resources</string>
+
+    <string name="nameFormat">Full Name: %1$s:%2$s</string>
+    <string name="nameFormatWithAge">Hello %1$s %2$s, %3$d ages</string>
+    
+    <plurals name="banana">
+        <item quantity="zero">zero bananas</item>
+        <item quantity="one">one banana</item>
+        <item quantity="two">two bananas</item>
+        <item quantity="few">few bananas</item>
+        <item quantity="many">many bananas</item>
+        <item quantity="other">other bananas</item>
+    </plurals>
+
+    <plurals name="orange">
+        <item quantity="one">Have an orange</item>
+        <item quantity="other">Have %d oranges</item>
+    </plurals>
+    <string name="title_activity_observable">ObservableActivity</string>
+    <string name="sample_title_observable">Observable</string>
+    <string name="title_activity_view_with_ids">ViewWithIDsActivity</string>
+    <string name="sample_title_viewwithids">View with IDs</string>
+    <string name="title_activity_view_stub">ViewStubActivity</string>
+    <string name="title_activity_dynamic">DynamicActivity</string>
+    <string name="title_activity_attribute_setters">AttributeSettersActivity</string>
+
+    <string name="firstName">Liang</string>
+    <string name="lastName">Fei</string>
+    <string name="title_activity_conversions">ConversionsActivity</string>
+
+    <string name="red">red</string>
+    <string name="white">white</string>
+</resources>

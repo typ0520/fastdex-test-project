@@ -9,3 +9,5 @@
 .externalNativeBuild
 
 .idea/
+
+build-cache

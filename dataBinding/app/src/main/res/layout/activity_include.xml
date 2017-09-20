@@ -1,0 +1,37 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.liangfeizc.databinding.model.User" />
+        <variable
+            name="user"
+            type="User" />
+        <variable
+            name="listener"
+            type="com.liangfeizc.databinding.listener.OkListener" />
+        <variable
+            name="okText"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_input"
+            layout="@layout/layout_input" />
+
+        <include
+            layout="@layout/user"
+            bind:user="@{user}" />
+
+        <include
+            layout="@layout/layout_btn_ok"
+            bind:okText="@{okText}"
+            bind:listener="@{listener}"/>
+    </LinearLayout>
+</layout>
+

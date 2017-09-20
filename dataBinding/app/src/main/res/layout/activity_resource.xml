@@ -1,0 +1,39 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="ResourceBinding">
+        <variable name="large" type="boolean" />
+        <variable name="firstName" type="String" />
+        <variable name="lastName" type="String" />
+        <variable name="bananaCount" type="int" />
+        <variable name="orangeCount" type="int" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:padding="@{large? (int)@dimen/largePadding : (int)@dimen/smallPadding}"
+            android:background="@android:color/black"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world" />
+
+        <TextView
+            android:text="@{@string/nameFormat(firstName, lastName)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@{@plurals/banana(bananaCount)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@{@plurals/orange(orangeCount, orangeCount)}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

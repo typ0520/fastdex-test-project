@@ -1,0 +1,42 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.liangfeizc.databinding.sample.attributesetter.AttributeSettersActivity"/>
+
+        <variable
+            name="activity"
+            type="AttributeSettersActivity"/>
+
+        <variable
+            name="imageUrl"
+            type="String"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.liangfeizc.databinding.view.NameCard
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginEnd="@dimen/largePadding"
+            android:layout_marginLeft="@dimen/largePadding"
+            android:layout_marginRight="@dimen/largePadding"
+            android:layout_marginStart="@dimen/largePadding"
+            android:gravity="center"
+            app:age="27"
+            app:firstName="@{@string/firstName}"
+            app:lastName="@{@string/lastName}"/>
+
+        <com.liangfeizc.avatarview.AvatarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:error="@{@drawable/error}"
+            app:imageUrl="@{imageUrl}"
+            app:onClickListener="@{activity.avatarClickListener}"/>
+
+    </LinearLayout>
+</layout>
