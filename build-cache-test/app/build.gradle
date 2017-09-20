@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+//-Pandroid.injected.invoked.from.ide=true -Pandroid.injected.build.api=23 -Pandroid.injected.build.density=560dpi -Pandroid.injected.build.abi=x86 --init-script /private/var/folders/my/qh6gs8893nn7lsmd8jkwnbzr0000gn/T/asLocalRepo667.gradle
 android {
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
