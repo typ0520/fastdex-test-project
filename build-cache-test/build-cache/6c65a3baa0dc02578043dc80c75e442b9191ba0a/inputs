@@ -1,0 +1,7 @@
+COMMAND=PREDEX_LIBRARY
+FILE_PATH=/Users/tong/Projects/fastdex-test-project/build-cache-test/build-cache/d6778dbe5e366702ec4616c47ed2b9bc7db47358/output/jars/classes.jar
+FILE_HASH=74ca46e7da11e3d065eb64cdbe6568a7ed74c211
+BUILD_TOOLS_REVISION=25.0.0
+JUMBO_MODE=false
+OPTIMIZE=true
+MULTI_DEX=true
