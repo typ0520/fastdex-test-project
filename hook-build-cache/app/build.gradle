@@ -33,7 +33,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 
 //println("_________________hasProperty: " + project.hasProperty("android.injected.build.api") + " " + project.getProperty("android.injected.build.api"))
 //println "project.properties: " + project.properties
-//println "projectProperties: " + project.gradle.startParameter.projectProperties
+println "projectProperties: " + project.gradle.startParameter.projectProperties
 
 //-Pandroid.injected.invoked.from.ide=true -Pandroid.injected.build.api=23 -Pandroid.injected.build.density=560dpi -Pandroid.injected.build.abi=x86 --init-script /private/var/folders/my/qh6gs8893nn7lsmd8jkwnbzr0000gn/T/asLocalRepo667.gradle
 android {
@@ -45,6 +45,7 @@ android {
             storePassword '123456'
         }
     }
+
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
 
@@ -54,7 +55,6 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
     buildTypes {
@@ -65,17 +65,12 @@ android {
             signingConfig signingConfigs.config
         }
     }
-//
+
 //    productFlavors {
 //        flavor1 {
 //        }
-//
-//        flavor2 {
-//            minSdkVersion = 13
-//        }
 //    }
 }
-
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -245,18 +240,30 @@ public class MyDexTransform extends Transform {
         }
         base.transform(transformInvocation)
 
-        File file = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/")
+
+
+
+//        File file1 = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/1/release_6979713c928ec8f90adf2aec25731979c7e7e5f7/classes.dex")
+//        File file2 = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/1/release_6979713c928ec8f90adf2aec25731979c7e7e5f7/classes2.dex")
+//
+//        file1.renameTo(file2)
+
+        File dexDir = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/")
+        File highLevelDexDir = new File(dexDir,"0/0")
+        File classesDex = new File(highLevelDexDir,"classes.dex")
+
+        File file = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/0/0")
+
+
         project.copy {
             from project.rootProject.file('classes.dex')
-            into file
+            into classesDex.getParentFile()
         }
     }
 }
 
 
 public class FastdexManifestTask extends DefaultTask {
-    static final String FASTDEX_ORIGIN_APPLICATION_CLASSNAME = "FASTDEX_ORIGIN_APPLICATION_CLASSNAME"
-
     String manifestPath
     int originMinSdkVersion
 
@@ -289,27 +296,37 @@ println "project.android.productFlavors: " + project.android.productFlavors
 int originDefaultMinSdkVersion = project.android.defaultConfig.minSdkVersion.getApiLevel()
 Map<String,Integer> flavorNameMinSdkVersionMap = new HashMap()
 
-if (project.android.defaultConfig.minSdkVersion.getApiLevel() < 21) {
-    project.android.defaultConfig.minSdkVersion = 21
-}
+project.gradle.afterProject {
+    boolean useBuildCache = !project.gradle.startParameter.projectProperties.hasProperty("android.injected.generateSourcesOnly")
+//projectProperties: [android.injected.invoked.from.ide:true, android.injected.generateSourcesOnly:true]
 
-project.android.productFlavors.each {
-    if (it.minSdkVersion) {
-        flavorNameMinSdkVersionMap.put(it.name,it.minSdkVersion.getApiLevel())
-
-        if (it.minSdkVersion.getApiLevel() < 21) {
-            it.minSdkVersion = 21
+    if (useBuildCache) {
+        if (project.android.defaultConfig.minSdkVersion.getApiLevel() < 21) {
+            project.android.defaultConfig.minSdkVersion = 21
         }
     }
-    else {
-        flavorNameMinSdkVersionMap.put(it.name,originDefaultMinSdkVersion)
+
+    project.android.productFlavors.each {
+        if (it.minSdkVersion) {
+            flavorNameMinSdkVersionMap.put(it.name,it.minSdkVersion.getApiLevel())
+
+            if (useBuildCache) {
+                if (it.minSdkVersion.getApiLevel() < 21) {
+                    it.minSdkVersion = 21
+                }
+            }
+        }
+        else {
+            flavorNameMinSdkVersionMap.put(it.name,originDefaultMinSdkVersion)
+        }
+    }
+
+//如果最低支持该本改成了21，会使用v2SigningEnabled
+    project.android.signingConfigs.each {
+        it.v2SigningEnabled = false
     }
 }
 
-//如果最低支持该本改成了21，会使用v2SigningEnabled
-project.android.signingConfigs.each {
-    it.v2SigningEnabled = false
-}
 
 project.afterEvaluate {
     //open jumboMode
@@ -329,6 +346,32 @@ project.afterEvaluate {
         def flavor = variant.getVariantData().getScope().getVariantConfiguration().getMergedFlavor()
 
         println "getMergedFlavor: " + flavor;
+
+//        def processAndroidTestManifestTask = null
+//        try {
+//            processAndroidTestManifestTask = tasks["process${variantName}AndroidTestManifest"]
+//        } catch (Throwable e) {
+//
+//        }
+//        if (processAndroidTestManifestTask) {
+//            println "getMergedFlavor: " + flavor;
+//            FastdexManifestTask manifestAndroidTestTask = project.tasks.create("fastdexProcessFlavor1DebugAndroidTest${variantName}Manifest", FastdexManifestTask)
+//            if (variant.flavorName) {
+//                manifestAndroidTestTask.originMinSdkVersion = flavorNameMinSdkVersionMap.get(variant.flavorName)
+//
+//                println "${variant.flavorName}: " + manifestAndroidTestTask.originMinSdkVersion
+//            }
+//            else {
+//                manifestAndroidTestTask.originMinSdkVersion = originDefaultMinSdkVersion
+//
+//                println "manifestTask.originMinSdkVersion: " + manifestAndroidTestTask.originMinSdkVersion
+//            }
+//            manifestAndroidTestTask.manifestPath = project.file('build/intermediates/manifest/androidTest/flavor1/debug/AndroidManifest.xml')
+//            processAndroidTestManifestTask.doLast {
+//                manifestAndroidTestTask.updateManifest()
+//            }
+//        }
+
 
         FastdexManifestTask manifestTask = project.tasks.create("fastdexProcess${variantName}Manifest", FastdexManifestTask)
         if (variant.flavorName) {
