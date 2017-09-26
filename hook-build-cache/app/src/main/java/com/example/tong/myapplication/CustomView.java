@@ -20,6 +20,6 @@ public class CustomView extends LinearLayout {
         inflate(context,R.layout.view_custom,this);
         ButterKnife.bind(this);
 
-        tv.setText("c2");
+        tv.setText("c1");
     }
 }
