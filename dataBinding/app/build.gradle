@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'fastdex.app'
 
 android {
     compileSdkVersion 23
@@ -10,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.liangfeizc.databinding"
-        minSdkVersion 16
+        minSdkVersion 25
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
