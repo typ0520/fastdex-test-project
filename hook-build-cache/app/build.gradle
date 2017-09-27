@@ -1,44 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'fastdex.app'
-
-fastdex {
-    dexMergeThreshold = 2
-}
-
-//Class defaultConventionClass = null
-//try {
-//    defaultConventionClass = Class.forName("org.gradle.api.internal.plugins.DefaultConvention")
-//} catch (ClassNotFoundException e) {
+//apply plugin: 'fastdex.app'
 //
+//fastdex {
+//    dexMergeThreshold = 2
 //}
-//
-//if (defaultConventionClass != null) {
-//    Field extensionsStorageField = null
-//    try {
-//        extensionsStorageField = defaultConventionClass.getDeclaredField("extensionsStorage")
-//        extensionsStorageField.setAccessible(true)
-//    } catch (Throwable e) {
-//
-//    }
-//
-//    if (extensionsStorageField != null) {
-//        try {
-//            project.rootProject.allprojects.each {
-//                Object extensionsStorage = extensionsStorageField.get(it.getAsDynamicObject().getConvention())
-//                extensionsStorage.add("android.injected.build.api","23")
-//                it.getAsDynamicObject().getDynamicProperties().set("android.injected.build.api","23")
-//            }
-//            project.gradle.startParameter.projectProperties.put("android.injected.build.api","23")
-//        } catch (Throwable e) {
-//
-//        }
-//    }
-//}
-
-//println("_________________hasProperty: " + project.hasProperty("android.injected.build.api") + " " + project.getProperty("android.injected.build.api"))
-//println "project.properties: " + project.properties
-println "projectProperties: " + project.gradle.startParameter.projectProperties
 
 //-Pandroid.injected.invoked.from.ide=true -Pandroid.injected.build.api=23 -Pandroid.injected.build.density=560dpi -Pandroid.injected.build.abi=x86 --init-script /private/var/folders/my/qh6gs8893nn7lsmd8jkwnbzr0000gn/T/asLocalRepo667.gradle
 android {
@@ -81,8 +47,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.jakewharton:butterknife:8.0.1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
-//    compile project(':javalib')
-//    compile project(':aarlib')
+    compile project(':javalib')
+    compile project(':aarlib')
 //    compile project(':libgroup:javalib2')
 }
 
@@ -110,6 +76,7 @@ import java.lang.reflect.Field
 import com.android.build.api.transform.Format
 
 public class MyJarMergingTransform extends Transform {
+    LocalData localData
     Transform base
 
     MyJarMergingTransform(Transform base) {
@@ -155,7 +122,8 @@ public class MyJarMergingTransform extends Transform {
         }
         File combinedJar = invocation.outputProvider.getContentLocation("combined", base.getOutputTypes(), base.getScopes(), Format.JAR);
         println("==combinedJar exists ${combinedJar.exists()} ${combinedJar}")
-        base.transform(invocation)
+        //base.transform(invocation)
+        localData.transformInvocation = invocation
         println("==combinedJar exists ${combinedJar.exists()} ${combinedJar}")
     }
 }
@@ -202,7 +170,13 @@ public class MyAndroidBuilder extends  com.android.builder.core.AndroidBuilder {
     }
 }
 
+import com.android.build.gradle.internal.pipeline.*
+
+
+
 public class MyDexTransform extends Transform {
+    LocalData localData
+
     Transform base
     Project project
     MyDexTransform(Transform base) {
@@ -217,7 +191,7 @@ public class MyDexTransform extends Transform {
                 base.dexOptions,
                 base.debugMode,
                 base.multiDex,
-                base.mainDexListFile,//new File("/Users/tong/Projects/fastdex-test-project/build-cache-test/maindexlist.txt"),
+                null,//base.mainDexListFile,//new File("/Users/tong/Projects/fastdex-test-project/build-cache-test/maindexlist.txt"),
                 base.intermediateFolder,
                 new MyAndroidBuilder(base.androidBuilder),
                 base.logger.logger,
@@ -262,103 +236,24 @@ public class MyDexTransform extends Transform {
         for (DirectoryInput directoryInput : dirInputs) {
             println("===dex directory: ${directoryInput.file}")
         }
-        base.transform(transformInvocation)
 
+        TransformInvocationBuilder builder = new TransformInvocationBuilder(transformInvocation.context)
+        builder.addInputs(localData.transformInvocation.inputs)
+        builder.addReferencedInputs(localData.transformInvocation.referencedInputs)
+        builder.addSecondaryInputs(localData.transformInvocation.secondaryInputs)
+        builder.setIncrementalMode(transformInvocation.isIncremental())
+        builder.addOutputProvider(transformInvocation.outputProvider)
 
-
-
-//        File file1 = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/1/release_6979713c928ec8f90adf2aec25731979c7e7e5f7/classes.dex")
-//        File file2 = new File(project.buildDir,"intermediates/transforms/dex/release/folders/1000/1/release_6979713c928ec8f90adf2aec25731979c7e7e5f7/classes2.dex")
-//
-//        file1.renameTo(file2)
-
-        ///Users/tong/Projects/fastdex-test-project/hook-build-cache/app/build/intermediates/transforms/dex/debug/folders/1000/1/debug_57d753944172ad6973d2c28736c245348cad217b
-
-        File file = new File(project.buildDir,"intermediates/transforms/dex/debug/folders/1000")
-        file.deleteDir()
-
-        project.copy {
-            from project.rootProject.file('dexdir')
-            into new File(project.buildDir,"intermediates/transforms/dex/debug/folders/1000/1/debug_57d753944172ad6973d2c28736c245348cad217b")
-        }
-
-        project.copy {
-            from project.rootProject.file('classes.dex')
-            into new File(project.buildDir,"intermediates/transforms/dex/debug/folders/1000/1/0_0")
-        }
+        base.transform(builder.build())
     }
 }
 
 
-public class FastdexManifestTask extends DefaultTask {
-    String manifestPath
-    int originMinSdkVersion
-
-    FastdexManifestTask() {
-        group = 'fastdex'
-    }
-
-    @TaskAction
-    def updateManifest() {
-        def xml = new XmlParser().parse(new InputStreamReader(new FileInputStream(manifestPath), "utf-8"))
-
-        def usesSdk = xml['uses-sdk']
-        groovy.xml.QName minSdkVersionAttr = new groovy.xml.QName("http://schemas.android.com/apk/res/android", 'minSdkVersion', 'android');
-        usesSdk.findAll {
-            it.attributes().put(minSdkVersionAttr,String.valueOf(originMinSdkVersion))
-        }
-
-        // Write the manifest file
-        def printer = new XmlNodePrinter(new PrintWriter(manifestPath, "utf-8"))
-        printer.preserveWhitespace = true
-        printer.print(xml)
-    }
+public class LocalData {
+    TransformInvocation transformInvocation
 }
-
-
-
-println "project.android.defaultConfig.minSdkVersion: " + project.android.defaultConfig.minSdkVersion
-println "project.android.productFlavors: " + project.android.productFlavors
-
-int originDefaultMinSdkVersion = project.android.defaultConfig.minSdkVersion.getApiLevel()
-Map<String,Integer> flavorNameMinSdkVersionMap = new HashMap()
-
-project.gradle.afterProject {
-    boolean useBuildCache = !project.gradle.startParameter.projectProperties.hasProperty("android.injected.generateSourcesOnly")
-//projectProperties: [android.injected.invoked.from.ide:true, android.injected.generateSourcesOnly:true]
-
-    if (useBuildCache) {
-        if (project.android.defaultConfig.minSdkVersion.getApiLevel() < 21) {
-            project.android.defaultConfig.minSdkVersion = 21
-        }
-    }
-
-    project.android.productFlavors.each {
-        if (it.minSdkVersion) {
-            flavorNameMinSdkVersionMap.put(it.name,it.minSdkVersion.getApiLevel())
-
-            if (useBuildCache) {
-                if (it.minSdkVersion.getApiLevel() < 21) {
-                    it.minSdkVersion = 21
-                }
-            }
-        }
-        else {
-            flavorNameMinSdkVersionMap.put(it.name,originDefaultMinSdkVersion)
-        }
-    }
-
-//如果最低支持该本改成了21，会使用v2SigningEnabled
-    project.android.signingConfigs.each {
-        it.v2SigningEnabled = false
-    }
-}
-
 
 project.afterEvaluate {
-    if (true) {
-        return
-    }
     //open jumboMode
     android.dexOptions.jumboMode = true
     //close preDexLibraries
@@ -377,48 +272,14 @@ project.afterEvaluate {
 
         println "getMergedFlavor: " + flavor;
 
-//        def processAndroidTestManifestTask = null
-//        try {
-//            processAndroidTestManifestTask = tasks["process${variantName}AndroidTestManifest"]
-//        } catch (Throwable e) {
-//
-//        }
-//        if (processAndroidTestManifestTask) {
-//            println "getMergedFlavor: " + flavor;
-//            FastdexManifestTask manifestAndroidTestTask = project.tasks.create("fastdexProcessFlavor1DebugAndroidTest${variantName}Manifest", FastdexManifestTask)
-//            if (variant.flavorName) {
-//                manifestAndroidTestTask.originMinSdkVersion = flavorNameMinSdkVersionMap.get(variant.flavorName)
-//
-//                println "${variant.flavorName}: " + manifestAndroidTestTask.originMinSdkVersion
-//            }
-//            else {
-//                manifestAndroidTestTask.originMinSdkVersion = originDefaultMinSdkVersion
-//
-//                println "manifestTask.originMinSdkVersion: " + manifestAndroidTestTask.originMinSdkVersion
-//            }
-//            manifestAndroidTestTask.manifestPath = project.file('build/intermediates/manifest/androidTest/flavor1/debug/AndroidManifest.xml')
-//            processAndroidTestManifestTask.doLast {
-//                manifestAndroidTestTask.updateManifest()
-//            }
-//        }
+        LocalData localData = new LocalData()
 
+        try {
+            tasks["transformClassesWithMultidexlistFor${variantName}"].enabled = false
 
-        FastdexManifestTask manifestTask = project.tasks.create("fastdexProcess${variantName}Manifest", FastdexManifestTask)
-        if (variant.flavorName) {
-            manifestTask.originMinSdkVersion = flavorNameMinSdkVersionMap.get(variant.flavorName)
+        } catch (Throwable e) {
 
-            println "${variant.flavorName}: " + manifestTask.originMinSdkVersion
         }
-        else {
-            manifestTask.originMinSdkVersion = originDefaultMinSdkVersion
-
-            println "manifestTask.originMinSdkVersion: " + manifestTask.originMinSdkVersion
-        }
-
-        manifestTask.manifestPath = variant.outputs.first().processManifest.manifestOutputFile.absolutePath
-        manifestTask.mustRunAfter variantOutput.processManifest
-        variantOutput.processResources.dependsOn manifestTask
-
 
         project.getGradle().getTaskGraph().addTaskExecutionGraphListener(new TaskExecutionGraphListener() {
             @Override
@@ -434,6 +295,8 @@ project.afterEvaluate {
                             Field field = getFieldByName(task.getClass(),'transform')
                             field.setAccessible(true)
                             field.set(task,jarMergingTransform)
+
+                            jarMergingTransform.localData = localData
                         }
 
                         if ((((transform instanceof DexTransform)) && !(transform instanceof MyDexTransform))) {
@@ -445,6 +308,8 @@ project.afterEvaluate {
                             Field field = getFieldByName(task.getClass(),'transform')
                             field.setAccessible(true)
                             field.set(task,fastdexTransform)
+
+                            fastdexTransform.localData = localData
                         }
                     }
                 }
