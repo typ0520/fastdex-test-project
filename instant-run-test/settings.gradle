@@ -1,0 +1,6 @@
+include ':app'
+//include ':instant-run-annotations'
+include ':instant-run-client'
+include ':instant-run-common'
+include ':instant-run-runtime'
+include ':instant-run-server'
