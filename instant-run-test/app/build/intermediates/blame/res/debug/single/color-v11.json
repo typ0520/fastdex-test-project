@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/tong/.android/build-cache/432b1e91109e9c1f04bb036d9e726c4fde3f5f57/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
+        "merged": "/Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/tong/.android/build-cache/432b1e91109e9c1f04bb036d9e726c4fde3f5f57/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    }
+]

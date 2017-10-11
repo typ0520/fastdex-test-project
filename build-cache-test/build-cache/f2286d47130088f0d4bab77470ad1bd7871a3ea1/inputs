@@ -1,7 +1,0 @@
-COMMAND=PREDEX_LIBRARY
-FILE_PATH=/Users/tong/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.0.1/345b89f45d02d8b09400b472fab7b7e38f4ede1f/butterknife-annotations-8.0.1.jar
-FILE_HASH=345b89f45d02d8b09400b472fab7b7e38f4ede1f
-BUILD_TOOLS_REVISION=25.0.0
-JUMBO_MODE=false
-OPTIMIZE=true
-MULTI_DEX=true

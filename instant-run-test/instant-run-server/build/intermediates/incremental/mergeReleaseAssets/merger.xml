@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/tong/Projects/fastdex-test-project/instant-run-test/instant-run-server/src/main/assets"/><source path="/Users/tong/Projects/fastdex-test-project/instant-run-test/instant-run-server/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/tong/Projects/fastdex-test-project/instant-run-test/instant-run-server/src/release/assets"/></dataSet></merger>

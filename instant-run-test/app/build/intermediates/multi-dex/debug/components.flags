@@ -1,0 +1,37 @@
+-injars /Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/transforms/jarMerging/debug/jars/1/1f/combined.jar
+-outjars /Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/multi-dex/debug/componentClasses.jar
+
+-libraryjars /Users/tong/Library/Android/sdk/build-tools/26.0.1/lib/shrinkedAndroid.jar
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontnote **
+-dontwarn **
+-printconfiguration /Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/multi-dex/debug/components.flags
+
+
+-keep public class * extends android.app.Instrumentation {
+    <init>();
+}
+
+-keep public class * extends android.app.Application {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.fd.** {
+    <fields>;
+    <methods>;
+}

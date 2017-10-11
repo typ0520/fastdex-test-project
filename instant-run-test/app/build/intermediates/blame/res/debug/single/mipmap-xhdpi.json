@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher_round.png",
+        "source": "/Users/tong/Projects/fastdex-test-project/instant-run-test/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/tong/Projects/fastdex-test-project/instant-run-test/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/tong/Projects/fastdex-test-project/instant-run-test/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    }
+]
