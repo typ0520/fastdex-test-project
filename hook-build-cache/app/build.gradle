@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'fastdex.app'
-
-fastdex {
-    dexMergeThreshold = 2
-}
+//apply plugin: 'fastdex.app'
+//
+//fastdex {
+//    dexMergeThreshold = 2
+//}
 
 //Class defaultConventionClass = null
 //try {
@@ -356,9 +356,6 @@ project.gradle.afterProject {
 
 
 project.afterEvaluate {
-    if (true) {
-        return
-    }
     //open jumboMode
     android.dexOptions.jumboMode = true
     //close preDexLibraries
