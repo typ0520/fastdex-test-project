@@ -38,3 +38,59 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile "com.liangfeizc:avatarview:0.0.1@aar"
 }
+
+//project.afterEvaluate {
+//    android.applicationVariants.all { variant ->
+//        def variantName = variant.name.capitalize()
+//        def variantOutput = variant.outputs.first()
+//
+//        def aptOutputDir = project.file(new File(variant.getVariantData().getScope().getGlobalScope().getGeneratedDir(), "/source/apt"))
+//        def aptOutput = new File(aptOutputDir, variant.dirName)
+//        def javaCompile = variant.hasProperty('javaCompiler') ? variant.javaCompiler : variant.javaCompile
+//
+//
+//        if (variant.variantData.extraGeneratedSourceFolders == null || !variant.variantData.extraGeneratedSourceFolders.contains(aptOutput)) {
+//            variant.addJavaSourceFoldersToModel(aptOutput);
+//        }
+//
+//        javaCompile.doFirst {
+//            if (!aptOutput.exists()) {
+//                aptOutput.mkdirs()
+//            }
+//        }
+//
+//        if (javaCompile.options.compilerArgs == null) {
+//            javaCompile.options.compilerArgs = new ArrayList<>()
+//        }
+//
+//        def compilerArgs = new ArrayList<>()
+//        compilerArgs.addAll(javaCompile.options.compilerArgs)
+//
+//        boolean discoveryAptOutput = false
+//        def originAptOutput = null
+//
+//        for (Object obj : compilerArgs) {
+//            if (discoveryAptOutput) {
+//                originAptOutput = obj
+//                break
+//            }
+//            if ("-s".equals(obj)) {
+//                discoveryAptOutput = true
+//            }
+//        }
+//
+//        if (discoveryAptOutput) {
+//            compilerArgs.remove("-s")
+//            compilerArgs.remove(originAptOutput)
+//        }
+//        compilerArgs.add(0,"-s")
+//        compilerArgs.add(1,aptOutput)
+//
+//        javaCompile.options.compilerArgs.clear()
+//        javaCompile.options.compilerArgs.addAll(compilerArgs)
+//
+//
+//        println "===variant.extraGeneratedSourceFolders: ${variant.variantData.extraGeneratedSourceFolders}"
+//        println "===compilerArgs: ${variant.javaCompile.options.compilerArgs}"
+//    }
+//}

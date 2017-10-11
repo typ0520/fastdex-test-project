@@ -17,7 +17,7 @@ public class CustomBindingActivity extends BaseActivity {
         ContractBinding binding = DataBindingUtil.setContentView(
                 this, R.layout.activity_custom_binding);
 
-        Contact contact = new Contact("111", "Japan");
+        Contact contact = new Contact("111", "Japan22");
         binding.setContact(contact);
     }
 }
