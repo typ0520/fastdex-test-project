@@ -1,0 +1,82 @@
+import com.android.build.gradle.internal.dependency.VariantDependencies
+
+apply plugin: 'com.android.application'
+//apply plugin: 'fastdex.app'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    defaultConfig {
+        applicationId "mcare.example.com.myapplication"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.zhy:okhttputils:2.4.1'
+    debugCompile project(':mylibrary')
+    compile project(':javalib')
+}
+
+project.afterEvaluate {
+    android.applicationVariants.all { variant ->
+        def variantName = variant.name.capitalize()
+        def variantOutput = variant.outputs.first()
+
+
+
+        println "android: " + project.getClass()
+        if ("Debug".equals(variantName)) {
+           VariantDependencies variantDeps = variant.getVariantData().getVariantDependency();
+
+
+            //com.android.builder.model.Variant
+            //variantDeps.getCompileClasspath().getAllDependencies()
+
+//            com.android.builder.model.JavaLibrary
+//            for (Dependency dependency : variantDeps.getCompileClasspath().getAllDependencies()) {
+//                if (dependency instanceof org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency) {
+//                    println "dependency: " + dependency
+//                }
+//            }
+
+            //println "getDependencies: /" + project.getDependencies()
+
+            //com.android.builder.model.AndroidProject
+            //project
+
+            //org.gradle.tooling.provider.model.ToolingModelBuilder
+            //println "variant.getMainArtifact(): " + variant.getMainArtifact()
+
+
+
+            def variantScope = variant.variantData.getScope();
+            def artifacts = com.android.build.gradle.internal.ide.ArtifactDependencyGraph.getAllArtifacts(variantScope,  com.android.build.gradle.internal.publishing.AndroidArtifacts.ConsumedConfigType.COMPILE_CLASSPATH,null);
+
+            for (org.gradle.api.artifacts.result.ResolvedArtifactResult artifact : artifacts) {
+                if (artifact.getDependencyType() == com.android.build.gradle.internal.ide.ArtifactDependencyGraph.DependencyType.JAVA) {
+                    File jarFile = artifact.getFile()
+
+                    println "##jarFile: " + jarFile
+                }
+                else {
+                    final File explodedFolder = artifact.getFile()
+                    File aarFile = artifact.bundleResult != null ? artifact.bundleResult.getFile() : explodedFolder
+
+                    println "##aarFile: " + aarFile
+                }
+            }
+        }
+    }
+
+}

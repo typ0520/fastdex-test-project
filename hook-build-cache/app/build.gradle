@@ -1,46 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-//apply plugin: 'fastdex.app'
-//
-//fastdex {
-//    dexMergeThreshold = 2
-//}
 
-//Class defaultConventionClass = null
-//try {
-//    defaultConventionClass = Class.forName("org.gradle.api.internal.plugins.DefaultConvention")
-//} catch (ClassNotFoundException e) {
-//
-//}
-//
-//if (defaultConventionClass != null) {
-//    Field extensionsStorageField = null
-//    try {
-//        extensionsStorageField = defaultConventionClass.getDeclaredField("extensionsStorage")
-//        extensionsStorageField.setAccessible(true)
-//    } catch (Throwable e) {
-//
-//    }
-//
-//    if (extensionsStorageField != null) {
-//        try {
-//            project.rootProject.allprojects.each {
-//                Object extensionsStorage = extensionsStorageField.get(it.getAsDynamicObject().getConvention())
-//                extensionsStorage.add("android.injected.build.api","23")
-//                it.getAsDynamicObject().getDynamicProperties().set("android.injected.build.api","23")
-//            }
-//            project.gradle.startParameter.projectProperties.put("android.injected.build.api","23")
-//        } catch (Throwable e) {
-//
-//        }
-//    }
-//}
-
-//println("_________________hasProperty: " + project.hasProperty("android.injected.build.api") + " " + project.getProperty("android.injected.build.api"))
-//println "project.properties: " + project.properties
 println "projectProperties: " + project.gradle.startParameter.projectProperties
 
-//-Pandroid.injected.invoked.from.ide=true -Pandroid.injected.build.api=23 -Pandroid.injected.build.density=560dpi -Pandroid.injected.build.abi=x86 --init-script /private/var/folders/my/qh6gs8893nn7lsmd8jkwnbzr0000gn/T/asLocalRepo667.gradle
 android {
     signingConfigs {
         config {
@@ -56,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "com.github.typ0520.hook_build_cache"
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -290,132 +252,12 @@ public class MyDexTransform extends Transform {
 }
 
 
-public class FastdexManifestTask extends DefaultTask {
-    String manifestPath
-    int originMinSdkVersion
-
-    FastdexManifestTask() {
-        group = 'fastdex'
-    }
-
-    @TaskAction
-    def updateManifest() {
-        def xml = new XmlParser().parse(new InputStreamReader(new FileInputStream(manifestPath), "utf-8"))
-
-        def usesSdk = xml['uses-sdk']
-        groovy.xml.QName minSdkVersionAttr = new groovy.xml.QName("http://schemas.android.com/apk/res/android", 'minSdkVersion', 'android');
-        usesSdk.findAll {
-            it.attributes().put(minSdkVersionAttr,String.valueOf(originMinSdkVersion))
-        }
-
-        // Write the manifest file
-        def printer = new XmlNodePrinter(new PrintWriter(manifestPath, "utf-8"))
-        printer.preserveWhitespace = true
-        printer.print(xml)
-    }
-}
-
-
-
-println "project.android.defaultConfig.minSdkVersion: " + project.android.defaultConfig.minSdkVersion
-println "project.android.productFlavors: " + project.android.productFlavors
-
-int originDefaultMinSdkVersion = project.android.defaultConfig.minSdkVersion.getApiLevel()
-Map<String,Integer> flavorNameMinSdkVersionMap = new HashMap()
-
-project.gradle.afterProject {
-    boolean useBuildCache = !project.gradle.startParameter.projectProperties.hasProperty("android.injected.generateSourcesOnly")
-//projectProperties: [android.injected.invoked.from.ide:true, android.injected.generateSourcesOnly:true]
-
-    if (useBuildCache) {
-        if (project.android.defaultConfig.minSdkVersion.getApiLevel() < 21) {
-            project.android.defaultConfig.minSdkVersion = 21
-        }
-    }
-
-    project.android.productFlavors.each {
-        if (it.minSdkVersion) {
-            flavorNameMinSdkVersionMap.put(it.name,it.minSdkVersion.getApiLevel())
-
-            if (useBuildCache) {
-                if (it.minSdkVersion.getApiLevel() < 21) {
-                    it.minSdkVersion = 21
-                }
-            }
-        }
-        else {
-            flavorNameMinSdkVersionMap.put(it.name,originDefaultMinSdkVersion)
-        }
-    }
-
-//如果最低支持该本改成了21，会使用v2SigningEnabled
-    project.android.signingConfigs.each {
-        it.v2SigningEnabled = false
-    }
-}
-
 
 project.afterEvaluate {
-    //open jumboMode
-    android.dexOptions.jumboMode = true
-    //close preDexLibraries
-    try {
-        android.dexOptions.preDexLibraries = false
-    } catch (Throwable e) {
-        //no preDexLibraries field, just continue
-    }
-
-
     android.applicationVariants.all { variant ->
-        def variantOutput = variant.outputs.first()
-        def variantName = variant.name.capitalize()
-
         def flavor = variant.getVariantData().getScope().getVariantConfiguration().getMergedFlavor()
 
         println "getMergedFlavor: " + flavor;
-
-//        def processAndroidTestManifestTask = null
-//        try {
-//            processAndroidTestManifestTask = tasks["process${variantName}AndroidTestManifest"]
-//        } catch (Throwable e) {
-//
-//        }
-//        if (processAndroidTestManifestTask) {
-//            println "getMergedFlavor: " + flavor;
-//            FastdexManifestTask manifestAndroidTestTask = project.tasks.create("fastdexProcessFlavor1DebugAndroidTest${variantName}Manifest", FastdexManifestTask)
-//            if (variant.flavorName) {
-//                manifestAndroidTestTask.originMinSdkVersion = flavorNameMinSdkVersionMap.get(variant.flavorName)
-//
-//                println "${variant.flavorName}: " + manifestAndroidTestTask.originMinSdkVersion
-//            }
-//            else {
-//                manifestAndroidTestTask.originMinSdkVersion = originDefaultMinSdkVersion
-//
-//                println "manifestTask.originMinSdkVersion: " + manifestAndroidTestTask.originMinSdkVersion
-//            }
-//            manifestAndroidTestTask.manifestPath = project.file('build/intermediates/manifest/androidTest/flavor1/debug/AndroidManifest.xml')
-//            processAndroidTestManifestTask.doLast {
-//                manifestAndroidTestTask.updateManifest()
-//            }
-//        }
-
-
-        FastdexManifestTask manifestTask = project.tasks.create("fastdexProcess${variantName}Manifest", FastdexManifestTask)
-        if (variant.flavorName) {
-            manifestTask.originMinSdkVersion = flavorNameMinSdkVersionMap.get(variant.flavorName)
-
-            println "${variant.flavorName}: " + manifestTask.originMinSdkVersion
-        }
-        else {
-            manifestTask.originMinSdkVersion = originDefaultMinSdkVersion
-
-            println "manifestTask.originMinSdkVersion: " + manifestTask.originMinSdkVersion
-        }
-
-        manifestTask.manifestPath = variant.outputs.first().processManifest.manifestOutputFile.absolutePath
-        manifestTask.mustRunAfter variantOutput.processManifest
-        variantOutput.processResources.dependsOn manifestTask
-
 
         project.getGradle().getTaskGraph().addTaskExecutionGraphListener(new TaskExecutionGraphListener() {
             @Override
