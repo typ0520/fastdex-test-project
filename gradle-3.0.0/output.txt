@@ -1,0 +1,155 @@
+Parallel execution is an incubating feature.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+android: class org.gradle.api.internal.project.DefaultProject_Decorated
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'debugCompile' in project ':mylibrary' is deprecated. Use 'debugImplementation' instead.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+##aarFile: /Users/tong/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.4.1/ea7732a44d774f209e7a40a6ee17e89550b1c5f8/okhttputils-2.4.1.aar
+##aarFile: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/debug/full.jar
+##jarFile: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
+##jarFile: /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
+##aarFile: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/debug/full.jar
+##jarFile: /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
+android: class org.gradle.api.internal.project.DefaultProject_Decorated
+##aarFile: /Users/tong/.gradle/caches/modules-2/files-2.1/com.zhy/okhttputils/2.4.1/ea7732a44d774f209e7a40a6ee17e89550b1c5f8/okhttputils-2.4.1.aar
+##aarFile: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/release/full.jar
+##jarFile: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
+##jarFile: /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
+##jarFile: /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
+task: task ':app:transformClassesWithDexBuilderForDebug'
+class com.android.build.gradle.internal.pipeline.TransformTask_Decorated
+:clean
+:app:clean
+:mylibrary:clean
+:javalib:clean
+:mylibrary2:clean
+:javalib:compileJava
+:mylibrary:preBuild UP-TO-DATE
+:mylibrary:preDebugBuild UP-TO-DATE
+:mylibrary:checkDebugManifest
+:mylibrary:processDebugManifest
+:mylibrary2:preBuild UP-TO-DATE
+:mylibrary2:preDebugBuild UP-TO-DATE
+:mylibrary2:checkDebugManifest
+:mylibrary2:processDebugManifest
+:mylibrary:packageDebugRenderscript NO-SOURCE
+:mylibrary:generateDebugResValues
+:mylibrary:platformAttrExtractor
+:mylibrary:generateDebugBuildConfig
+:mylibrary:prepareLintJar UP-TO-DATE
+:mylibrary:processDebugJavaRes NO-SOURCE
+:mylibrary:mergeDebugShaders
+:mylibrary:compileDebugShaders
+:mylibrary:generateDebugAssets
+:mylibrary:mergeDebugAssets
+:mylibrary:compileDebugNdk NO-SOURCE
+:mylibrary:mergeDebugJniLibFolders
+:mylibrary:transformNativeLibsWithMergeJniLibsForDebug
+:mylibrary:transformNativeLibsWithIntermediateJniLibsForDebug
+:mylibrary2:compileDebugAidl
+:mylibrary:mergeDebugConsumerProguardFiles UP-TO-DATE
+:mylibrary:transformNativeLibsWithSyncJniLibsForDebug
+:mylibrary:compileDebugAidl
+:mylibrary2:packageDebugRenderscript NO-SOURCE
+:mylibrary2:compileDebugRenderscript
+:mylibrary2:generateDebugResValues
+:mylibrary2:generateDebugResources
+:mylibrary2:packageDebugResources
+:mylibrary:compileDebugRenderscript
+:mylibrary2:platformAttrExtractor
+:mylibrary:generateDebugResources
+:mylibrary:packageDebugResources
+:mylibrary2:processDebugResources
+:mylibrary:processDebugResources
+:mylibrary2:generateDebugBuildConfig
+:javalib:processResources NO-SOURCE
+:javalib:classes
+:javalib:jar
+:mylibrary2:prepareLintJar UP-TO-DATE
+:mylibrary2:generateDebugSources
+:mylibrary2:javaPreCompileDebug
+:mylibrary2:compileDebugJavaWithJavac
+:mylibrary:generateDebugSources
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild
+:app:compileDebugAidl
+:app:compileDebugRenderscript
+:app:checkDebugManifest
+:app:generateDebugBuildConfig
+:app:prepareLintJar UP-TO-DATE
+:app:generateDebugResValues
+:app:generateDebugResources
+:app:mergeDebugResources
+:mylibrary2:processDebugJavaRes NO-SOURCE
+:mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
+:mylibrary:javaPreCompileDebug
+:mylibrary2:mergeDebugShaders
+:mylibrary2:compileDebugShaders
+:mylibrary:compileDebugJavaWithJavac
+:mylibrary2:generateDebugAssets
+:mylibrary2:mergeDebugAssets
+:mylibrary2:compileDebugNdk NO-SOURCE
+:mylibrary2:mergeDebugJniLibFolders
+:mylibrary2:transformNativeLibsWithMergeJniLibsForDebug
+:mylibrary2:transformNativeLibsWithIntermediateJniLibsForDebug
+:mylibrary2:extractDebugAnnotations
+:mylibrary2:mergeDebugConsumerProguardFiles UP-TO-DATE
+:mylibrary2:transformResourcesWithMergeJavaResForDebug
+:mylibrary2:transformClassesAndResourcesWithSyncLibJarsForDebug
+:mylibrary2:transformNativeLibsWithSyncJniLibsForDebug
+:mylibrary2:bundleDebug
+:mylibrary2:compileDebugSources
+:mylibrary2:assembleDebug
+:mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
+:mylibrary:extractDebugAnnotations
+:mylibrary:transformResourcesWithMergeJavaResForDebug
+:mylibrary:transformClassesAndResourcesWithSyncLibJarsForDebug
+:mylibrary:bundleDebug
+:mylibrary:compileDebugSources
+:mylibrary:assembleDebug
+:app:createDebugCompatibleScreenManifests
+:app:processDebugManifest
+:app:splitsDiscoveryTaskDebug
+:app:processDebugResources
+:app:generateDebugSources
+:app:javaPreCompileDebug
+:app:compileDebugJavaWithJavac
+:app:compileDebugNdk NO-SOURCE
+:app:compileDebugSources
+:app:mergeDebugShaders
+:app:compileDebugShaders
+:app:generateDebugAssets
+:app:mergeDebugAssets
+:app:transformClassesWithDexBuilderForDebug
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/okhttputils-2.4.1.aar/e0626007336c0e7e0c8af58423031f95/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/893931d99d2d9c20508627b3e702eea7/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/8fd03b56d2c7c943e825502918c73453/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/83741227383831d5ad7d34fa7e4050a6/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/737530d39a9fbff81d06562cb8cc02a9/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/ff34cc9b4de09fe9ed8b3360c9a7bec7/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/283060e1c3f700e4ac46e1b53128ba0e/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/1eeead0f7c7c2f7a970f1cc3375a1a61/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/95f5f62e9dfe0a9e91b4b231a91810a2/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/975a0c86d7c3f519c0be1bd778bcf18c/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/20be19f663c0d2ab472ef8bd8c895164/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/debug/classes.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/debug/classes.jar
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug
+:app:transformClassesWithDexBuilderForDebug FAILED
+75 actionable tasks: 70 executed, 5 up-to-date
