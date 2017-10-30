@@ -1,4 +1,4 @@
 package mcare.example.com.javalib;
 
-public class myClass {
+public class JavaLib2 {
 }
