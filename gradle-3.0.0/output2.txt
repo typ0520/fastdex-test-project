@@ -1,0 +1,48 @@
+Parallel execution is an incubating feature.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+:clean
+:app:clean
+:javalib:clean UP-TO-DATE
+:javalib2:clean UP-TO-DATE
+:mylibrary:clean
+:mylibrary2:clean
+:mylibrary2:preBuild UP-TO-DATE
+:mylibrary2:preReleaseBuild UP-TO-DATE
+:mylibrary2:checkReleaseManifest
+:mylibrary:preBuild UP-TO-DATE
+:mylibrary2:processReleaseManifest
+:mylibrary:preReleaseBuild UP-TO-DATE
+:mylibrary:checkReleaseManifest
+:mylibrary:processReleaseManifest
+:mylibrary2:packageReleaseRenderscript NO-SOURCE
+:mylibrary2:compileReleaseRenderscript
+:mylibrary2:generateReleaseResValues
+:mylibrary2:generateReleaseResources
+:mylibrary2:packageReleaseResources
+:mylibrary:packageReleaseRenderscript NO-SOURCE
+:mylibrary:compileReleaseRenderscript
+:mylibrary:generateReleaseResValues
+:mylibrary:generateReleaseResources
+:mylibrary:packageReleaseResources
+:app:preBuild UP-TO-DATE
+:app:preDevReleaseBuild
+:app:compileDevReleaseRenderscript
+:app:generateDevReleaseResValues
+:app:generateDevReleaseResources
+:app:mergeDevReleaseResources
+
+BUILD SUCCESSFUL in 2s
+20 actionable tasks: 18 executed, 2 up-to-date

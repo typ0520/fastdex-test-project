@@ -33,33 +33,44 @@ android {
 }
 
 dependencies {
-    debugCompile project(':mylibrary2')
+    compile project(':mylibrary2')
 }
 
-
-task mylibrarytest << {
-
-}
-
-project.afterEvaluate {
-    android.libraryVariants.all { variant ->
-        def variantName = variant.name.capitalize()
-        def variantOutput = variant.outputs.first()
-
-        if ("Debug".equals(variantName)) {
-            VariantDependencies variantDeps = variant.getVariantData().getVariantDependency();
-
-            for (Dependency dependency : variantDeps.getCompileClasspath().getAllDependencies()) {
-                if (dependency instanceof org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency) {
-                    println "dependency: " + dependency
-                }
-            }
-
-            def variantScope = variant.variantData.getScope();
-
-            println "=============variant.getVariantData(): " + variantOutput.getOutputFile()
-
-            println "=============getIntermediateJarOutputFolder: " + new File(variantScope.getIntermediateJarOutputFolder(),com.android.SdkConstants.FN_CLASSES_JAR)
-        }
-    }
-}
+//
+//task mylibrarytest  {
+//    doLast {
+//
+//    }
+//}
+//
+//project.afterEvaluate {
+//
+//    android.libraryVariants.all { variant ->
+//        def variantName = variant.name.capitalize()
+//        def variantOutput = variant.outputs.first()
+//
+//        if ("Debug".equals(variantName)) {
+////            VariantDependencies variantDeps = variant.getVariantData().getVariantDependency();
+////
+////            for (Dependency dependency : variantDeps.getCompileClasspath().getAllDependencies()) {
+////                if (dependency instanceof org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency) {
+////                    println "dependency: " + dependency
+////                }
+////            }
+//
+//            def variantScope = variant.variantData.getScope();
+//            String buildTypeName = variant.getBuildType().buildType.getName()
+//            println "=============getIntermediateJarOutputFolder: " + new File(variantScope.getIntermediateJarOutputFolder(),com.android.SdkConstants.FN_CLASSES_JAR)
+//
+//            final String compileClasspathName = buildTypeName + "CompileClasspath";
+//            final ConfigurationContainer configurations = project.getConfigurations();
+//            Configuration compileClasspath = configurations.maybeCreate(compileClasspathName);
+//
+//            for (Dependency dependency : compileClasspath.getAllDependencies()) {
+//                if (dependency instanceof org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency) {
+//                    println "===dependency: " + dependency + " compileClasspathName: " + compileClasspathName
+//                }
+//            }
+//        }
+//    }
+//}
