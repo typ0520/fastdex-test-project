@@ -4,33 +4,149 @@ If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
 Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':mylibrary' is deprecated. Use 'implementation' instead.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
 Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
-NDK is missing a "platforms" directory.
-If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
-If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
-
-NDK is missing a "platforms" directory.
-If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
-If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
-
+####featureResourcePackages: []
+###transform: com.android.build.gradle.internal.transforms.DexMergerTransform@5e45e32c
 :clean
 :app:clean
 :javalib:clean
+:javalib2:clean
 :mylibrary:clean
-:javalib2:clean UP-TO-DATE
 :mylibrary2:clean
-:javalib:clean UP-TO-DATE
+:mylibrary:preBuild
+:mylibrary2:preBuild
+:mylibrary:preBuild UP-TO-DATE
+:mylibrary2:preBuild UP-TO-DATE
+:mylibrary:preDebugBuild
+:mylibrary2:preDebugBuild UP-TO-DATE
+:mylibrary:preDebugBuild UP-TO-DATE
+:mylibrary2:checkDebugManifest
+:mylibrary:checkDebugManifest
+:mylibrary2:processDebugManifest
+:mylibrary:processDebugManifest
+:mylibrary:packageDebugRenderscript NO-SOURCE
+:mylibrary2:compileDebugAidl
+:mylibrary:generateDebugResValues
+:mylibrary:platformAttrExtractor
+:mylibrary:compileDebugAidl
+:mylibrary2:packageDebugRenderscript NO-SOURCE
+:mylibrary:compileDebugRenderscript
 :app:preBuild UP-TO-DATE
-:app:preDevReleaseBuild
-:app:compileDevReleaseRenderscript
-:app:generateDevReleaseResValues
-:app:generateDevReleaseResources
-:app:mergeDevReleaseResources
-:app:checkDevReleaseManifest
-:app:createDevReleaseCompatibleScreenManifests
-:app:processDevReleaseManifest
-:app:splitsDiscoveryTaskDevRelease
-:app:processDevReleaseResources
+:app:preDebugBuild
+:javalib2:compileJava
+:mylibrary:generateDebugResources
+:mylibrary:packageDebugResources
+:app:compileDebugAidl
+:mylibrary2:compileDebugRenderscript
+:javalib:processResources NO-SOURCE
+:mylibrary:generateDebugBuildConfig
+:mylibrary2:generateDebugResValues
+:mylibrary2:generateDebugResources
+:mylibrary2:packageDebugResources
+:mylibrary:prepareLintJar UP-TO-DATE
+:mylibrary:processDebugJavaRes NO-SOURCE
+:mylibrary:mergeDebugShaders
+:mylibrary:compileDebugShaders
+:mylibrary:generateDebugAssets
+:mylibrary:mergeDebugAssets
+:mylibrary:compileDebugNdk
+:mylibrary2:platformAttrExtractor
+:app:compileDebugRenderscript
+:mylibrary:compileDebugNdk NO-SOURCE
+:mylibrary:mergeDebugJniLibFolders
+:mylibrary:transformNativeLibsWithMergeJniLibsForDebug
+:mylibrary:transformNativeLibsWithIntermediateJniLibsForDebug
+:mylibrary:mergeDebugConsumerProguardFiles UP-TO-DATE
+:mylibrary:transformNativeLibsWithSyncJniLibsForDebug
+:app:checkDebugManifest
+:app:generateDebugBuildConfig
+:mylibrary2:generateDebugBuildConfig
+:app:prepareLintJar UP-TO-DATE
+:app:generateDebugResValues
+:mylibrary2:prepareLintJar UP-TO-DATE
+:mylibrary2:javaPreCompileDebug
+:app:generateDebugResources
+:app:mergeDebugResources
+:mylibrary2:processDebugJavaRes NO-SOURCE
+:mylibrary2:mergeDebugShaders
+:mylibrary2:compileDebugShaders
+:mylibrary2:generateDebugAssets
+:mylibrary2:mergeDebugAssets
+:mylibrary2:compileDebugNdk NO-SOURCE
+:mylibrary2:mergeDebugJniLibFolders
+:mylibrary2:transformNativeLibsWithMergeJniLibsForDebug
+:mylibrary2:transformNativeLibsWithIntermediateJniLibsForDebug
+:mylibrary2:mergeDebugConsumerProguardFiles UP-TO-DATE
+:mylibrary2:transformNativeLibsWithSyncJniLibsForDebug
+:mylibrary2:processDebugResources
+:mylibrary:processDebugResources
+:mylibrary2:generateDebugSources
+:mylibrary2:compileDebugJavaWithJavac
+:app:createDebugCompatibleScreenManifests
+:mylibrary:generateDebugSources
+:app:processDebugManifest
+:javalib2:processResources NO-SOURCE
+:javalib2:classes
+:javalib2:jar
+:javalib:compileJava
+:mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
+:mylibrary:javaPreCompileDebug
+:mylibrary2:extractDebugAnnotations
+:javalib:classes
+:mylibrary:compileDebugJavaWithJavac
+:javalib:jar
+:mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
+:mylibrary:extractDebugAnnotations
+:mylibrary2:transformResourcesWithMergeJavaResForDebug
+:mylibrary:transformResourcesWithMergeJavaResForDebug
+:mylibrary:transformClassesAndResourcesWithSyncLibJarsForDebug
+:mylibrary:bundleDebug
+:mylibrary2:transformClassesAndResourcesWithSyncLibJarsForDebug
+:app:splitsDiscoveryTaskDebug
+:app:processDebugResources
+:mylibrary2:bundleDebug
+:mylibrary2:compileDebugSources
+:mylibrary2:assembleDebug
+:mylibrary:compileDebugSources
+:mylibrary:assembleDebug
+:app:generateDebugSources
+:app:javaPreCompileDebug
+:app:compileDebugJavaWithJavac
+:app:compileDebugNdk NO-SOURCE
+:app:compileDebugSources
+:app:mergeDebugShaders
+:app:compileDebugShaders
+:app:generateDebugAssets
+:app:mergeDebugAssets
+:app:transformClassesWithDexBuilderForDebug
+:app:transformDexArchiveWithExternalLibsDexMergerForDebug
+:app:transformDexArchiveWithDexMergerForDebug
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/43.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/45.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/46.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/52.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/55.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/57.jar
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/61
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/externalLibsDexMerger/debug/0
+dexOutputDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexMerger/debug
+dexOutputDir2: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexMerger/debug/0
+:app:mergeDebugJniLibFolders
+:app:transformNativeLibsWithMergeJniLibsForDebug
+:app:processDebugJavaRes NO-SOURCE
+:app:transformResourcesWithMergeJavaResForDebug
+:app:validateSigningDebug
+:app:packageDebug
+:app:assembleDebug
 
-BUILD SUCCESSFUL in 4s
-15 actionable tasks: 13 executed, 2 up-to-date
+BUILD SUCCESSFUL in 10s
+85 actionable tasks: 80 executed, 5 up-to-date
