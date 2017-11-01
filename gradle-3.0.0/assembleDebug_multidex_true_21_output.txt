@@ -4,8 +4,6 @@ If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
 Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
-====fastdex add dynamic property: 'android.enableBuildCache=true'
-====fastdex add dynamic property: 'kotlin.incremental=true'
 ApkLocation: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/debug
 Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
 NDK is missing a "platforms" directory.
@@ -22,311 +20,136 @@ If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.
 ###transform: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexMerger/debug
 ###transform: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/mergeJniLibs/debug
 ###transform: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/mergeJavaRes/debug
-:app:preBuild
-:mylibrary:preBuild
-:app:preBuild UP-TO-DATE
-:mylibrary:preBuild UP-TO-DATE
-:mylibrary2:preBuild UP-TO-DATE
-:mylibrary2:preDebugBuild UP-TO-DATE
+:clean
+:app:clean
+:javalib:clean
+:javalib2:clean
+:mylibrary:clean
+:mylibrary2:clean
 :javalib2:compileJava
-:app:fastdexMarkForDebug
-:mylibrary:preDebugBuild
-:mylibrary2:checkDebugManifest
+:mylibrary:preBuild UP-TO-DATE
 :mylibrary:preDebugBuild UP-TO-DATE
-==fastdex fromFastdexInstantRun: true
 :mylibrary:checkDebugManifest
 :mylibrary:processDebugManifest
-:app:prepareLintJar
+:mylibrary2:preBuild UP-TO-DATE
+:mylibrary2:preDebugBuild UP-TO-DATE
+:mylibrary2:checkDebugManifest
 :mylibrary2:processDebugManifest
-:app:createDebugCompatibleScreenManifests
-:javalib2:compileJava UP-TO-DATE
-:javalib2:processResources NO-SOURCE
-:javalib2:classes UP-TO-DATE
-:app:generateDebugResValues
-:app:splitsDiscoveryTaskDebug
-:javalib2:jar UP-TO-DATE
-:javalib:compileJava UP-TO-DATE
-:javalib:processResources NO-SOURCE
-:javalib:classes UP-TO-DATE
-:javalib:jar UP-TO-DATE
-:app:mergeDebugShaders
-:app:compileDebugShaders
-:app:generateDebugAssets
-:app:mergeDebugJniLibFolders
-:app:validateSigningDebug
 :mylibrary:packageDebugRenderscript NO-SOURCE
-:mylibrary2:compileDebugAidl
 :mylibrary:generateDebugResValues
-:app:preDebugBuild
+:mylibrary2:compileDebugAidl
 :mylibrary:platformAttrExtractor
-:mylibrary:generateDebugBuildConfig
+:mylibrary:compileDebugAidl
+:app:preBuild UP-TO-DATE
+:app:preDebugBuild
 :mylibrary2:packageDebugRenderscript NO-SOURCE
 :mylibrary2:compileDebugRenderscript
-:mylibrary2:generateDebugResValues
-:mylibrary2:generateDebugResources
-:mylibrary2:packageDebugResources==fastdex device connected V8CA6TT4JJQOPNJR
-
-:mylibrary:compileDebugAidl
 :mylibrary:compileDebugRenderscript
+:app:compileDebugAidl
 :mylibrary:generateDebugResources
 :mylibrary:packageDebugResources
-:app:compileDebugAidl
+:mylibrary2:generateDebugResValues
+:mylibrary2:generateDebugResources
+:mylibrary2:packageDebugResources
 :app:compileDebugRenderscript
+:javalib:processResources
 :app:checkDebugManifest
+:javalib:processResources NO-SOURCE
 :app:generateDebugBuildConfig
-:app:generateDebugResources
-:app:compileDebugNdk NO-SOURCE
-:app:processDebugJavaRes NO-SOURCE
-:mylibrary2:platformAttrExtractor
-:mylibrary2:generateDebugBuildConfig
-:mylibrary2:prepareLintJar
-:mylibrary2:javaPreCompileDebug
-:app:mergeDebugResources
-:mylibrary:prepareLintJar
-:mylibrary2:processDebugJavaRes
-:mylibrary:processDebugJavaRes
-:mylibrary2:processDebugJavaRes NO-SOURCE
+:mylibrary:generateDebugBuildConfig
+:mylibrary:prepareLintJar UP-TO-DATE
 :mylibrary:processDebugJavaRes NO-SOURCE
-:mylibrary2:mergeDebugShaders
 :mylibrary:mergeDebugShaders
-:mylibrary2:compileDebugShaders
+:mylibrary2:platformAttrExtractor
+:app:prepareLintJar
 :mylibrary:compileDebugShaders
+:app:prepareLintJar UP-TO-DATE
+:app:generateDebugResValues
 :mylibrary:generateDebugAssets
-:mylibrary:mergeDebugAssets
+:mylibrary:mergeDebugAssets警告: [options] 未与 -source 1.7 一起设置引导类路径
+
+:app:generateDebugResources
+:app:mergeDebugResources
+:mylibrary2:generateDebugBuildConfig
+:mylibrary2:prepareLintJar UP-TO-DATE
+:mylibrary2:javaPreCompileDebug1 个警告
+
+:mylibrary2:processDebugJavaRes
+:javalib2:processResources
+:mylibrary2:processDebugJavaRes NO-SOURCE
+:javalib2:processResources NO-SOURCE
+:mylibrary2:mergeDebugShaders
+:javalib2:classes
+:javalib2:jar
+:mylibrary2:compileDebugShaders
 :mylibrary2:generateDebugAssets
 :mylibrary2:mergeDebugAssets
+:javalib:compileJava
 :mylibrary:compileDebugNdk NO-SOURCE
 :mylibrary:mergeDebugJniLibFolders
-:mylibrary2:compileDebugNdk NO-SOURCE
-:mylibrary2:mergeDebugJniLibFolders
-:mylibrary:transformNativeLibsWithMergeJniLibsForDebug
-:mylibrary2:transformNativeLibsWithMergeJniLibsForDebug
-:mylibrary:transformNativeLibsWithIntermediateJniLibsForDebug
-:mylibrary2:transformNativeLibsWithIntermediateJniLibsForDebug
 :mylibrary2:processDebugResources
-:app:processDebugManifest
-:app:fastdexProcessDebugManifest
-:app:mergeDebugAssets
+:mylibrary:transformNativeLibsWithMergeJniLibsForDebug
+:mylibrary:transformNativeLibsWithIntermediateJniLibsForDebug警告: [options] 未与 -source 1.7 一起设置引导类路径
+
+:mylibrary:mergeDebugConsumerProguardFiles UP-TO-DATE
+:mylibrary:transformNativeLibsWithSyncJniLibsForDebug
+1 个警告
+:javalib:classes
+:javalib:jar
 :mylibrary:processDebugResources
 :mylibrary2:generateDebugSources
 :mylibrary2:compileDebugJavaWithJavac
-:app:processDebugResources
 :mylibrary:generateDebugSources
+:app:createDebugCompatibleScreenManifests
+:app:processDebugManifest
 :mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
 :mylibrary:javaPreCompileDebug
+:mylibrary2:compileDebugNdk NO-SOURCE
+:mylibrary2:mergeDebugJniLibFolders
+:mylibrary2:transformNativeLibsWithMergeJniLibsForDebug
+:mylibrary2:transformNativeLibsWithIntermediateJniLibsForDebug
+:mylibrary2:extractDebugAnnotations
 :mylibrary:compileDebugJavaWithJavac
+:mylibrary2:mergeDebugConsumerProguardFiles UP-TO-DATE
+:mylibrary2:transformResourcesWithMergeJavaResForDebug
+:app:splitsDiscoveryTaskDebug
+:app:processDebugResources
+:mylibrary2:transformClassesAndResourcesWithSyncLibJarsForDebug
+:mylibrary2:transformNativeLibsWithSyncJniLibsForDebug
+:mylibrary2:bundleDebug
+:mylibrary2:compileDebugSources
+:mylibrary2:assembleDebug
 :mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForDebug
+:mylibrary:extractDebugAnnotations
+:mylibrary:transformResourcesWithMergeJavaResForDebug
+:mylibrary:transformClassesAndResourcesWithSyncLibJarsForDebug
+:mylibrary:bundleDebug
+:mylibrary:compileDebugSources
+:mylibrary:assembleDebug
 :app:generateDebugSources
-:app:fastdexPrepareForDebug==fastdex hasDexCache: false
-==fastdex clean dir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug
-==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/src/main/java, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/src/debug/java]
-==fastdex skip scan: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/generated/source/apt/debug
-==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/src/main/java, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/src/debug/java]
-==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/src/main/java, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/src/debug/java]
-==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/src/main/java]
-==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/src/main/java]
-
 :app:javaPreCompileDebug
 :app:compileDebugJavaWithJavac
+:app:compileDebugNdk NO-SOURCE
 :app:compileDebugSources
-:app:fastdexScanAptOutputForDebug==fastdex scan apt dir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/generated/source/apt/debug
-
-:app:transformClassesWithDexBuilderForDebug====fastdex inject dir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug====
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/BuildConfig.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/MainActivity.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$color.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$drawable.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$id.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$layout.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$mipmap.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$string.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R$style.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug/mcare/example/com/myapplication/R.class
-==fastdex inject complete dir-size: 1 , use: 77ms
-==jarInputFiles: [/Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/debug/classes.jar, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/debug/classes.jar, /Users/tong/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/d32a6b90c5d69320a870605933e77783/jars/classes.jar, /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar, /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar, /Users/tong/.gradle/caches/transforms-1/files-1.1/okhttputils-2.4.1.aar/83c7197c0221c9c6e5f4e8a1451b1d58/jars/classes.jar, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar]
-==libraryDependencies: [LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/debug/classes.jar, dependencyProject=project ':mylibrary', androidLibrary=true}, LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/debug/classes.jar, dependencyProject=project ':mylibrary2', androidLibrary=true}, LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar, dependencyProject=project ':javalib', androidLibrary=false}, LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar, dependencyProject=project ':javalib2', androidLibrary=false}]
-==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/debug/classes.jar
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/mcare/example/com/mylibrary/AarLib.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/mcare/example/com/mylibrary/BuildConfig.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/test/Test.class
-==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/debug/classes.jar
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/mcare/example/com/mylibrary/AarLib2.class
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/mcare/example/com/mylibrary2/BuildConfig.class
-==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/mcare/example/com/javalib/JavaLib1.class
-==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar
-==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/temp/mcare/example/com/javalib/JavaLib2.class
-==fastdex inject complete jar-size: 4 , use: 153ms
+:app:mergeDebugShaders
+:app:compileDebugShaders
+:app:generateDebugAssets
+:app:mergeDebugAssets
+:app:transformClassesWithDexBuilderForDebug
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/okhttputils-2.4.1.aar/16eafd5dd3c4fcb409feed14729f2759/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/0d91c10904aef48acc2d48802764c242/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/debug/classes.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/debug/classes.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/debug
+dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug
 warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ay) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ab) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.w) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.i) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.t) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.n) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.f) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.au) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bi) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.l) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ad) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.h) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bl) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.al) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ax) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.i) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bn) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.j) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ar) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.as) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.o) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bg) that doesn't come with an
+(com.tencent.smtt.sdk.v) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -342,7 +165,71 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ar) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.l) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.n) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.o) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
 (com.tencent.smtt.sdk.af) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ay) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.al) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.utils.j) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.i) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -358,7 +245,15 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.v) that doesn't come with an
+(com.tencent.smtt.utils.i) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ax) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -374,15 +269,7 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.g) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ag) that doesn't come with an
+(com.tencent.smtt.sdk.as) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -398,6 +285,14 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.bl) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
 (com.tencent.smtt.sdk.k) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
@@ -406,7 +301,7 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.b.a.c) that doesn't come with an
+(com.tencent.smtt.sdk.ag) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -414,7 +309,15 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.aq) that doesn't come with an
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.bn) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+(com.tencent.smtt.sdk.w) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -422,207 +325,7 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.aw) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ai) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.h) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.b.a.g) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.m) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.y) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ac) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.m) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ap) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bk) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bh) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.e) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.av) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.b.a.b) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.f) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.g) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.utils.l) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.b.a.h) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.aa) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.at) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.bb) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.b.a.d) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.u) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.ak) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.a.c) that doesn't come with an
-associated EnclosingMethod attribute. This class was probably produced by a
-compiler that did not target the modern .class file format. The recommended
-solution is to recompile the class from source, using an up-to-date compiler
-and without specifying any "-target" type options. The consequence of ignoring
-this warning is that reflective operations on this class will incorrectly
-indicate that it is *not* an inner class.
-warning: Ignoring InnerClasses attribute for an anonymous inner class
-(com.tencent.smtt.sdk.z) that doesn't come with an
+(com.tencent.smtt.sdk.bg) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
 solution is to recompile the class from source, using an up-to-date compiler
@@ -638,6 +341,262 @@ and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
 warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.z) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.t) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.utils.f) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.bi) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.h) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.aq) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ak) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.utils.l) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ad) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.b.a.h) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.u) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.utils.h) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.bh) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.at) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.au) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.a.c) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ab) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.b.a.d) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.f) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.bk) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.aw) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.bb) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.e) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.utils.m) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.aa) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.b.a.g) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.av) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.m) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.utils.g) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ai) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ap) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.y) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
 (com.tencent.smtt.utils.t) that doesn't come with an
 associated EnclosingMethod attribute. This class was probably produced by a
 compiler that did not target the modern .class file format. The recommended
@@ -645,7 +604,38 @@ solution is to recompile the class from source, using an up-to-date compiler
 and without specifying any "-target" type options. The consequence of ignoring
 this warning is that reflective operations on this class will incorrectly
 indicate that it is *not* an inner class.
-
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.ac) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.b.a.b) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.b.a.c) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
+warning: Ignoring InnerClasses attribute for an anonymous inner class
+(com.tencent.smtt.sdk.g) that doesn't come with an
+associated EnclosingMethod attribute. This class was probably produced by a
+compiler that did not target the modern .class file format. The recommended
+solution is to recompile the class from source, using an up-to-date compiler
+and without specifying any "-target" type options. The consequence of ignoring
+this warning is that reflective operations on this class will incorrectly
+indicate that it is *not* an inner class.
 :app:transformDexArchiveWithExternalLibsDexMergerForDebug
 ===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/0.jar
 ===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/1.jar
@@ -657,57 +647,24 @@ indicate that it is *not* an inner class.
 ===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/7.jar
 ===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/8.jar
 ===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/9.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/10.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/11.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/12.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/13.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/14.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/15.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/16.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/17.jar
 dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/externalLibsDexMerger/debug
 :app:transformDexArchiveWithDexMergerForDebug
-==fastdex normal transform start
-==fastdex dexOutputDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexMerger/debug
- 
-==fastdex first build dex-dir[classes2.dex - classes9.dex]
-==fastdex fastdex-runtime.dex => /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexMerger/debug/7/classes.dex
-==fastdex first build dex-dir[classes.dex - classes9.dex]
- 
-==fastdex normal transform end
-
-
-:app:fastdexPatchForDebug
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/12.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/14.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/15.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/21.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/24.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/26.jar
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexBuilder/debug/30
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/externalLibsDexMerger/debug/0
+dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dexMerger/debug
+:app:mergeDebugJniLibFolders
 :app:transformNativeLibsWithMergeJniLibsForDebug
+:app:processDebugJavaRes NO-SOURCE
 :app:transformResourcesWithMergeJavaResForDebug
-:app:packageDebug==fastdex copy meta info: 
-from: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Debug/fastdex-meta-info.json
-into: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/assets/debug/fastdex-meta-info.json
-
+:app:validateSigningDebug
+:app:packageDebug
 :app:assembleDebug
-:app:fastdexDebug==fastdex normal run Debug
-adb -s V8CA6TT4JJQOPNJR install -r /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/debug/app-debug.apk
 
-/Users/tong/Library/Android/sdk/platform-tools/adb -s V8CA6TT4JJQOPNJR shell am start -n mcare.example.com.myapplication/mcare.example.com.myapplication.MainActivity -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
-
-Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=mcare.example.com.myapplication/.MainActivity }
-Error type 3
-Error: Activity class {mcare.example.com.myapplication/mcare.example.com.myapplication.MainActivity} does not exist.
-
-BUILD SUCCESSFUL in 17s
-73 actionable tasks: 69 executed, 4 up-to-date
-Task spend time:
-    103ms  :mylibrary:transformNativeLibsWithMergeJniLibsForDebug
-    104ms  :mylibrary2:transformNativeLibsWithMergeJniLibsForDebug
-     59ms  :app:processDebugManifest
-     80ms  :app:fastdexProcessDebugManifest
-     85ms  :app:processDebugResources
-     76ms  :app:fastdexPrepareForDebug
-     98ms  :app:compileDebugJavaWithJavac
-   4391ms  :app:transformClassesWithDexBuilderForDebug
-    604ms  :app:transformDexArchiveWithExternalLibsDexMergerForDebug
-    148ms  :app:transformDexArchiveWithDexMergerForDebug
-     92ms  :app:transformNativeLibsWithMergeJniLibsForDebug
-     80ms  :app:transformResourcesWithMergeJavaResForDebug
-    304ms  :app:packageDebug
-   5252ms  :app:fastdexDebug
+BUILD SUCCESSFUL in 5s
+85 actionable tasks: 80 executed, 5 up-to-date

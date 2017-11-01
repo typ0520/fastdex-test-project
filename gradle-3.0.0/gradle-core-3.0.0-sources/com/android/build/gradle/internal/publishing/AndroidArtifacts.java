@@ -90,6 +90,7 @@ public class AndroidArtifacts {
             this.needsTestedComponents = needsTestedComponents;
         }
 
+
         @NonNull
         public String getName() {
             return name;

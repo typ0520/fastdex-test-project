@@ -6,11 +6,11 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "mcare.example.com.myapplication"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
+        multiDexEnabled false
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -39,6 +39,8 @@ android {
 //    }
 }
 
+//android.dexOptions.preDexLibraries = false
+
 dependencies {
     compile 'com.zhy:okhttputils:2.4.1'
     compile project(':mylibrary')
@@ -47,33 +49,33 @@ dependencies {
     compile files('libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar')
 
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.squareup:otto:1.3.5'
-    compile 'com.squareup.okio:okio:1.0.1'
-    compile "io.reactivex:rxandroid:1.2.0"
-    compile "io.reactivex:rxjava:1.1.5"
-    compile 'com.google.code.gson:gson:2.3.1'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
-    compile 'org.xutils:xutils:3.3.36'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
+//    compile 'com.jakewharton:butterknife:8.8.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'info.hoang8f:android-segmented:1.0.6'
-    compile 'com.squareup.okio:okio:1.0.1'
-    compile 'com.zhy:okhttputils:2.4.1'
-    compile 'joda-time:joda-time:2.6'
-    compile 'com.squareup.retrofit:retrofit:1.8.0'
-    compile 'com.squareup.okhttp:okhttp:2.2.0'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
-
-    compile "org.greenrobot:eventbus:3.0.0"
-    compile "org.glassfish:javax.annotation:10.0-b28"
-    compile 'com.android.volley:volley:1.0.0'
-    compile 'com.dialonce:dialonce-android:2.3.1'
-    compile 'com.facebook.fresco:fresco:1.1.0'
-    compile 'com.google.guava:guava:18.0'
+//    compile 'com.squareup.okio:okio:1.0.1'
+//    compile "io.reactivex:rxandroid:1.2.0"
+//    compile "io.reactivex:rxjava:1.1.5"
+//    compile 'com.google.code.gson:gson:2.3.1'
+//    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+//    compile 'org.xutils:xutils:3.3.36'
+//    compile 'de.hdodenhof:circleimageview:2.0.0'
+//    compile 'de.hdodenhof:circleimageview:2.0.0'
+//
+//    compile 'com.squareup.retrofit:retrofit:1.9.0'
+//    compile 'info.hoang8f:android-segmented:1.0.6'
+//    compile 'com.squareup.okio:okio:1.0.1'
+//    compile 'com.zhy:okhttputils:2.4.1'
+//    compile 'joda-time:joda-time:2.6'
+//    compile 'com.squareup.retrofit:retrofit:1.8.0'
+//    compile 'com.squareup.okhttp:okhttp:2.2.0'
+//    compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+//
+//    compile "org.greenrobot:eventbus:3.0.0"
+//    compile "org.glassfish:javax.annotation:10.0-b28"
+//    compile 'com.android.volley:volley:1.0.0'
+//    compile 'com.dialonce:dialonce-android:2.3.1'
+//    compile 'com.facebook.fresco:fresco:1.1.0'
+//    compile 'com.google.guava:guava:18.0'
 }
 
 import com.android.build.api.transform.DirectoryInput
@@ -87,8 +89,11 @@ import com.android.build.api.transform.TransformInvocation
 import com.android.build.api.transform.TransformOutputProvider
 import com.android.build.gradle.internal.dependency.VariantDependencies
 import com.android.build.gradle.internal.pipeline.TransformTask
+import com.android.build.gradle.internal.scope.VariantScope
 import com.google.common.collect.ImmutableSet
 import com.google.common.collect.Lists
+
+import java.lang.reflect.Constructor
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 
@@ -139,13 +144,7 @@ public class MyDexArchiveBuilderTransform extends com.android.build.api.transfor
 
         Field folderUtilsField = transformInvocation.getOutputProvider().getClass().getDeclaredField("folderUtils")
         folderUtilsField.setAccessible(true)
-
-        println "dexOutputDir: " + folderUtilsField.get(transformInvocation.getOutputProvider()).getRootFolder()
-
-        File dexOutputDir = transformInvocation.getOutputProvider().getContentLocation("directories", base.getOutputTypes(), ImmutableSet.of(com.android.build.api.transform.QualifiedContent.Scope.PROJECT), com.android.build.api.transform.Format.DIRECTORY)
-
-        println("dexOutputDir2: " + dexOutputDir)
-
+        println "dexDir: " +  folderUtilsField.get(transformInvocation.getOutputProvider()).getRootFolder()
 
         //打桩
         base.transform(transformInvocation)
@@ -166,17 +165,17 @@ public class MyDexArchiveBuilderTransform extends com.android.build.api.transfor
 }
 
 task getCurrentDependList {
-    doLast {
-        Set<String> result = new HashSet<>()
-
-        project.configurations.compile.each { File file ->
-            result.add(file.getAbsolutePath())
-        }
-
-        project.configurations."debugCompile".each { File file ->
-            result.add(file.getAbsolutePath())
-        }
-    }
+//    doLast {
+//        Set<String> result = new HashSet<>()
+//
+//        project.configurations.compile.each { File file ->
+//            result.add(file.getAbsolutePath())
+//        }
+//
+//        project.configurations."debugCompile".each { File file ->
+//            result.add(file.getAbsolutePath())
+//        }
+//    }
 }
 
 project.afterEvaluate {
@@ -184,47 +183,131 @@ project.afterEvaluate {
         def variantName = variant.name.capitalize()
         def variantOutput = variant.outputs.first()
 
-        if (variantName.contains("Debug")) {
-            VariantDependencies variantDeps = variant.getVariantData().getVariantDependency()
+        if (variantName.contains("Release")) {
 
-            org.gradle.api.internal.artifacts.dependencies.DefaultExternalModuleDependency
-            for (Dependency dependency : variantDeps.getCompileClasspath().getAllDependencies()) {
-                println "dependency: " + dependency + " dependency: " + dependency.getClass()
-            }
+            println "ApkLocation: " + variant.variantData.getScope().getApkLocation()
 
+            project.getGradle().getTaskGraph().addTaskExecutionGraphListener(new TaskExecutionGraphListener() {
+                @Override
+                public void graphPopulated(TaskExecutionGraph taskGraph) {
+                    for (Task task : taskGraph.getAllTasks()) {
+                        if (task.getProject().equals(project)
+                                && task instanceof com.android.build.gradle.internal.pipeline.TransformTask
+                                //fix #
+                                && task.name.startsWith("transform")
+                                && task.name.endsWith("For" + variantName)) {
 
-//            project.getGradle().getTaskGraph().addTaskExecutionGraphListener(new TaskExecutionGraphListener() {
-//                @Override
-//                public void graphPopulated(TaskExecutionGraph taskGraph) {
-//                    for (Task task : taskGraph.getAllTasks()) {
-//                        if (task.getProject().equals(project)
-//                                && task instanceof com.android.build.gradle.internal.pipeline.TransformTask
-//                                //fix #
-//                                && task.name.endsWith("WithDexMergerFor" + variantName)) {
-//
-//                            Transform transform = ((TransformTask) task).getTransform()
-//
-//                            println "###transform: " + transform
-//
-//                            //transformClassesWithDexBuilderForDebug
-//                            if ((((transform instanceof com.android.build.gradle.internal.transforms.DexMergerTransform)) && !(transform instanceof MyDexArchiveBuilderTransform))) {
-//                                //代理DexTransform,实现自定义的转换
-//                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
-//
-//                                //Class transformTaskClass = Class.forName("com.android.build.gradle.internal.pipeline")
-//
-//                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
-//                                //Field field = transformTaskClass.getDeclaredField("transform")
-//
-//                                //println "field val: " + field.get(task)
-//
-//                                field.setAccessible(true)
-//                                field.set(task,fastdexTransform)
-//                            }
-//                        }
-//                    }
-//                }
-//            });
+                            Transform transform = ((TransformTask) task).getTransform()
+
+                            println "###transform: " + transform.getClass()
+
+                            //transformClassesWithDexBuilderForDebug
+                            if ((((transform instanceof com.android.build.gradle.internal.transforms.DexArchiveBuilderTransform)) && !(transform instanceof MyDexArchiveBuilderTransform))) {
+                                //代理DexTransform,实现自定义的转换
+                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
+
+                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
+
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+
+                            if (transform.getClass().getName().equals("com.android.build.gradle.internal.transforms.ExternalLibsMergerTransform") && !(transform instanceof MyDexArchiveBuilderTransform)) {
+                                //代理DexTransform,实现自定义的转换
+                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
+
+                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
+
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+
+                            if (transform.getClass().getName().equals("com.android.build.gradle.internal.transforms.PreDexTransform") && !(transform instanceof MyDexArchiveBuilderTransform)) {
+                                //代理DexTransform,实现自定义的转换
+                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
+
+                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
+
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+
+                            if (transform.getClass().getName().equals("com.android.build.gradle.internal.transforms.DexTransform") && !(transform instanceof MyDexArchiveBuilderTransform)) {
+                                def base = transform
+
+                                Class dexingTypeClass = Class.forName("com.android.builder.dexing.DexingType")
+                                Object[] values = dexingTypeClass.getMethod("values").invoke(null,null)
+
+                                //com.android.build.gradle.internal.transforms.DexTransform
+                                Constructor<?>[] constructors = base.getClass().getConstructors()
+                                Constructor targetConstructor = constructors[0]
+
+                                println "DexTransform.targetConstructor: " + targetConstructor
+                                println "DexTransform.dexOptions: " + transform.dexOptions
+                                println "DexTransform.dexingType: " + transform.dexingType
+                                println "DexTransform.preDexEnabled: " + transform.preDexEnabled
+                                println "DexTransform.minSdkVersion: " + transform.minSdkVersion
+
+                                //values.find { !it.isMultiDex() && it.isPreDex() }
+                                Transform result =
+                                        targetConstructor.newInstance( base.dexOptions
+                                                ,base.
+                                                ,base.preDexEnabled
+                                                ,(FileCollection)null
+                                                ,base.targetInfo
+                                                ,base.dexByteCodeConverter
+                                                , base.errorReporter
+                                                ,21)
+                                println "result: " + result
+
+                                transform = result
+
+                                //代理DexTransform,实现自定义的转换
+                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
+
+                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
+
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+
+                            if ((((transform instanceof com.android.build.gradle.internal.transforms.DexMergerTransform)) && !(transform instanceof MyDexArchiveBuilderTransform))) {
+                                def base = transform
+
+                                Constructor<?>[] constructors = transform.getClass().getConstructors()
+                                Constructor targetConstructor = constructors[0]
+
+                                println "DexMergerTransform.targetConstructor: " + targetConstructor
+                                println "DexMergerTransform.dexingType: " + transform.dexingType
+                                println "DexMergerTransform.mainDexListFile: " + transform.mainDexListFile
+                                println "DexMergerTransform.errorReporter: " + transform.errorReporter
+                                println "DexMergerTransform.dexMerger: " + transform.dexMerger
+                                println "DexMergerTransform.minSdkVersion: " + transform.minSdkVersion
+                                println "DexMergerTransform.isDebuggable: " + transform.isDebuggable
+
+                                Transform result =
+                                        targetConstructor.newInstance(com.android.builder.dexing.DexingType.NATIVE_MULTIDEX
+                                                ,(FileCollection)null
+                                                , base.errorReporter
+                                                , base.dexMerger
+                                                ,21
+                                                , true)
+                                println "result: " + result
+
+                                transform = result
+
+                                //代理DexTransform,实现自定义的转换
+                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
+
+                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
+
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+                        }
+                    }
+                }
+            });
         }
     }
 }

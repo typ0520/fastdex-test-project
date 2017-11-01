@@ -1,0 +1,146 @@
+Parallel execution is an incubating feature.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+ApkLocation: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/debug
+Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':mylibrary' is deprecated. Use 'implementation' instead.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+:clean
+:app:clean
+:javalib:clean
+:javalib2:clean
+:mylibrary:clean
+:mylibrary2:clean
+:javalib2:compileJava
+:mylibrary:preBuild UP-TO-DATE
+:mylibrary:preReleaseBuild UP-TO-DATE
+:mylibrary:checkReleaseManifest
+:mylibrary2:preBuild UP-TO-DATE
+:mylibrary2:preReleaseBuild UP-TO-DATE
+:mylibrary2:checkReleaseManifest
+:mylibrary:processReleaseManifest
+:mylibrary2:processReleaseManifest
+:mylibrary:packageReleaseRenderscript NO-SOURCE
+:mylibrary:generateReleaseResValues
+:mylibrary2:compileReleaseAidl
+:mylibrary:platformAttrExtractor
+:mylibrary:compileReleaseAidl
+:mylibrary2:packageReleaseRenderscript NO-SOURCE
+:mylibrary2:compileReleaseRenderscript
+:mylibrary:compileReleaseRenderscript
+:mylibrary2:generateReleaseResValues
+:mylibrary:generateReleaseResources
+:mylibrary:packageReleaseResources
+:mylibrary2:generateReleaseResources
+:mylibrary2:packageReleaseResources
+:javalib:processResources
+:mylibrary2:platformAttrExtractor
+:javalib:processResources NO-SOURCE
+:mylibrary:generateReleaseBuildConfig
+:mylibrary:prepareLintJar UP-TO-DATE
+:mylibrary2:generateReleaseBuildConfig警告: [options] 未与 -source 1.7 一起设置引导类路径
+
+:app:preBuild UP-TO-DATE
+:app:preReleaseBuild1 个警告
+
+:javalib2:processResources NO-SOURCE
+:javalib2:classes
+:javalib2:jar
+:javalib:compileJava警告: [options] 未与 -source 1.7 一起设置引导类路径
+1 个警告
+
+:app:compileReleaseAidl
+:javalib:classes
+:javalib:jar
+:mylibrary2:prepareLintJar UP-TO-DATE
+:app:compileReleaseRenderscript
+:mylibrary2:javaPreCompileRelease
+:mylibrary:processReleaseJavaRes NO-SOURCE
+:mylibrary:mergeReleaseShaders
+:mylibrary2:processReleaseJavaRes NO-SOURCE
+:mylibrary:compileReleaseShaders
+:mylibrary2:mergeReleaseShaders
+:app:checkReleaseManifest
+:mylibrary:generateReleaseAssets
+:mylibrary:mergeReleaseAssets
+:app:generateReleaseBuildConfig
+:mylibrary:compileReleaseNdk NO-SOURCE
+:mylibrary:mergeReleaseJniLibFolders
+:app:prepareLintJar UP-TO-DATE
+:app:generateReleaseResValues
+:app:generateReleaseResources
+:app:mergeReleaseResources
+:mylibrary:transformNativeLibsWithMergeJniLibsForRelease
+:mylibrary:transformNativeLibsWithIntermediateJniLibsForRelease
+:mylibrary:mergeReleaseConsumerProguardFiles UP-TO-DATE
+:mylibrary:transformNativeLibsWithSyncJniLibsForRelease
+:mylibrary2:compileReleaseShaders
+:mylibrary:mergeReleaseResources
+:mylibrary2:generateReleaseAssets
+:mylibrary2:mergeReleaseAssets
+:mylibrary2:compileReleaseNdk NO-SOURCE
+:mylibrary2:mergeReleaseJniLibFolders
+:mylibrary2:transformNativeLibsWithMergeJniLibsForRelease
+:mylibrary2:transformNativeLibsWithIntermediateJniLibsForRelease
+:mylibrary2:mergeReleaseConsumerProguardFiles UP-TO-DATE
+:mylibrary2:transformNativeLibsWithSyncJniLibsForRelease
+:mylibrary2:mergeReleaseResources
+:mylibrary2:verifyReleaseResources
+:mylibrary:verifyReleaseResources
+:app:createReleaseCompatibleScreenManifests
+:app:processReleaseManifest
+:app:splitsDiscoveryTaskRelease
+:app:compileReleaseNdk NO-SOURCE
+:app:mergeReleaseShaders
+:app:compileReleaseShaders
+:app:generateReleaseAssets
+:app:mergeReleaseAssets
+:app:mergeReleaseJniLibFolders
+:app:processReleaseJavaRes NO-SOURCE
+:mylibrary2:processReleaseResources
+:mylibrary:processReleaseResources
+:mylibrary2:generateReleaseSources
+:mylibrary2:compileReleaseJavaWithJavac
+:app:processReleaseResources
+:mylibrary:generateReleaseSources
+:mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForRelease
+:mylibrary:javaPreCompileRelease
+:mylibrary2:extractReleaseAnnotations
+:mylibrary:compileReleaseJavaWithJavac
+:mylibrary2:transformResourcesWithMergeJavaResForRelease
+:mylibrary2:transformClassesAndResourcesWithSyncLibJarsForRelease
+:mylibrary2:bundleRelease
+:mylibrary2:compileReleaseSources
+:mylibrary2:assembleRelease
+:mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForRelease
+:mylibrary:extractReleaseAnnotations
+:mylibrary:transformResourcesWithMergeJavaResForRelease
+:mylibrary:transformClassesAndResourcesWithSyncLibJarsForRelease
+:mylibrary:bundleRelease
+:mylibrary:compileReleaseSources
+:mylibrary:assembleRelease
+:app:generateReleaseSources
+:app:javaPreCompileRelease
+:app:compileReleaseJavaWithJavac
+:app:compileReleaseSources
+:app:transformClassesWithPreDexForRelease
+:app:transformDexWithDexForRelease
+:app:transformNativeLibsWithMergeJniLibsForRelease
+:app:transformResourcesWithMergeJavaResForRelease
+:app:packageRelease
+:app:lintVitalRelease
+Gradle now uses separate output directories for each JVM language, but this build assumes a single directory for all classes from a source set. This behaviour has been deprecated and is scheduled to be removed in Gradle 5.0
+:app:assembleRelease
+
+BUILD SUCCESSFUL in 3s
+88 actionable tasks: 83 executed, 5 up-to-date
