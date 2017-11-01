@@ -251,7 +251,7 @@ project.afterEvaluate {
                                 //values.find { !it.isMultiDex() && it.isPreDex() }
                                 Transform result =
                                         targetConstructor.newInstance( base.dexOptions
-                                                ,base.
+                                                ,base.dexingType
                                                 ,base.preDexEnabled
                                                 ,(FileCollection)null
                                                 ,base.targetInfo
