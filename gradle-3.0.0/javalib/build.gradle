@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 dependencies {
     compile project(':javalib2')
@@ -11,9 +11,14 @@ targetCompatibility = "1.7"
 
 task javalib2test {
     doLast {
-        final String compileClasspathName = "compileClasspath";
-        final ConfigurationContainer configurations = project.getConfigurations();
-        Configuration compileClasspath = configurations.maybeCreate(compileClasspathName);
+        final String compileClasspathName = "compileClasspath"
+        final ConfigurationContainer configurations = project.getConfigurations()
+        Configuration compileClasspath = configurations.findByName(compileClasspathName)
+
+        if (compileClasspath == null) {
+            println "==create compileClasspath"
+            compileClasspath = configurations.maybeCreate(compileClasspathName)
+        }
 
         for (Dependency dependency : compileClasspath.getAllDependencies()) {
             if (dependency instanceof org.gradle.api.internal.artifacts.dependencies.DefaultProjectDependency) {

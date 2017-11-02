@@ -4,7 +4,7 @@ If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
 Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
-ApkLocation: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/debug
+ApkLocation: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/release
 Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
 NDK is missing a "platforms" directory.
 If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
@@ -15,102 +15,120 @@ NDK is missing a "platforms" directory.
 If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
+###transform: class com.android.build.gradle.internal.transforms.PreDexTransform
+PreDexTransform.targetConstructor: public com.android.build.gradle.internal.transforms.PreDexTransform(com.android.builder.core.DexOptions,com.android.builder.core.AndroidBuilder,com.android.builder.utils.FileCache,com.android.builder.dexing.DexingType,int)
+PreDexTransform.dexingType: MONO_DEX
+PreDexTransform.minSdkVersion: 21
+result: com.android.build.gradle.internal.transforms.PreDexTransform@38e2838e
+###transform: class com.android.build.gradle.internal.transforms.DexTransform
+DexTransform.targetConstructor: public com.android.build.gradle.internal.transforms.DexTransform(com.android.builder.core.DexOptions,com.android.builder.dexing.DexingType,boolean,org.gradle.api.file.FileCollection,com.android.builder.sdk.TargetInfo,com.android.builder.core.DexByteCodeConverter,com.android.builder.core.ErrorReporter,int)
+DexTransform.dexOptions: com.android.build.gradle.internal.dsl.DexOptions_Decorated@4221250c
+DexTransform.dexingType: MONO_DEX
+DexTransform.preDexEnabled: true
+DexTransform.minSdkVersion: 21
+result: com.android.build.gradle.internal.transforms.DexTransform@59a2a29c
+###transform: class com.android.build.gradle.internal.transforms.MergeJavaResourcesTransform
+###transform: class com.android.build.gradle.internal.transforms.MergeJavaResourcesTransform
 :clean
 :app:clean
 :javalib:clean
 :javalib2:clean
 :mylibrary:clean
 :mylibrary2:clean
-:javalib2:compileJava
+:javalib2:compileJava警告: [options] 未与 -source 1.7 一起设置引导类路径
+1 个警告
+
 :mylibrary:preBuild UP-TO-DATE
 :mylibrary:preReleaseBuild UP-TO-DATE
 :mylibrary:checkReleaseManifest
-:mylibrary2:preBuild UP-TO-DATE
-:mylibrary2:preReleaseBuild UP-TO-DATE
-:mylibrary2:checkReleaseManifest
-:mylibrary:processReleaseManifest
-:mylibrary2:processReleaseManifest
-:mylibrary:packageReleaseRenderscript NO-SOURCE
-:mylibrary:generateReleaseResValues
-:mylibrary2:compileReleaseAidl
-:mylibrary:platformAttrExtractor
-:mylibrary:compileReleaseAidl
-:mylibrary2:packageReleaseRenderscript NO-SOURCE
-:mylibrary2:compileReleaseRenderscript
-:mylibrary:compileReleaseRenderscript
-:mylibrary2:generateReleaseResValues
-:mylibrary:generateReleaseResources
-:mylibrary:packageReleaseResources
-:mylibrary2:generateReleaseResources
-:mylibrary2:packageReleaseResources
-:javalib:processResources
-:mylibrary2:platformAttrExtractor
-:javalib:processResources NO-SOURCE
-:mylibrary:generateReleaseBuildConfig
-:mylibrary:prepareLintJar UP-TO-DATE
-:mylibrary2:generateReleaseBuildConfig警告: [options] 未与 -source 1.7 一起设置引导类路径
-
-:app:preBuild UP-TO-DATE
-:app:preReleaseBuild1 个警告
-
 :javalib2:processResources NO-SOURCE
 :javalib2:classes
 :javalib2:jar
-:javalib:compileJava警告: [options] 未与 -source 1.7 一起设置引导类路径
-1 个警告
-
-:app:compileReleaseAidl
-:javalib:classes
-:javalib:jar
-:mylibrary2:prepareLintJar UP-TO-DATE
-:app:compileReleaseRenderscript
-:mylibrary2:javaPreCompileRelease
-:mylibrary:processReleaseJavaRes NO-SOURCE
-:mylibrary:mergeReleaseShaders
-:mylibrary2:processReleaseJavaRes NO-SOURCE
-:mylibrary:compileReleaseShaders
-:mylibrary2:mergeReleaseShaders
-:app:checkReleaseManifest
-:mylibrary:generateReleaseAssets
-:mylibrary:mergeReleaseAssets
-:app:generateReleaseBuildConfig
-:mylibrary:compileReleaseNdk NO-SOURCE
-:mylibrary:mergeReleaseJniLibFolders
+:app:preBuild UP-TO-DATE
+:mylibrary:processReleaseManifest
 :app:prepareLintJar UP-TO-DATE
 :app:generateReleaseResValues
+:app:createReleaseCompatibleScreenManifests
+:javalib:compileJava
+:app:splitsDiscoveryTaskRelease
+:app:mergeReleaseShaders
+:mylibrary:packageReleaseRenderscript NO-SOURCE
+:mylibrary:generateReleaseResValues
+:mylibrary:platformAttrExtractor
+:app:compileReleaseShaders
+:app:generateReleaseAssets
+:app:mergeReleaseJniLibFolders
+:mylibrary:generateReleaseBuildConfig
+警告: [options] 未与 -source 1.7 一起设置引导类路径
+:mylibrary:prepareLintJar UP-TO-DATE
+1 个警告
+:mylibrary:processReleaseJavaRes NO-SOURCE
+:mylibrary:mergeReleaseShaders
+:mylibrary2:preBuild UP-TO-DATE
+:javalib:processResources
+:mylibrary2:preReleaseBuild
+:javalib:processResources NO-SOURCE
+:javalib:classes
+:mylibrary2:preReleaseBuild UP-TO-DATE
+:mylibrary2:checkReleaseManifest
+:javalib:jar
+:mylibrary2:processReleaseManifest
+:app:preReleaseBuild
+:mylibrary2:compileReleaseAidl
+:mylibrary:compileReleaseShaders
+:mylibrary:generateReleaseAssets
+:mylibrary:mergeReleaseAssets
+:mylibrary2:packageReleaseRenderscript
+:mylibrary:compileReleaseAidl
+:app:checkReleaseManifest
+:mylibrary2:packageReleaseRenderscript NO-SOURCE
+:mylibrary2:compileReleaseRenderscript
+:app:compileReleaseRenderscript
+:mylibrary:compileReleaseRenderscript
+:app:compileReleaseAidl
+:app:generateReleaseBuildConfig
+:mylibrary:generateReleaseResources
+:mylibrary2:generateReleaseResValues
+:mylibrary:packageReleaseResources
 :app:generateReleaseResources
+:app:processReleaseManifest
+:mylibrary2:generateReleaseResources
+:mylibrary2:packageReleaseResources
+:mylibrary:compileReleaseNdk NO-SOURCE
+:app:compileReleaseNdk
+:mylibrary:mergeReleaseJniLibFolders
+:app:compileReleaseNdk NO-SOURCE
+:app:processReleaseJavaRes NO-SOURCE
+:mylibrary2:platformAttrExtractor
 :app:mergeReleaseResources
 :mylibrary:transformNativeLibsWithMergeJniLibsForRelease
+:mylibrary2:generateReleaseBuildConfig
 :mylibrary:transformNativeLibsWithIntermediateJniLibsForRelease
 :mylibrary:mergeReleaseConsumerProguardFiles UP-TO-DATE
 :mylibrary:transformNativeLibsWithSyncJniLibsForRelease
-:mylibrary2:compileReleaseShaders
 :mylibrary:mergeReleaseResources
+:mylibrary2:prepareLintJar UP-TO-DATE
+:mylibrary2:javaPreCompileRelease
+:mylibrary2:processReleaseJavaRes NO-SOURCE
+:mylibrary2:mergeReleaseShaders
+:mylibrary2:compileReleaseShaders
 :mylibrary2:generateReleaseAssets
 :mylibrary2:mergeReleaseAssets
 :mylibrary2:compileReleaseNdk NO-SOURCE
 :mylibrary2:mergeReleaseJniLibFolders
 :mylibrary2:transformNativeLibsWithMergeJniLibsForRelease
+:mylibrary:verifyReleaseResources
 :mylibrary2:transformNativeLibsWithIntermediateJniLibsForRelease
 :mylibrary2:mergeReleaseConsumerProguardFiles UP-TO-DATE
 :mylibrary2:transformNativeLibsWithSyncJniLibsForRelease
 :mylibrary2:mergeReleaseResources
 :mylibrary2:verifyReleaseResources
-:mylibrary:verifyReleaseResources
-:app:createReleaseCompatibleScreenManifests
-:app:processReleaseManifest
-:app:splitsDiscoveryTaskRelease
-:app:compileReleaseNdk NO-SOURCE
-:app:mergeReleaseShaders
-:app:compileReleaseShaders
-:app:generateReleaseAssets
-:app:mergeReleaseAssets
-:app:mergeReleaseJniLibFolders
-:app:processReleaseJavaRes NO-SOURCE
 :mylibrary2:processReleaseResources
+:app:mergeReleaseAssets
 :mylibrary:processReleaseResources
 :mylibrary2:generateReleaseSources
 :mylibrary2:compileReleaseJavaWithJavac
+:app:validateSigningRelease
 :app:processReleaseResources
 :mylibrary:generateReleaseSources
 :mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForRelease
@@ -123,18 +141,42 @@ If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.
 :mylibrary2:compileReleaseSources
 :mylibrary2:assembleRelease
 :mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForRelease
+:app:generateReleaseSources
 :mylibrary:extractReleaseAnnotations
+:app:javaPreCompileRelease
 :mylibrary:transformResourcesWithMergeJavaResForRelease
 :mylibrary:transformClassesAndResourcesWithSyncLibJarsForRelease
+:app:compileReleaseJavaWithJavac
 :mylibrary:bundleRelease
 :mylibrary:compileReleaseSources
 :mylibrary:assembleRelease
-:app:generateReleaseSources
-:app:javaPreCompileRelease
-:app:compileReleaseJavaWithJavac
 :app:compileReleaseSources
 :app:transformClassesWithPreDexForRelease
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/okhttputils-2.4.1.aar/ba6ac00ad1561093c88767d5b741ad2b/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/64b8dc41ab19bcd9cb8593afd26cf66c/jars/classes.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar
+===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/release/classes.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/release/classes.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar
+===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/release
+dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release
 :app:transformDexWithDexForRelease
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/0.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/1.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/2.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/3.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/4.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/5.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/6.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/7.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/8.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/9.jar
+===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/10.jar
+dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dex/release
 :app:transformNativeLibsWithMergeJniLibsForRelease
 :app:transformResourcesWithMergeJavaResForRelease
 :app:packageRelease
@@ -143,4 +185,4 @@ Gradle now uses separate output directories for each JVM language, but this buil
 :app:assembleRelease
 
 BUILD SUCCESSFUL in 3s
-88 actionable tasks: 83 executed, 5 up-to-date
+89 actionable tasks: 84 executed, 5 up-to-date

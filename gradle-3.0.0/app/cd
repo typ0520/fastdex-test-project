@@ -1,0 +1,17 @@
+Parallel execution is an incubating feature.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+ApkLocation: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/release
+Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+
+Configuration 'compile' in project ':mylibrary' is deprecated. Use 'implementation' instead.
+NDK is missing a "platforms" directory.
+If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
+If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
+

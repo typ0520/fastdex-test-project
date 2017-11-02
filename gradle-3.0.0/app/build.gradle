@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'fastdex.app'
+apply plugin: 'fastdex.app'
 
 android {
     compileSdkVersion 26
@@ -14,16 +14,34 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        config {
+            storeFile file('../keystore.jks')
+            keyAlias 'testres'
+            keyPassword 'testres'
+            storePassword 'testres'
+        }
+    }
+
+
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.config
         }
 
-//        product {
-//            minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
+
+        product {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.config
+        }
     }
 
 //    productFlavors {
@@ -79,23 +97,17 @@ dependencies {
 }
 
 import com.android.build.api.transform.DirectoryInput
-import com.android.build.api.transform.Format
 import com.android.build.api.transform.JarInput
 import com.android.build.api.transform.QualifiedContent
 import com.android.build.api.transform.Transform
 import com.android.build.api.transform.TransformException
 import com.android.build.api.transform.TransformInput
 import com.android.build.api.transform.TransformInvocation
-import com.android.build.api.transform.TransformOutputProvider
-import com.android.build.gradle.internal.dependency.VariantDependencies
 import com.android.build.gradle.internal.pipeline.TransformTask
-import com.android.build.gradle.internal.scope.VariantScope
-import com.google.common.collect.ImmutableSet
 import com.google.common.collect.Lists
 
 import java.lang.reflect.Constructor
 import java.lang.reflect.Field
-import java.lang.reflect.Method
 
 public class MyDexArchiveBuilderTransform extends com.android.build.api.transform.Transform {
     com.android.build.api.transform.Transform base
@@ -292,6 +304,36 @@ project.afterEvaluate {
                                                 , base.dexMerger
                                                 ,21
                                                 , true)
+                                println "result: " + result
+
+                                transform = result
+
+                                //代理DexTransform,实现自定义的转换
+                                MyDexArchiveBuilderTransform fastdexTransform = new MyDexArchiveBuilderTransform(transform)
+
+                                Field field = MyDexArchiveBuilderTransform.getFieldByName(task.getClass(),'transform')
+
+                                field.setAccessible(true)
+                                field.set(task,fastdexTransform)
+                            }
+
+                            if ((((transform instanceof com.android.build.gradle.internal.transforms.PreDexTransform)) && !(transform instanceof MyDexArchiveBuilderTransform))) {
+                                def base = transform
+
+                                Constructor<?>[] constructors = transform.getClass().getConstructors()
+                                Constructor targetConstructor = constructors[0]
+
+                                println "PreDexTransform.targetConstructor: " + targetConstructor
+                                println "PreDexTransform.dexingType: " + transform.dexingType
+                                println "PreDexTransform.minSdkVersion: " + transform.minSdkVersion
+
+                                Transform result =
+                                        targetConstructor.newInstance(
+                                                base.dexOptions
+                                                ,base.androidBuilder
+                                                ,base.buildCache
+                                                ,base.dexingType
+                                                ,base.minSdkVersion)
                                 println "result: " + result
 
                                 transform = result

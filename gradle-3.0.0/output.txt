@@ -4,6 +4,8 @@ If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
 Configuration 'compile' in project ':app' is deprecated. Use 'implementation' instead.
+====fastdex add dynamic property: 'android.enableBuildCache=true'
+====fastdex add dynamic property: 'kotlin.incremental=true'
 ApkLocation: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/outputs/apk/release
 Jar: class org.gradle.api.tasks.bundling.Jar_Decorated
 NDK is missing a "platforms" directory.
@@ -11,171 +13,231 @@ If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
 Configuration 'compile' in project ':mylibrary' is deprecated. Use 'implementation' instead.
+com.android.build.gradle.internal.api.LibraryVariantImpl_Decorated@792c4882
+mylibrary.buildTypeName: product
+mylibrary.variantName: DevProduct
+mylibrary.buildTypeName: debug
+mylibrary.variantName: DevDebug
+mylibrary.buildTypeName: release
+mylibrary.variantName: DevRelease
 NDK is missing a "platforms" directory.
 If you are using NDK, verify the ndk.dir is set to a valid NDK directory.  It is currently set to /Users/tong/Library/Android/sdk/ndk-bundle.
 If you are not using NDK, unset the NDK variable from ANDROID_NDK_HOME or local.properties to remove this warning.
 
-###transform: class com.android.build.gradle.internal.transforms.PreDexTransform
-###transform: class com.android.build.gradle.internal.transforms.DexTransform
-DexTransform.targetConstructor: public com.android.build.gradle.internal.transforms.DexTransform(com.android.builder.core.DexOptions,com.android.builder.dexing.DexingType,boolean,org.gradle.api.file.FileCollection,com.android.builder.sdk.TargetInfo,com.android.builder.core.DexByteCodeConverter,com.android.builder.core.ErrorReporter,int)
-DexTransform.dexOptions: com.android.build.gradle.internal.dsl.DexOptions_Decorated@5a1e679a
-DexTransform.dexingType: MONO_DEX
-DexTransform.preDexEnabled: true
-DexTransform.minSdkVersion: 15
-result: com.android.build.gradle.internal.transforms.DexTransform@17072da
-###transform: class com.android.build.gradle.internal.transforms.MergeJavaResourcesTransform
-###transform: class com.android.build.gradle.internal.transforms.MergeJavaResourcesTransform
+task: transformClassesWithPreDexForProducttransform: class com.android.build.gradle.internal.transforms.PreDexTransform
+task: transformDexWithDexForProducttransform: class com.android.build.gradle.internal.transforms.DexTransform
+task: transformNativeLibsWithMergeJniLibsForProducttransform: class com.android.build.gradle.internal.transforms.MergeJavaResourcesTransform
+task: transformResourcesWithMergeJavaResForProducttransform: class com.android.build.gradle.internal.transforms.MergeJavaResourcesTransform
 :clean
 :app:clean
-:javalib:clean
-:mylibrary:clean
 :javalib2:clean
+:mylibrary:clean
+:javalib:clean
 :mylibrary2:clean
-:javalib2:compileJava
-:mylibrary:preBuild UP-TO-DATE
-:mylibrary:preReleaseBuild UP-TO-DATE
-:mylibrary:checkReleaseManifest
-:mylibrary2:preBuild UP-TO-DATE
-:mylibrary2:preReleaseBuild UP-TO-DATE
-:mylibrary:processReleaseManifest
-:mylibrary2:checkReleaseManifest
 :app:preBuild UP-TO-DATE
-:app:prepareLintJar UP-TO-DATE
-:mylibrary2:processReleaseManifest
-:app:generateReleaseResValues
-:app:createReleaseCompatibleScreenManifests
-:app:splitsDiscoveryTaskRelease
+:app:prepareLintJar
+:app:createProductCompatibleScreenManifests
+:mylibrary2:preBuild UP-TO-DATE
+:mylibrary2:preProductBuild UP-TO-DATE
+:mylibrary2:checkProductManifest
+:app:generateProductResValues
+:app:splitsDiscoveryTaskProduct
+:mylibrary:preBuild UP-TO-DATE
+:mylibrary:preDevProductBuild UP-TO-DATE
+:mylibrary:checkDevProductManifest
+:mylibrary:processDevProductManifest
+:mylibrary2:processProductManifest
+:javalib2:compileJava
 :javalib:processResources NO-SOURCE
-:mylibrary2:compileReleaseAidl
-:app:preReleaseBuild
-:mylibrary:packageReleaseRenderscript NO-SOURCE
-:mylibrary:generateReleaseResValues
-:mylibrary:platformAttrExtractor
-:mylibrary2:packageReleaseRenderscript NO-SOURCE
-:mylibrary:compileReleaseAidl
-:mylibrary:compileReleaseRenderscript
-:app:compileReleaseAidl
-:mylibrary:generateReleaseResources
-:mylibrary:packageReleaseResources
-:app:compileReleaseRenderscript
-警告: [options] 未与 -source 1.7 一起设置引导类路径
-:app:checkReleaseManifest
-:app:generateReleaseBuildConfig1 个警告
+:app:mergeProductShaders警告: [options] 未与 -source 1.7 一起设置引导类路径
+1 个警告
 
-:app:generateReleaseResources
-:mylibrary2:compileReleaseRenderscript
-:app:processReleaseManifest
 :javalib2:processResources NO-SOURCE
 :javalib2:classes
 :javalib2:jar
-:mylibrary2:generateReleaseResValues
-:mylibrary:generateReleaseBuildConfig
-:app:compileReleaseNdk
-:mylibrary:prepareLintJar
-:app:compileReleaseNdk NO-SOURCE
-:app:mergeReleaseShaders
-:mylibrary:prepareLintJar UP-TO-DATE
-:mylibrary:processReleaseJavaRes NO-SOURCE
-:mylibrary:mergeReleaseShaders
-:mylibrary2:generateReleaseResources
-:mylibrary2:packageReleaseResources
+:app:compileProductShaders
 :javalib:compileJava
-:mylibrary:compileReleaseShaders
-:app:compileReleaseShaders
-:mylibrary:generateReleaseAssets
-:mylibrary:mergeReleaseAssets
-:app:generateReleaseAssets
-:app:mergeReleaseJniLibFolders
-:mylibrary2:platformAttrExtractor
-:mylibrary:compileReleaseNdk NO-SOURCE
-:mylibrary:mergeReleaseJniLibFolders
-:app:mergeReleaseResources
-:mylibrary2:generateReleaseBuildConfig
-:mylibrary2:prepareLintJar UP-TO-DATE
-:mylibrary2:javaPreCompileRelease
-:mylibrary2:processReleaseJavaRes NO-SOURCE
-:mylibrary2:mergeReleaseShaders
-:mylibrary2:compileReleaseShaders
-:mylibrary2:generateReleaseAssets
-:mylibrary2:mergeReleaseAssets
-:mylibrary:transformNativeLibsWithMergeJniLibsForRelease
-:mylibrary2:processReleaseResources警告: [options] 未与 -source 1.7 一起设置引导类路径
-
-:mylibrary:transformNativeLibsWithIntermediateJniLibsForRelease
+:app:generateProductAssets
+:app:mergeProductJniLibFolders
+:app:validateSigningProduct
+:mylibrary2:compileProductAidl
+:mylibrary2:packageProductRenderscript NO-SOURCE
+:mylibrary2:compileProductRenderscript
+:mylibrary2:generateProductResValues
+:mylibrary2:generateProductResources
+警告: [options] 未与 -source 1.7 一起设置引导类路径
 1 个警告
+:mylibrary2:packageProductResources
 :javalib:classes
+:app:preProductBuild
+:mylibrary:compileDevProductAidl
 :javalib:jar
-:mylibrary:processReleaseResources
-:mylibrary2:generateReleaseSources
-:mylibrary2:compileReleaseJavaWithJavac
-:mylibrary:generateReleaseSources
-:mylibrary:mergeReleaseConsumerProguardFiles UP-TO-DATE
-:mylibrary:transformNativeLibsWithSyncJniLibsForRelease
-:mylibrary:mergeReleaseResources
-:mylibrary:verifyReleaseResources
-:mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForRelease
-:mylibrary2:compileReleaseNdk NO-SOURCE
-:mylibrary2:mergeReleaseJniLibFolders
-:mylibrary2:transformNativeLibsWithMergeJniLibsForRelease
-:mylibrary2:transformNativeLibsWithIntermediateJniLibsForRelease
-:mylibrary2:extractReleaseAnnotations
-:mylibrary2:mergeReleaseConsumerProguardFiles UP-TO-DATE
-:mylibrary2:transformResourcesWithMergeJavaResForRelease
-:mylibrary2:transformClassesAndResourcesWithSyncLibJarsForRelease
-:mylibrary2:transformNativeLibsWithSyncJniLibsForRelease
-:mylibrary2:bundleRelease
-:mylibrary2:compileReleaseSources
-:mylibrary2:mergeReleaseResources
-:mylibrary2:verifyReleaseResources
-:app:processReleaseResources
-:mylibrary:javaPreCompileRelease
-:mylibrary:compileReleaseJavaWithJavac
-:mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForRelease
-:mylibrary:extractReleaseAnnotations
-:mylibrary:transformResourcesWithMergeJavaResForRelease
-:mylibrary:transformClassesAndResourcesWithSyncLibJarsForRelease
-:mylibrary:bundleRelease
-:mylibrary:compileReleaseSources
-:mylibrary:assembleRelease
-:mylibrary2:assembleRelease
-:app:generateReleaseSources
-:app:javaPreCompileRelease
-:app:compileReleaseJavaWithJavac
-:app:compileReleaseSources
-:app:mergeReleaseAssets
-:app:transformClassesWithPreDexForRelease
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/libs/tbs_sdk_thirdapp_v3.2.0.1104_43200_sharewithdownload_withfilereader_withoutGame_obfs_20170609_115346.jar
-===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/okhttputils-2.4.1.aar/39ad33e2c96a1f2dd7eb272014a603d0/jars/classes.jar
-===dex jar      : /Users/tong/.gradle/caches/transforms-1/files-1.1/multidex-1.0.1.aar/c3bd80ed798f95b0bbf0ea9bee336bd8/jars/classes.jar
-===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar
-===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup/otto/1.3.5/7941cd2c2c8ec006800d75c35f8a9dacf892ab93/otto-1.3.5.jar
-===dex jar      : /Users/tong/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/release/classes.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/release/classes.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar
-===dex directory: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/release
-dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release
-:app:transformDexWithDexForRelease
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/0.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/1.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/2.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/3.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/4.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/5.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/6.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/7.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/8.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/9.jar
-===dex jar      : /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/preDex/release/10.jar
-dexDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dex/release
-:app:transformNativeLibsWithMergeJniLibsForRelease
-:app:processReleaseJavaRes NO-SOURCE
-:app:transformResourcesWithMergeJavaResForRelease
-:app:packageRelease
-:app:lintVitalRelease
-Gradle now uses separate output directories for each JVM language, but this build assumes a single directory for all classes from a source set. This behaviour has been deprecated and is scheduled to be removed in Gradle 5.0
-:app:assembleRelease
+:mylibrary:packageDevProductRenderscript NO-SOURCE
+:mylibrary:compileDevProductRenderscript
+:mylibrary:generateDevProductResValues
+:app:checkProductManifest
+:mylibrary:generateDevProductResources
+:mylibrary:packageDevProductResources
+:app:compileProductAidl
+:app:compileProductRenderscript
+:mylibrary:platformAttrExtractor
+:app:generateProductBuildConfig
+:mylibrary:generateDevProductBuildConfig
+:app:generateProductResources
+:app:compileProductNdk
+:mylibrary:prepareLintJar
+:app:compileProductNdk NO-SOURCE
+:app:processProductJavaRes NO-SOURCE
+:mylibrary:processDevProductJavaRes NO-SOURCE
+:mylibrary:mergeDevProductShaders
+:mylibrary:compileDevProductShaders
+:mylibrary:generateDevProductAssets
+:mylibrary:mergeDevProductAssets
+:mylibrary:compileDevProductNdk NO-SOURCE
+:mylibrary:mergeDevProductJniLibFolders
+:mylibrary:transformNativeLibsWithMergeJniLibsForDevProduct
+:app:mergeProductResources
+:mylibrary2:platformAttrExtractor
+:mylibrary2:processProductResources
+:mylibrary:transformNativeLibsWithIntermediateJniLibsForDevProduct
+:mylibrary:mergeDevProductConsumerProguardFiles
+:mylibrary:transformNativeLibsWithSyncJniLibsForDevProduct
+:mylibrary:mergeDevProductResources
+:app:processProductManifest
+:mylibrary:verifyDevProductResources
+:mylibrary2:generateProductBuildConfig
+:mylibrary2:prepareLintJar
+:mylibrary2:generateProductSources
+:mylibrary2:javaPreCompileProduct
+:app:fastdexProcessProductManifest
+:mylibrary2:compileProductJavaWithJavac
+:mylibrary2:processProductJavaRes NO-SOURCE
+:mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForProduct
+:mylibrary:processDevProductResources
+:mylibrary2:mergeProductShaders
+:mylibrary2:compileProductShaders
+:mylibrary2:generateProductAssets
+:mylibrary2:mergeProductAssets
+:app:processProductResources
+:mylibrary:generateDevProductSources
+:mylibrary:javaPreCompileDevProduct
+:mylibrary:compileDevProductJavaWithJavac
+:mylibrary2:compileProductNdk NO-SOURCE
+:mylibrary2:mergeProductJniLibFolders
+:mylibrary2:transformNativeLibsWithMergeJniLibsForProduct
+:mylibrary2:transformNativeLibsWithIntermediateJniLibsForProduct
+:mylibrary2:extractProductAnnotations
+:mylibrary2:mergeProductConsumerProguardFiles
+:mylibrary2:transformResourcesWithMergeJavaResForProduct
+:mylibrary:transformClassesAndResourcesWithPrepareIntermediateJarsForDevProduct
+:mylibrary:extractDevProductAnnotations
+:mylibrary:transformResourcesWithMergeJavaResForDevProduct
+:mylibrary2:transformClassesAndResourcesWithSyncLibJarsForProduct
+:mylibrary:transformClassesAndResourcesWithSyncLibJarsForDevProduct
+:mylibrary:bundleDevProduct
+:mylibrary:compileDevProductSources
+:mylibrary:assembleDevProduct
+:mylibrary:assembleProduct
+:mylibrary2:transformNativeLibsWithSyncJniLibsForProduct
+:mylibrary2:bundleProduct
+:mylibrary2:compileProductSources
+:mylibrary2:mergeProductResources
+:mylibrary2:verifyProductResources
+:mylibrary2:assembleProduct
+:app:generateProductSources
+:app:fastdexPrepareForProduct==fastdex hasDexCache: false
+==fastdex clean dir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product
+==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/src/main/java, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/src/product/java]
+==fastdex skip scan: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/generated/source/apt/product
+==fastdex: libraryDependencies: [LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar, dependencyProject=project ':javalib', androidLibrary=false}, LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/dev/product/classes.jar, dependencyProject=project ':mylibrary', androidLibrary=true}, LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/product/classes.jar, dependencyProject=project ':mylibrary2', androidLibrary=true}, LibDependency{jarFile=/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar, dependencyProject=project ':javalib2', androidLibrary=false}]
+==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/src/main/java]
+==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/src/main/java, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/src/product/java]
+==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/src/main/java, /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/src/product/java]
+==fastdex: sourceSets [/Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/src/main/java]
 
-BUILD SUCCESSFUL in 3s
-88 actionable tasks: 83 executed, 5 up-to-date
+:app:javaPreCompileProduct
+:app:compileProductJavaWithJavac
+:app:compileProductSources
+:app:mergeProductAssets
+:app:fastdexScanAptOutputForProduct
+:app:transformClassesWithPreDexForProduct====fastdex inject dir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product====
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/android/support/multidex/R.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/com/zhy/http/okhttp/R$string.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/com/zhy/http/okhttp/R.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/AppHaHa.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/BuildConfig.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/MainActivity.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R$color.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R$id.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R$layout.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R$mipmap.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R$string.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R$style.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/myapplication/R.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/mylibrary/R$id.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/mylibrary/R$layout.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/mylibrary/R$string.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/mylibrary/R.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/mylibrary2/R$string.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/classes/product/mcare/example/com/mylibrary2/R.class
+==fastdex inject complete dir-size: 1 , use: 111ms
+==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib/build/libs/javalib.jar
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/temp/mcare/example/com/javalib/JavaLib1.class
+==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary/build/intermediates/intermediate-jars/dev/product/classes.jar
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/temp/mcare/example/com/mylibrary/AarLib.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/temp/mcare/example/com/mylibrary/BuildConfig.class
+==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/mylibrary2/build/intermediates/intermediate-jars/product/classes.jar
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/temp/mcare/example/com/mylibrary/AarLib2.class
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/temp/mcare/example/com/mylibrary2/BuildConfig.class
+==fastdex inject jar: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/javalib2/build/libs/javalib2.jar
+==fastdex inject: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/temp/mcare/example/com/javalib/JavaLib2.class
+==fastdex inject complete jar-size: 4 , use: 262ms
+
+:app:transformDexWithDexForProduct==fastdex normal transform start
+==fastdex inject complete dir-size: 0 , use: 0ms
+==fastdex inject complete jar-size: 4 , use: 0ms
+==fastdex dexOutputDir: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dex/product
+ 
+==fastdex first build dex-dir[classes2.dex]
+==fastdex fastdex-runtime.dex => /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/transforms/dex/product/0/classes.dex
+==fastdex first build dex-dir[classes.dex,classes2.dex]
+ 
+==fastdex normal transform end
+
+
+:app:fastdexPatchForProduct
+:app:transformNativeLibsWithMergeJniLibsForProduct
+:app:transformResourcesWithMergeJavaResForProduct
+:app:packageProduct==fastdex copy meta info: 
+from: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/fastdex/Product/fastdex-meta-info.json
+into: /Users/tong/Projects/fastdex-test-project/gradle-3.0.0/app/build/intermediates/assets/product/fastdex-meta-info.json
+
+:app:lintVitalProduct SKIPPED
+:app:assembleProduct
+
+BUILD SUCCESSFUL in 14s
+92 actionable tasks: 92 executed
+Task spend time:
+     70ms  :mylibrary2:checkProductManifest
+     80ms  :javalib:clean
+     66ms  :mylibrary2:processProductManifest
+    130ms  :mylibrary:processDevProductManifest
+    163ms  :javalib:compileJava
+     82ms  :mylibrary2:packageProductResources
+    303ms  :mylibrary:transformNativeLibsWithMergeJniLibsForDevProduct
+     59ms  :mylibrary2:processProductResources
+     90ms  :app:fastdexProcessProductManifest
+     91ms  :mylibrary:verifyDevProductResources
+     92ms  :mylibrary:platformAttrExtractor
+     94ms  :mylibrary2:transformClassesAndResourcesWithPrepareIntermediateJarsForProduct
+    126ms  :mylibrary2:compileProductShaders
+     77ms  :mylibrary:extractDevProductAnnotations
+     52ms  :mylibrary2:mergeProductResources
+    880ms  :app:processProductResources
+    289ms  :app:fastdexPrepareForProduct
+    202ms  :app:compileProductJavaWithJavac
+   2088ms  :app:transformClassesWithPreDexForProduct
+    883ms  :app:transformDexWithDexForProduct
+    360ms  :app:transformNativeLibsWithMergeJniLibsForProduct
+    192ms  :app:transformResourcesWithMergeJavaResForProduct
+    982ms  :app:packageProduct
